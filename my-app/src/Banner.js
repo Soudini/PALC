@@ -13,10 +13,10 @@ class Banner extends Component{
               <a class="nav-link" href="#">Annonces Recherche <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Annonce Trouvaille</a>
+              <a class="nav-link" href="#">Annonces Trouvaille</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Poster une annonce</a>
+              <a class="nav-link" href="post.html">Poster une annonce</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Mon compte</a>
