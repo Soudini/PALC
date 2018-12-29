@@ -7,48 +7,48 @@ import {Nav} from 'react-bootstrap';
 class Banner extends Component{
   render(){
     return(
-      <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
         <LinkContainer to="/">
           <Nav.Item>
-            <a class="navbar-brand" href="#">Objets-Trouvés</a>
+            <a className="navbar-brand" href="#">Objets-Trouvés</a>
           </Nav.Item>
         </LinkContainer>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
 
-          <LinkContainer to="/searched">
+          <LinkContainer to="/search">
             <Nav.Item>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Annonces Recherche <span class="sr-only">(current)</span></a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Annonces Recherche <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
           <LinkContainer to="/found">
             <Nav.Item>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Annonces Trouvaille <span class="sr-only">(current)</span></a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Annonces Trouvaille <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
           <LinkContainer to="/createPost">
             <Nav.Item>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Créer une annonce <span class="sr-only">(current)</span></a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Créer une annonce <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
           <LinkContainer to="/perso">
             <Nav.Item>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Mon Compte <span class="sr-only">(current)</span></a>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Mon Compte <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
 
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher une annonce</button>
+          <form className="form-inline my-2 my-lg-0">
+            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit" value="uih">Chercher une annonce</button>
           </form>
         </div>
       </nav>
