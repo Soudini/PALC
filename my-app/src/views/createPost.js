@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import testConnect from '../mongo.js';
 
 
-
+testConnect()
 
 class PostType extends Component {
   constructor(props){
