@@ -149,7 +149,7 @@ export default class CreatePost extends Component {
       this.setState({
         image: file,
         imagePreviewUrl: reader.result
-      });
+      }, console.log(this.state.imagePreviewUrl));
     }
 
     reader.readAsDataURL(file)
@@ -182,7 +182,7 @@ export default class CreatePost extends Component {
       type: infos.type,
       reward: this.state.reward,
       description: infos.description,
-      image: infos.image,
+      image: infos.imagePreviewUrl,
     });
     console.log({
       id: idToBeAdded,

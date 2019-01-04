@@ -42,8 +42,8 @@ export default class Search extends Component {
 
 
       return (
-        <div>
-          {this.state.data.map(this.keepSearch)}
+        <div className="row flex-wrap d-flex align-self-stretch">
+          {this.state.data.map(dat => (<div className="col-sm d-flex">{this.keepSearch(dat)}</div>))}
         </div>
       )
    }

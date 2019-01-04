@@ -42,7 +42,7 @@ export default class Found extends Component {
 
 
       return (
-        <div>
+        <div className="row flex-wrap d-flex align-self-stretch">
           {this.state.data.map(this.keepSearch)}
         </div>
       )

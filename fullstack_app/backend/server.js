@@ -79,13 +79,14 @@ router.post("/putData", (req, res) => {
   data.description = description;
   data.author = author;
   data.id = id;
-  data.image.data = image;
-  data.image.contentType = 'image/png'
+  data.image = image;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
 });
+
+
 
 // append /api for our http requests
 app.use("/api", router);
