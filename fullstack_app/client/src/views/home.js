@@ -39,8 +39,8 @@ export default class Home extends Component {
 
 
       return (
-        <div>
-          {this.state.data.map(dat => <Ad data={dat}/>)}
+        <div className="row align-items-center">
+            {this.state.data.map(dat => (<div className="col-sm-4"><Ad data={dat}/></div>))}
         </div>
       )
    }

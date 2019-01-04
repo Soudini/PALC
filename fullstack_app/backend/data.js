@@ -12,6 +12,7 @@ const DataSchema = new Schema(
     title: String,
     reward : String,
     description : String,
+    image: { data: Buffer, contentType: String }
   },
   { timestamps: true }
 );

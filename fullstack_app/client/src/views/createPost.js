@@ -107,11 +107,13 @@ export default class CreatePost extends Component {
       reward: "Palc",
       title: null,
       description: null,
+      image: null,
       data: [],
     }
 
     this.updateParent = this.updateParent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleImage = this.handleImage.bind(this);
   }
 
 
@@ -140,6 +142,19 @@ export default class CreatePost extends Component {
     this.putDataToDB(this.state)
   }
 
+  handleImage(event) {
+    let reader = new FileReader();
+    let file = event.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        image: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   getDataFromDb = () => {
     fetch("/api/getData")
       .then(data => data.json())
@@ -155,16 +170,29 @@ export default class CreatePost extends Component {
     while (currentIds.includes(idToBeAdded)) {
       ++idToBeAdded;
     }
-
+    const fd = new FormData();
+    if (this.state.image)
+    {
+      fd.append('image', this.state.image, this.state.image.name)
+    }
     axios.post("/api/putData", {
       id: idToBeAdded,
       author : "TODO", //TODO
       title: infos.title,
       type: infos.type,
       reward: this.state.reward,
-      description: infos.description
+      description: infos.description,
+      image: infos.image,
     });
-    console.log(infos.reward);
+    console.log({
+      id: idToBeAdded,
+      author : "TODO", //TODO
+      title: infos.title,
+      image: infos.image,
+      type: infos.type,
+      reward: this.state.reward,
+      description: infos.description,
+    });
   };
 
 
@@ -204,6 +232,11 @@ export default class CreatePost extends Component {
 
 
   render () {
+      let {imagePreviewUrl} = this.state;
+      let $imagePreview = null;
+      if (imagePreviewUrl) {
+        $imagePreview = (<img className="img-fluid img-thumbnail w-25 h-25" src={imagePreviewUrl} />);
+      }
       let type = <PostType updateParent={this.updateParent}/>;
       let description = <Description updateParent={this.updateParent}/>;
       let title = <Title updateParent={this.updateParent}/>;
@@ -216,13 +249,19 @@ export default class CreatePost extends Component {
                 {title}
                 <br/>
                 {description}
-              <div className="form-group">
-                <label>Ajoutez une image si possible</label>
-                <input type="file" className="form-control-file" id="exampleFormControlFile1"/>
+              <div className="row justify-content-start">
+                <div className="form-group col-3">
+                  <label>Ajoutez une image si possible</label>
+                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} />
+                </div>
+                {$imagePreview}
               </div>
+              <br/>
               <button type="submit" className="btn btn-primary">Submit</button>
+
           </form>
         </div>
+
       )
    }
 }

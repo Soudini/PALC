@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
+const fs = require("fs");
 
 const API_PORT = 3001;
 const app = express();
@@ -64,7 +65,7 @@ router.delete("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { id, author, title, type, reward, description } = req.body;
+  const { id, author, title, type, reward, description, image } = req.body;
 
   /*if ((!id && id !== 0) || !message) {
     return res.json({
@@ -78,6 +79,8 @@ router.post("/putData", (req, res) => {
   data.description = description;
   data.author = author;
   data.id = id;
+  data.image.data = image;
+  data.image.contentType = 'image/png'
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
