@@ -1,3 +1,5 @@
-pour installer tout ce qu'il faut il suffit normalement de lancer la commande "npm i" dans les dossiers fullstack_app, client et backend.
+Pour installer tout ce qu'il faut, il suffit normalement de lancer la commande `npm i` dans les dossiers `fullstack_app, client et backend`.
 
-ensuite pour lancer le serveur et la base de donnée il faut lancer npm start depuis le dossier fullstack_app
+Ensuite pour lancer le serveur et la base de données, il faut lancer `npm start` depuis le dossier fullstack_app.
+
+Pour l'instant, la base de donnée est hébergée sur mLab mais c'est juste pour débuter sans avoir à tout installer.
