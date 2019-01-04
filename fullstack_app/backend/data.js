@@ -7,7 +7,11 @@ const Schema = mongoose.Schema;
 const DataSchema = new Schema(
   {
     id: Number,
-    message: String
+    type: String,
+    author: String,
+    title: String,
+    reward : String,
+    description : String,
   },
   { timestamps: true }
 );
