@@ -8,7 +8,7 @@ export default class Found extends Component {
   }
 
   componentDidMount() {
-    this.getDataFromDb();
+    this.searchDataFromDb();
     if (!this.state.intervalIsSet) {
       let interval = setInterval(this.getDataFromDb, 1000);
       this.setState({ intervalIsSet: interval });
@@ -31,6 +31,12 @@ export default class Found extends Component {
       .then(res => {this.setState({ data: res.data })});
 
   };
+
+  searchDataFromDb = () => {
+      axios.post("/api/searchData", {search : {"type": "found"}})
+        .then(data => data.data).then(res => {this.setState({ data: res.data })});
+
+    };
 
   keepFound(data) {
     if (data.type === 'found') return(<Ad data={data}/>)

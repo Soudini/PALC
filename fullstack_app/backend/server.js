@@ -44,9 +44,10 @@ router.get("/getData", (req, res) => {
 
 
 router.post("/searchData", (req, res) => {
-  const {search} = req.body;
-  console.log(search);
-  Data.find( search, (err, data) => {
+  let {search, number} = req.body;
+  console.log(search,number);
+  if (!number) {number = 10}
+  Data.find(search).sort({"updatedAt": -1 }).limit(number).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
