@@ -24,14 +24,6 @@ export default class Search extends Component {
     }
   }
 
-
-  getDataFromDb = () => {
-    fetch("/api/getData")
-      .then(data => data.json())
-      .then(res => {this.setState({ data: res.data })});
-
-  };
-
   searchDataFromDb = () => {
     axios.post("/api/searchData", {search : {"type": "search"}})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
@@ -39,18 +31,12 @@ export default class Search extends Component {
   };
 
 
-  keepSearch(data) {
-    if (data.type === 'search') return(<Ad data={data}/>)
-  }
 
   render () {
 
-
-
-
       return (
         <div className="row flex-wrap d-flex align-self-stretch">
-          {this.state.data.map(dat => (<div className="col-sm d-flex" key={dat.id}>{this.keepSearch(dat)}</div>))}
+          {this.state.data.map(dat => (<div className="col-sm d-flex" key={dat.id}><Ad data={dat}/></div>))}
         </div>
       )
    }

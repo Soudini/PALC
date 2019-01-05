@@ -8,7 +8,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this.getDataFromDb();
+    this.searchDataFromDb();
     if (!this.state.intervalIsSet) {
       let interval = setInterval(this.getDataFromDb, 1000);
       this.setState({ intervalIsSet: interval });
@@ -25,13 +25,11 @@ export default class Home extends Component {
   }
 
 
-  getDataFromDb = () => {
-    fetch("/api/getData")
-      .then(data => data.json())
-      .then(res => {this.setState({ data: res.data })});
+  searchDataFromDb = () => {
+    axios.post("/api/searchData", {search : {}})
+      .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
-
 
   render () {
 

@@ -25,22 +25,11 @@ export default class Found extends Component {
   }
 
 
-  getDataFromDb = () => {
-    fetch("/api/getData")
-      .then(data => data.json())
-      .then(res => {this.setState({ data: res.data })});
+  searchDataFromDb = () => {
+    axios.post("/api/searchData", {search : {"type": "found"}})
+      .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
-
-  searchDataFromDb = () => {
-      axios.post("/api/searchData", {search : {"type": "found"}})
-        .then(data => data.data).then(res => {this.setState({ data: res.data })});
-
-    };
-
-  keepFound(data) {
-    if (data.type === 'found') return(<Ad data={data}/>)
-  }
 
   render () {
 
@@ -49,7 +38,7 @@ export default class Found extends Component {
 
     return (
       <div className="row flex-wrap d-flex align-self-stretch">
-        {this.state.data.map(dat => (<div className="col-sm d-flex" key={dat.id}>{this.keepFound(dat)}</div>))}
+        {this.state.data.map(dat => (<div className="col-sm d-flex" key={dat.id}><Ad data={dat}/></div>))}
       </div>
     )
    }
