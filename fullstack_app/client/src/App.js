@@ -6,7 +6,7 @@ import Banner from './components/banner.js';
 class App extends Component {
   render() {
     return (
-        <div>
+        <div className="container-fluid">
           <Banner/>
           <br></br><br></br><br></br><br></br>
           <Main />

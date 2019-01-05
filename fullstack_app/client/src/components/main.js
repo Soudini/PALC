@@ -6,7 +6,7 @@ import Found from './../views/found.js';
 import CreatePost from './../views/createPost.js';
 import Perso from './../views/perso.js';
 import React, { Component } from 'react';
-
+import SearchEngine from './../views/searchEngine.js';
 import Banner from './banner.js';
 const Main = () => (
   <main>
@@ -17,7 +17,7 @@ const Main = () => (
         <Route exact path='/found' component={Found}/>
         <Route exact path='/search' component={Search}/>
         <Route exact path='/perso' component={Perso}/>
-
+        <Route exact path='/searchEngine/:searchText' component={SearchEngine}/>
       </Switch>
     </div>
   </main>

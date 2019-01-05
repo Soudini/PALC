@@ -18,8 +18,7 @@ export default class Ad extends Component {
 
   render() {
     let className = "card center"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
-    console.log(className)
-    return (<div className={className} style={{"margin-top": "20px", "width": "18rem"}}>
+    return (<div className={className} style={{"marginTop": "20px", "width": "18rem"}}>
               <img className="card-img-top" src={this.props.data.image} />
               <div className="card-body ">
                 <h5 className="card-title">{this.props.data.title}</h5>

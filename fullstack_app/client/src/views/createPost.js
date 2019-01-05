@@ -143,16 +143,41 @@ export default class CreatePost extends Component {
   }
 
   handleImage(event) {
-    let reader = new FileReader();
+    var reader = new FileReader();
     let file = event.target.files[0];
-    reader.onloadend = () => {
-      this.setState({
-        image: file,
-        imagePreviewUrl: reader.result
-      }, console.log(this.state.imagePreviewUrl));
-    }
+    reader.onloadend = (e) => {
 
-    reader.readAsDataURL(file)
+        var img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {var canvas = document.createElement("canvas");
+          console.log(img.src)
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          var MAX_WIDTH = 200;
+          var MAX_HEIGHT = 200;
+          var width = img.width;
+          var height = img.height;
+          if (width > height) {
+              if (width > MAX_WIDTH) {
+                  height *= MAX_WIDTH / width;
+                  width = MAX_WIDTH;
+              }
+          } else {
+              if (height > MAX_HEIGHT) {
+                  width *= MAX_HEIGHT / height;
+                  height = MAX_HEIGHT;
+              }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+          let dataurl = canvas.toDataURL("image/jpeg");
+          this.setState({imagePreviewUrl:dataurl});
+          console.log(dataurl)}
+    }
+    reader.readAsDataURL(file);
+
   }
 
   getDataFromDb = () => {

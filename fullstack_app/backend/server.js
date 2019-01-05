@@ -40,6 +40,18 @@ router.get("/getData", (req, res) => {
   });
 });
 
+
+
+
+router.post("/searchData", (req, res) => {
+  const {search} = req.body;
+  console.log(search);
+  Data.find( search, (err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
 // this is our update method
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {

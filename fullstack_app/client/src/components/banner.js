@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import './banner.css';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Nav} from 'react-bootstrap';
 
 class Banner extends Component{
+  state = {
+    search: "",
+  }
+  handleKeyPress = (e) =>
+  {
+
+    if (e.key === 'Enter') {
+      this.props.history.push("/searchEngine/"+this.state.search);
+    }
+  }
+  handleSearchText = (e) => {this.setState({search: e.target.value})}
   render(){
     return(
       <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
@@ -46,10 +57,10 @@ class Banner extends Component{
           </LinkContainer>
 
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit" value="uih">Chercher une annonce</button>
-          </form>
+            <input id="searchBar" className="form-control mr-sm-2 col-sm-2" onKeyPress={this.handleKeyPress} placeholder="Search" aria-label="Search" onChange={this.handleSearchText}></input>
+            <button className="btn btn-outline-success my-2 my-sm-0"><LinkContainer to={"/searchEngine/"+this.state.search}>
+                <strong>Chercher une annonce</strong>
+            </LinkContainer></button>
         </div>
       </nav>
     )
@@ -57,7 +68,7 @@ class Banner extends Component{
 
 }
 
-export default Banner;
+export default withRouter(Banner);
 
 
 /*      <Navbar inverse bg-dark>

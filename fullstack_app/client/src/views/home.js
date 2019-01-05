@@ -40,7 +40,7 @@ export default class Home extends Component {
 
       return (
           <div className="card-group">
-              {this.state.data.map(dat => (<div className="col-sm d-flex"><Ad data={dat}/></div>))}
+              {this.state.data.map(dat => (<div className="col-sm d-flex" key={dat.id}><Ad data={dat}/></div>))}
           </div>
       )
    }

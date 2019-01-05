@@ -32,7 +32,7 @@ export default class Found extends Component {
 
   };
 
-  keepSearch(data) {
+  keepFound(data) {
     if (data.type === 'found') return(<Ad data={data}/>)
   }
 
@@ -41,10 +41,10 @@ export default class Found extends Component {
 
 
 
-      return (
-        <div className="row flex-wrap d-flex align-self-stretch">
-          {this.state.data.map(this.keepSearch)}
-        </div>
-      )
+    return (
+      <div className="row flex-wrap d-flex align-self-stretch">
+        {this.state.data.map(dat => (<div className="col-sm d-flex" key={dat.id}>{this.keepFound(dat)}</div>))}
+      </div>
+    )
    }
 }
