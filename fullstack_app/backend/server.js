@@ -78,20 +78,14 @@ router.delete("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { id, author, title, type, reward, description, image } = req.body;
+  const { author, title, type, reward, description, image } = req.body;
 
-  /*if ((!id && id !== 0) || !message) {
-    return res.json({
-      success: false,
-      error: "INVALID INPUTS"
-    });
-  }*/
+
   data.title = title;
   data.type = type;
   data.reward = reward;
   data.description = description;
   data.author = author;
-  data.id = id;
   data.image = image;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });

@@ -18,7 +18,7 @@ class Banner extends Component{
   handleSearchText = (e) => {this.setState({search: e.target.value})}
   render(){
     return(
-      <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark col-lg-12">
         <LinkContainer to="/">
           <Nav.Item>
             <a className="navbar-brand" href="#">Objets-Trouvés</a>

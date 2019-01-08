@@ -118,20 +118,11 @@ export default class CreatePost extends Component {
 
 
   componentDidMount() {
-    this.getDataFromDb();
-    if (!this.state.intervalIsSet) {
-      let interval = setInterval(this.getDataFromDb, 1000);
-      this.setState({ intervalIsSet: interval });
-    }
   }
 
   // never let a process live forever
   // always kill a process everytime we are done using it
   componentWillUnmount() {
-    if (this.state.intervalIsSet) {
-      clearInterval(this.state.intervalIsSet);
-      this.setState({ intervalIsSet: null });
-    }
   }
 
   updateParent(key, value) {
@@ -190,18 +181,12 @@ export default class CreatePost extends Component {
   // our put method that uses our backend api
   // to create new query into our data base
   putDataToDB = infos => {
-    let currentIds = this.state.data.map(data => data.id);
-    let idToBeAdded = 0;
-    while (currentIds.includes(idToBeAdded)) {
-      ++idToBeAdded;
-    }
     const fd = new FormData();
     if (this.state.image)
     {
       fd.append('image', this.state.image, this.state.image.name)
     }
     axios.post("/api/putData", {
-      id: idToBeAdded,
       author : "TODO", //TODO
       title: infos.title,
       type: infos.type,
@@ -210,7 +195,6 @@ export default class CreatePost extends Component {
       image: infos.imagePreviewUrl,
     });
     console.log({
-      id: idToBeAdded,
       author : "TODO", //TODO
       title: infos.title,
       image: infos.image,
