@@ -3,7 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import Main from './components/main.js';
 import Banner from './components/banner.js';
+import searchDataFromDb from "db.js";
+
+
 class App extends Component {
+
+
+
   render() {
     return (
         <div className="container-fluid">

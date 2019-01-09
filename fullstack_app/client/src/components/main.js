@@ -8,6 +8,7 @@ import Perso from './../views/perso.js';
 import React, { Component } from 'react';
 import SearchEngine from './../views/searchEngine.js';
 import Banner from './banner.js';
+import {Page} from './ad.js';
 const Main = () => (
   <div className="col-lg-12">
       <div className="container-fluid">
@@ -18,6 +19,7 @@ const Main = () => (
           <Route exact path='/search' component={Search}/>
           <Route exact path='/perso' component={Perso}/>
           <Route exact path='/searchEngine/:searchText' component={SearchEngine}/>
+          <Route exact path='/ad/:id' component={Page}/>
         </Switch>
       </div>
     </div>

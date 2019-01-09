@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Ad from "../components/ad.js";
 
-
 export default class Perso extends Component {
   state = {
     data: null,
