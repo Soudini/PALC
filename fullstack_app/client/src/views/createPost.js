@@ -107,13 +107,16 @@ export default class CreatePost extends Component {
       reward: "Palc",
       title: null,
       description: null,
-      image: null,
+      thumbnail : null,
+      image: [],
       data: [],
     }
 
     this.updateParent = this.updateParent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImage = this.handleImage.bind(this);
+
+    this.handleThumbnail = this.handleThumbnail.bind(this);
   }
 
 
@@ -133,7 +136,7 @@ export default class CreatePost extends Component {
     this.putDataToDB(this.state)
   }
 
-  handleImage(event) {
+  handleThumbnail(event) {
     var reader = new FileReader();
     let file = event.target.files[0];
     reader.onloadend = (e) => {
@@ -164,11 +167,55 @@ export default class CreatePost extends Component {
           var ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
           let dataurl = canvas.toDataURL("image/jpeg");
-          this.setState({imagePreviewUrl:dataurl});
+          this.setState({thumbnailPreviewUrl:dataurl});
           console.log(dataurl)}
     }
     reader.readAsDataURL(file);
 
+  }
+
+  handleImage(event) {
+
+    for (let i = 0; i<event.target.files.length; i++) {
+      var reader = new FileReader();
+      let file = event.target.files[i];
+      reader.onloadend = (e) => {
+
+          var img = new Image();
+          img.src = e.target.result;
+          img.onload = () => {var canvas = document.createElement("canvas");
+            console.log(img.src)
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+            var MAX_WIDTH = 200;
+            var MAX_HEIGHT = 200;
+            var width = img.width;
+            var height = img.height;
+            if (width > height) {
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+            } else {
+                if (height > MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+            let dataurl = canvas.toDataURL("image/jpeg");
+            const image = this.state.image.slice();
+            image.push(dataurl);
+            this.setState({image: image})
+            console.log(dataurl)}
+          }
+
+      console.log(event.target.files, i);
+      reader.readAsDataURL(file);
+      }
   }
 
   getDataFromDb = () => {
@@ -192,7 +239,8 @@ export default class CreatePost extends Component {
       type: infos.type,
       reward: this.state.reward,
       description: infos.description,
-      image: infos.imagePreviewUrl,
+      thumbnail: infos.thumbnailPreviewUrl,
+      image: infos.image,
     });
     console.log({
       author : "TODO", //TODO
@@ -241,10 +289,10 @@ export default class CreatePost extends Component {
 
 
   render () {
-      let {imagePreviewUrl} = this.state;
-      let $imagePreview = null;
-      if (imagePreviewUrl) {
-        $imagePreview = (<img className="img-fluid img-thumbnail w-25 h-25" src={imagePreviewUrl} />);
+      let {thumbnailPreviewUrl} = this.state;
+      let $thumbnailPreview = null;
+      if (thumbnailPreviewUrl) {
+        $thumbnailPreview = (<img className="img-fluid img-thumbnail w-25 h-25" src={thumbnailPreviewUrl} />);
       }
       let type = <PostType updateParent={this.updateParent}/>;
       let description = <Description updateParent={this.updateParent}/>;
@@ -260,10 +308,14 @@ export default class CreatePost extends Component {
                 {description}
               <div className="row justify-content-start">
                 <div className="form-group col-3">
-                  <label>Ajoutez une image si possible</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} />
+                  <label>Ajoutez une image de l'objet</label>
+                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
                 </div>
-                {$imagePreview}
+                {$thumbnailPreview}
+                <div className="form-group col-3">
+                  <label>Ajoutez des images supplémentaires si possible</label>
+                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
+                </div>
               </div>
               <br/>
               <button type="submit" className="btn btn-primary">Submit</button>

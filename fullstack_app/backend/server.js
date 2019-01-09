@@ -41,6 +41,15 @@ router.get("/getData", (req, res) => {
 });
 
 
+router.post("/searchById", (req, res) => {
+  let {id} = req.body;
+  console.log(id);
+  Data.findById(id).exec((err, data) => {
+    console.log(err,data);
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
 
 
 router.post("/searchData", (req, res) => {
@@ -78,7 +87,7 @@ router.delete("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { author, title, type, reward, description, image } = req.body;
+  const { author, title, type, reward, description, thumbnail, image } = req.body;
 
 
   data.title = title;
@@ -86,6 +95,7 @@ router.post("/putData", (req, res) => {
   data.reward = reward;
   data.description = description;
   data.author = author;
+  data.thumbnail = thumbnail;
   data.image = image;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });

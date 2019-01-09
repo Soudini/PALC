@@ -1,26 +1,57 @@
 import React, { Component } from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
 import axios from "axios";
+import "./ad.css";
+
 export class Page extends Component {
 
 
   state = {
     data:null,
   }
+
   componentDidMount () {
     this.searchDataFromDb();
   }
 
   searchDataFromDb = () => {
-    axios.post("/api/searchData", {search : {"_id": this.props.match.params.id}})
+    axios.post("/api/searchById", {id :this.props.match.params.id })
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
-
-    console.log(this.state.data);
-
   };
   render() {
-    return (<div>{this.props.match.params.id}</div>
-    )
+    if(this.state.data) {return (
+    <div className="jumbotron jumbotron fluid">
+      <div className="container">
+        <h1 className="display-4">{this.state.data.title}</h1>
+      </div>
+      <br/>
+      <div className="row align-items-center">
+        <div id="carouselExampleControls" class="carousel slide col-sm row align-items-center" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src={this.state.data.thumbnail} alt="First slide"/>
+            </div>
+              {this.state.data.image.map((img) =><div class="carousel-item">
+                <img class="d-block w-100 img-fluid" src={img} alt="Second slide"/>
+              </div>)}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div className="col-sm">
+          <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
+          <p>{this.state.data.description}</p>
+        </div>
+      </div>
+
+    </div>)}
+    else {return (<div/>)}
   }
 }
 
@@ -42,8 +73,11 @@ export default class Ad extends Component {
 
   render() {
     let className = "card center"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
-    return (<div className={className} style={{"marginTop": "20px", "width": "18rem"}}>
-                <img className="card-img-top" src={this.props.data.image} />
+    return (<a className="style-1" href="#">
+              <div className={className} style={{"marginTop": "20px", "width": "18rem"}}>
+                <LinkContainer to={"/ad/"+this.props.data._id}>
+                  <img className="card-img-top" src={this.props.data.thumbnail} />
+                </LinkContainer>
                 <LinkContainer to={"/ad/"+this.props.data._id}>
                 <div className="card-body ">
                   <h5 className="card-title">{this.props.data.title}</h5>
@@ -52,6 +86,7 @@ export default class Ad extends Component {
                   </div>
                 </LinkContainer>
               </div>
+            </a>
     )
   }
 }
