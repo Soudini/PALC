@@ -5,9 +5,8 @@ import Search from './../views/search.js';
 import Found from './../views/found.js';
 import CreatePost from './../views/createPost.js';
 import Perso from './../views/perso.js';
-import React, { Component } from 'react';
+import React from 'react';
 import SearchEngine from './../views/searchEngine.js';
-import Banner from './banner.js';
 import {Page} from './ad.js';
 const Main = () => (
   <div className="col-lg-12">

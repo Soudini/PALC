@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './banner.css';
-import {Link, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Nav} from 'react-bootstrap';
 
@@ -21,7 +21,7 @@ class Banner extends Component{
       <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark col-lg-12">
         <LinkContainer to="/">
           <Nav.Item>
-            <a className="navbar-brand" href="#">Objets-Trouvés</a>
+            <a className="navbar-brand" href="#top">Objets-Trouvés</a>
           </Nav.Item>
         </LinkContainer>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">

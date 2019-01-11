@@ -21,7 +21,7 @@ export default class Perso extends Component {
 
   render () {
       if (this.state.search !== this.props.match.params.searchText){
-        this.state.search = this.props.match.params;
+        this.state.search = this.props.match.params.searchText;
         this.searchDataFromDb(this.props.match.params.searchText);
 
       }

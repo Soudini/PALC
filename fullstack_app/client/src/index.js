@@ -3,10 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Body from './components/body';
 import App from './App';
-import Button from './components/button';
-import Banner from './components/banner';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
 
