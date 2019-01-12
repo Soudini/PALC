@@ -32,7 +32,7 @@ class OauthEnd extends Component {
     }
     console.log(cookies.get("code"),dict["code"],dict,cookies);
     cookies.set('code', dict["code"]);
-    console.set("code", dict["code"]);
+    console.log("code", dict["code"]);
     this.props.history.push("/");
     this.searchDataFromDb();
     console.log(cookies)
