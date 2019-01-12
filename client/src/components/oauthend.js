@@ -3,10 +3,10 @@ import { withRouter} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 
+let cookies = new Cookies();
 
 
 class OauthEnd extends Component {
-  const cookies = new Cookies();
   searchDataFromDb = (searchText) => {
 
 
