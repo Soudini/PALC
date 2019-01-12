@@ -23,6 +23,7 @@ class OauthEnd extends Component {
 
   render(){
     let string = this.props.location.search.substr(1);
+    console.log(string);
     string = string.split("&");
     const dict = {};
     for(let i = 0; i<string.length;i++){
@@ -30,6 +31,7 @@ class OauthEnd extends Component {
       dict[string[i][0]] = string[i][1];
     }
     cookies.set('code', dict["code"]);
+    console.log(coikies.get("code"));
     this.props.history.push("/");
     this.searchDataFromDb();
     console.log(cookies)
