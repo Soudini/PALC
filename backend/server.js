@@ -4,10 +4,11 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
 const fs = require("fs");
-
+const axios = require("axios");
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
+const request = require("request");
 
 // this is our MongoDB database
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
@@ -40,10 +41,43 @@ router.get("/getData", (req, res) => {
   });
 });
 
+router.post("/getUserInfo", (req, res) => {
+    let {code} = req.body;
+    console.log(code);
+    //const requestBody = "grant_type=authorization_code&code="+code+"&redirect_uri=http://138.195.139.246/&client_id=279c525e5961df88feb2b6053f210f7537265270&client_secret=f9e8e9c0a1a1eb060601e491286613f33f76ae73";
+    const requestBody = {
+      grant_type : "authorization_code",
+      code : code,
+      redirect_uri : "http://138.195.139.246/",
+      client_id : "279c525e5961df88feb2b6053f210f7537265270",
+      client_secret : "f9e8e9c0a1a1eb060601e491286613f33f76ae73"
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+    const url = "https://auth.viarezo.fr/oauth/token"
+    request.post("https://auth.viarezo.fr/oauth/token", {form: requestBody}, (err, response, body)=>{
+                    const data = JSON.parse(body);
+                    console.log(body);
+                    return res.json({data : data})});
+
+
+    /*axios.post(url, requestBody, config)
+      .then((result,err) => {
+        console.log(result,res);
+        return res.json(result);
+      }).catch((err) => {
+    console.log(err)
+  })*/
+
+});
 
 router.post("/searchById", (req, res) => {
   let {id} = req.body;
-  console.log(id);
+  console.log("search by id :",id);
   Data.findById(id).exec((err, data) => {
     console.log(err,data);
     if (err) return res.json({ success: false, error: err });
@@ -54,7 +88,7 @@ router.post("/searchById", (req, res) => {
 
 router.post("/searchData", (req, res) => {
   let {search, number} = req.body;
-  console.log(search,number);
+  console.log("search data with parameters (search,number)",search,number);
   if (!number) {number = 10}
   Data.find(search).sort({"updatedAt": -1 }).limit(number).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
@@ -102,6 +136,9 @@ router.post("/putData", (req, res) => {
     return res.json({ success: true });
   });
 });
+
+
+
 
 
 

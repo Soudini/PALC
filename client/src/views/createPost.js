@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import Cookies from 'universal-cookie';
+
+
+
+const cookies = new Cookies();
+
 
 class PostType extends Component {
   constructor(props){
@@ -98,7 +104,7 @@ class Title extends Component {
 
 
 
-export default class CreatePost extends Component {
+class CreatePost extends Component {
 
   constructor(props) {
     super(props)
@@ -121,6 +127,7 @@ export default class CreatePost extends Component {
 
 
   componentDidMount() {
+    console.log(cookies.get('code'));
   }
 
   // never let a process live forever
@@ -326,3 +333,6 @@ export default class CreatePost extends Component {
       )
    }
 }
+
+
+export default CreatePost;
