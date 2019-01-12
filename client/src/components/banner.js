@@ -48,7 +48,7 @@ class Banner extends Component{
             </li>
             </Nav.Item>
           </LinkContainer>
-          <LinkContainer to="/perso">
+          <LinkContainer to="/oauth">
             <Nav.Item>
             <li className="nav-item">
               <a className="nav-link" href="#">Mon Compte <span className="sr-only">(current)</span></a>
