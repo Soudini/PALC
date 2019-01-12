@@ -13,10 +13,10 @@ class OauthEnd extends Component {
     axios.post("/api/getUserInfo", {code : cookies.get("code")})
       .then(data => {
         console.log(data.data.data)
-        cookies.set("access_token", data.data.data["access_token"]);
-        cookies.set("expires_at", data.data.data["expires_at"]);
-        cookies.set("expires_in", data.data.data["expires_in"]);
-        cookies.set("refresh_token", data.data.data["refresh_token"]);
+        cookies.set("access_token", data.data.data["access_token"],{ path: '/'});
+        cookies.set("expires_at", data.data.data["expires_at"],{ path: '/'});
+        cookies.set("expires_in", data.data.data["expires_in"],{ path: '/'});
+        cookies.set("refresh_token", data.data.data["refresh_token"],{ path: '/'});
       });}
 
 
@@ -31,8 +31,8 @@ class OauthEnd extends Component {
       dict[string[i][0]] = string[i][1];
     }
 
-    console.log(cookies.get("code"),dict["code"],dict,cookies);
-    cookies.set('code', dict["code"]);
+    console.log(cookies.get("code",{ path: '/'}),dict["code"],dict,cookies);
+    cookies.set('code', dict["code"],{ path: '/'});
     console.log("code", dict["code"]);
     this.props.history.push("/");
     this.searchDataFromDb();
