@@ -313,7 +313,7 @@ export default class CreatePost extends Component {
                 </div>
                 {$thumbnailPreview}
                 <div className="form-group col-3">
-                  <label>Ajoutez des images supplémentaires si possible</label>
+                  <label>Ajoutez des images supplémentaires si possible, je test la puissance de git</label>
                   <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
                 </div>
               </div>
