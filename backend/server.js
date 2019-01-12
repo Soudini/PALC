@@ -62,7 +62,12 @@ router.post("/getUserInfo", (req, res) => {
     request.post("https://auth.viarezo.fr/oauth/token", {form: requestBody}, (err, response, body)=>{
                     const data = JSON.parse(body);
                     console.log(body);
-                    return res.json({data : data})});
+
+                    axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.data.access_token)}})
+                      .then(response => {console.log(response.data);
+                                        return res.json({data: response.data}))
+
+                  });
 
 
     /*axios.post(url, requestBody, config)
