@@ -30,10 +30,8 @@ class OauthEnd extends Component {
       string[i] = string[i].split("=")
       dict[string[i][0]] = string[i][1];
     }
-
-    console.log(cookies.get("code",{ path: '/'}),dict["code"],dict,cookies);
-    cookies.set('code', dict["code"],{ path: '/'});
-    console.log("code", dict["code"]);
+    cookies.set('code', dict["code"]);
+    console.log(coikies.get("code"));
     this.props.history.push("/");
     this.searchDataFromDb();
     console.log(cookies)
