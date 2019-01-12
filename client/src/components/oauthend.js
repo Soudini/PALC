@@ -4,7 +4,6 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 
-const cookies = new Cookies();
 
 class OauthEnd extends Component {
   searchDataFromDb = (searchText) => {
@@ -30,6 +29,8 @@ class OauthEnd extends Component {
       string[i] = string[i].split("=")
       dict[string[i][0]] = string[i][1];
     }
+
+    const cookies = new Cookies();
     console.log(cookies.get("code"),dict["code"],dict,cookies);
     cookies.set('code', dict["code"]);
     console.log("code", dict["code"]);
