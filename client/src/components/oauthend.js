@@ -23,8 +23,8 @@ class OauthEnd extends Component {
 
   render(){
     let string = this.props.location.search.substr(1);
-    console.log(string);
     string = string.split("&");
+    console.log(string);
     const dict = {};
     for(let i = 0; i<string.length;i++){
       string[i] = string[i].split("=")
