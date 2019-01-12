@@ -9,6 +9,8 @@ import React from 'react';
 import SearchEngine from './../views/searchEngine.js';
 import {Page} from './ad.js';
 import OauthEnd from './oauthend.js';
+import Cookies from 'universal-cookie';
+
 
 function makeid() {
   var text = "";
@@ -20,7 +22,14 @@ function makeid() {
   return text;
 }
 
+
+
+const cookies = new Cookies();
+
 let random = makeid();
+cookies.set("state",random)
+
+
 const Main = () => (
   <div className="col-lg-12">
       <div className="container-fluid">
