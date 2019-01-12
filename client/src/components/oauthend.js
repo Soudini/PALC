@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 class OauthEnd extends Component {
+  const cookies = new Cookies();
   searchDataFromDb = (searchText) => {
 
 
@@ -30,7 +31,6 @@ class OauthEnd extends Component {
       dict[string[i][0]] = string[i][1];
     }
 
-    const cookies = new Cookies();
     console.log(cookies.get("code"),dict["code"],dict,cookies);
     cookies.set('code', dict["code"]);
     console.log("code", dict["code"]);
