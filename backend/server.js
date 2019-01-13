@@ -136,7 +136,7 @@ router.post("/putData", (req, res) => {
   let data = new Data();
 
   const { author, author_id, title, type, reward, description, thumbnail, image } = req.body;
-
+  console.log("new ad posted by :", author);
 
   data.title = title;
   data.type = type;
