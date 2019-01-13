@@ -170,11 +170,11 @@ class CreatePost extends Component {
         var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         let dataurl = canvas.toDataURL("image/jpeg");
-        this.setState({thumbnailPreviewUrl:dataurl});
+        this.setState({thumbnailPreviewUrl:dataurl});}
     }
     reader.readAsDataURL(file);
 
-  }}
+  }
 
   handleImage(event) {
 
@@ -210,11 +210,11 @@ class CreatePost extends Component {
             let dataurl = canvas.toDataURL("image/jpeg");
             const image = this.state.image.slice();
             image.push(dataurl);
-            this.setState({image: image})
+            this.setState({image: image})}
           }
       reader.readAsDataURL(file);
       }
-  }}
+  }
 
   getDataFromDb = () => {
     fetch("/api/getData")
