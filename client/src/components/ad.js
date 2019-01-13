@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
+
+import { withRouter} from 'react-router-dom';
 import axios from "axios";
 import "./ad.css";
+import Cookies from 'universal-cookie';
+
+let cookies = new Cookies();
 
 export class Page extends Component {
 
@@ -14,11 +19,25 @@ export class Page extends Component {
     this.searchDataFromDb();
   }
 
+  handleDelete =()=> {
+
+      if (window.confirm("Voulez vous vraiment supprimer cette annonce ?"))
+      {axios.post("/api/deleteData", {id :this.props.match.params.id });}
+      this.props.history.push("/");
+
+
+  }
+
   searchDataFromDb = () => {
     axios.post("/api/searchById", {id :this.props.match.params.id })
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
   };
   render() {
+    let button = null;
+    if (this.state.data && this.state.data.author_id == cookies.get("id")) {
+      console.log(this.state.data.author_id , cookies.get("id"))
+      button = <button className="btn btn-danger" onClick={this.handleDelete}>Supprimer l'annonce </button>;
+    }
     if(this.state.data) {return (
     <div className="jumbotron jumbotron fluid">
       <div className="container">
@@ -26,27 +45,28 @@ export class Page extends Component {
       </div>
       <br/>
       <div className="row align-items-center">
-        <div id="carouselExampleControls" class="carousel slide col-sm row align-items-center" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src={this.state.data.thumbnail} alt="First slide"/>
+        <div id="carouselExampleControls" className="carousel slide col-sm row align-items-center" data-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img className="d-block w-100" src={this.state.data.thumbnail} alt="First slide"/>
             </div>
-              {this.state.data.image.map((img) =><div class="carousel-item">
-                <img class="d-block w-100 img-fluid" src={img} alt="Second slide"/>
+              {this.state.data.image.map((img) =><div className="carousel-item">
+                <img className="d-block w-100 img-fluid" src={img} alt="Second slide"/>
               </div>)}
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
+            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
+            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="sr-only">Next</span>
             </a>
         </div>
         <div className="col-sm">
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
           <p>{this.state.data.description}</p>
+          {button}
         </div>
       </div>
 

@@ -21,7 +21,7 @@ class Banner extends Component{
   }
 
   checkAuth = () => {
-    if (cookies.get("expires_at") < date.getTime()/1000){
+    if (!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000){
       this.props.history.push("/oauth");
     }
   }
@@ -66,7 +66,7 @@ class Banner extends Component{
             </li>
             </Nav.Item>
           </LinkContainer>
-          <LinkContainer to="/oauth">
+          <LinkContainer to="/perso">
             <Nav.Item>
             <li className="nav-item">
               <a className="nav-link" href="#">Mon Compte <span className="sr-only">(current)</span></a>

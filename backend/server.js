@@ -89,7 +89,6 @@ router.post("/searchById", (req, res) => {
   let {id} = req.body;
   console.log("search by id :",id);
   Data.findById(id).exec((err, data) => {
-    console.log(err,data);
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
@@ -98,7 +97,7 @@ router.post("/searchById", (req, res) => {
 
 router.post("/searchData", (req, res) => {
   let {search, number} = req.body;
-  console.log("search data with parameters (search,number)",search,number);
+  //console.log("search data with parameters (search,number)",search,number);
   if (!number) {number = 10}
   Data.find(search).sort({"updatedAt": -1 }).limit(number).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
@@ -118,10 +117,15 @@ router.post("/updateData", (req, res) => {
 
 // this is our delete method
 // this method removes existing data in our database
-router.delete("/deleteData", (req, res) => {
+router.post("/deleteData", (req, res) => {
   const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
-    if (err) return res.send(err);
+  console.log("id to be removed", req, id );
+  Data.findOneAndDelete({_id : id}, err => {
+    if (err) {
+      console.log("delete unsuccessful because : ",error);
+      return res.send(err);}
+
+    console.log("delete successful");
     return res.json({ success: true });
   });
 });
@@ -131,7 +135,7 @@ router.delete("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { author, title, type, reward, description, thumbnail, image } = req.body;
+  const { author, author_id, title, type, reward, description, thumbnail, image } = req.body;
 
 
   data.title = title;
@@ -139,10 +143,11 @@ router.post("/putData", (req, res) => {
   data.reward = reward;
   data.description = description;
   data.author = author;
+  data.author_id = author_id;
   data.thumbnail = thumbnail;
   data.image = image;
   data.save(err => {
-    if (err) return res.json({ success: false, error: err });
+    if (err) {return res.json({ success: false, error: err });}
     return res.json({ success: true });
   });
 });

@@ -125,7 +125,6 @@ class CreatePost extends Component {
 
 
   componentDidMount() {
-    console.log(cookies.get('code'));
   }
 
   // never let a process live forever
@@ -149,35 +148,33 @@ class CreatePost extends Component {
         var img = new Image();
         img.src = e.target.result;
         img.onload = () => {var canvas = document.createElement("canvas");
-          console.log(img.src)
-          var ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0);
-          var MAX_WIDTH = 200;
-          var MAX_HEIGHT = 200;
-          var width = img.width;
-          var height = img.height;
-          if (width > height) {
-              if (width > MAX_WIDTH) {
-                  height *= MAX_WIDTH / width;
-                  width = MAX_WIDTH;
-              }
-          } else {
-              if (height > MAX_HEIGHT) {
-                  width *= MAX_HEIGHT / height;
-                  height = MAX_HEIGHT;
-              }
-          }
-          canvas.width = width;
-          canvas.height = height;
-          var ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, width, height);
-          let dataurl = canvas.toDataURL("image/jpeg");
-          this.setState({thumbnailPreviewUrl:dataurl});
-          console.log(dataurl)}
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var MAX_WIDTH = 200;
+        var MAX_HEIGHT = 200;
+        var width = img.width;
+        var height = img.height;
+        if (width > height) {
+            if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
+            }
+        } else {
+            if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+            }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        let dataurl = canvas.toDataURL("image/jpeg");
+        this.setState({thumbnailPreviewUrl:dataurl});
     }
     reader.readAsDataURL(file);
 
-  }
+  }}
 
   handleImage(event) {
 
@@ -189,7 +186,6 @@ class CreatePost extends Component {
           var img = new Image();
           img.src = e.target.result;
           img.onload = () => {var canvas = document.createElement("canvas");
-            console.log(img.src)
             var ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0);
             var MAX_WIDTH = 200;
@@ -215,13 +211,10 @@ class CreatePost extends Component {
             const image = this.state.image.slice();
             image.push(dataurl);
             this.setState({image: image})
-            console.log(dataurl)}
           }
-
-      console.log(event.target.files, i);
       reader.readAsDataURL(file);
       }
-  }
+  }}
 
   getDataFromDb = () => {
     fetch("/api/getData")
@@ -240,6 +233,7 @@ class CreatePost extends Component {
     }
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
+      author_id : cookies.get("id"),
       title: infos.title,
       type: infos.type,
       reward: this.state.reward,
@@ -249,6 +243,7 @@ class CreatePost extends Component {
     });
     console.log({
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
+      author_id : cookies.get("id"),
       title: infos.title,
       image: infos.image,
       type: infos.type,

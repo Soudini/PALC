@@ -1,13 +1,35 @@
 import React, { Component } from 'react';
+import axios from "axios";
+import Ad from "../components/ad.js";
+import Cookies from 'universal-cookie';
+
+let cookies = new Cookies();
+
 export default class Perso extends Component {
   state = {
+    data: null,
   }
+
+  componentDidMount = () => {
+  this.searchDataFromDb(cookies.get("id"));
+  }
+
+
+  searchDataFromDb = (searchText) => {
+    axios.post("/api/searchData", {search : {author_id: searchText}})
+      .then(data => data.data).then(res => {this.setState({ data: res.data })});
+
+  };
 
   render () {
       return (
         <div>
-        <br></br><br></br><br></br><br></br>
-           <h1> Perso component TODO </h1>
+          <div>
+            <h3>Mes annonces</h3>
+          </div>
+          <div className="card-group">
+              {this.state.data ? this.state.data.map(dat => (<div className="col-sm d-flex"><Ad data={dat}/></div>)): "Aucune donnée trouvée"}
+          </div>
         </div>
       )
    }
