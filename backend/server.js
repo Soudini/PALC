@@ -69,7 +69,7 @@ router.post("/getUserInfo", (req, res) => {
                     else {
                       axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.access_token)}})
                       .then(response => {console.log(response.data);
-                                        return res.json({data: response.data})})}
+                                        return res.json({data: JSON.parse(response).data})})}
 
                   });
 
