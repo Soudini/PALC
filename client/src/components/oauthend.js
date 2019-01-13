@@ -13,10 +13,7 @@ class OauthEnd extends Component {
     axios.post("/api/getUserInfo", {code : cookies.get("code")})
       .then(data => {
         console.log(data.data.data)
-        cookies.set("access_token", data.data.data["access_token"],{ path: '/'});
-        cookies.set("expires_at", data.data.data["expires_at"],{ path: '/'});
-        cookies.set("expires_in", data.data.data["expires_in"],{ path: '/'});
-        cookies.set("refresh_token", data.data.data["refresh_token"],{ path: '/'});
+        cookies.set("user_data", data.data.data);
       });}
 
 

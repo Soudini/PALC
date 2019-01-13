@@ -276,6 +276,11 @@ class CreatePost extends Component {
   };
 
 
+  getUserInfo = () => {
+
+
+  }
+
   // our update method that uses our backend api
   // to overwrite existing data base information
   updateDB = (idToUpdate, updateToApply) => {
