@@ -239,7 +239,7 @@ class CreatePost extends Component {
       fd.append('image', this.state.image, this.state.image.name)
     }
     axios.post("/api/putData", {
-      author : "TODO", //TODO
+      author : cookies.get("firstName") + " " + cookies.get("lastName"),
       title: infos.title,
       type: infos.type,
       reward: this.state.reward,
@@ -248,7 +248,7 @@ class CreatePost extends Component {
       image: infos.image,
     });
     console.log({
-      author : "TODO", //TODO
+      author : cookies.get("firstName") + " " + cookies.get("lastName"),
       title: infos.title,
       image: infos.image,
       type: infos.type,

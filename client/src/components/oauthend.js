@@ -12,7 +12,7 @@ class OauthEnd extends Component {
 
     axios.post("/api/getUserInfo", {code : cookies.get("code")})
       .then(data => {
-        console.log("response", typeof(data.data.data));
+        console.log("response", data.data.data);
         for (var i in data.data.data){
           cookies.set(i, data.data.data[i]);
       }});}

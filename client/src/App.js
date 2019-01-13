@@ -8,7 +8,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.cookies)
+
     return (
         <div className="container-fluid">
           <Banner/>

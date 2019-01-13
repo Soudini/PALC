@@ -3,10 +3,27 @@ import './banner.css';
 import { withRouter} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Nav} from 'react-bootstrap';
-
+import Cookies from 'universal-cookie';
+const date = new Date();
+const cookies = new Cookies();
 class Banner extends Component{
   state = {
     search: "",
+  }
+
+  componentDidMount = () => {
+    setInterval(this.checkAuth, 1000)
+    console.log(date.getTime()/1000)
+    console.log(cookies)
+    if (cookies.get("expires_at")+3600 < date.getTime()/1000){
+      this.props.history.push("/oauth");
+    }
+  }
+
+  checkAuth = () => {
+    if (cookies.get("expires_at") < date.getTime()/1000){
+      this.props.history.push("/oauth");
+    }
   }
   handleKeyPress = (e) =>
   {
@@ -17,6 +34,7 @@ class Banner extends Component{
   }
   handleSearchText = (e) => {this.setState({search: e.target.value})}
   render(){
+
     return(
       <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark col-lg-12">
         <LinkContainer to="/">
