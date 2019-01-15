@@ -38,12 +38,16 @@ class Banner extends Component{
 
     return(
       <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark col-lg-12">
+
         <LinkContainer to="/">
           <Nav.Item>
             <a className="navbar-brand" href="#top">Objets-Trouvés</a>
           </Nav.Item>
         </LinkContainer>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+        <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav mr-auto">
 
           <LinkContainer to="/search">
