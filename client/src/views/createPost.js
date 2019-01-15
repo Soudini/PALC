@@ -150,8 +150,8 @@ class CreatePost extends Component {
         img.onload = () => {var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
-        var MAX_WIDTH = 200;
-        var MAX_HEIGHT = 200;
+        var MAX_WIDTH = 400;
+        var MAX_HEIGHT = 400;
         var width = img.width;
         var height = img.height;
         if (width > height) {
@@ -188,8 +188,8 @@ class CreatePost extends Component {
           img.onload = () => {var canvas = document.createElement("canvas");
             var ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0);
-            var MAX_WIDTH = 200;
-            var MAX_HEIGHT = 200;
+            var MAX_WIDTH = 400;
+            var MAX_HEIGHT = 400;
             var width = img.width;
             var height = img.height;
             if (width > height) {
