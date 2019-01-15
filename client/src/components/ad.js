@@ -35,35 +35,43 @@ export class Page extends Component {
   };
   render() {
     let button = null;
+
     if (this.state.data && this.state.data.author_id == cookies.get("id")) {
       console.log(this.state.data.author_id , cookies.get("id"))
       button = <button className="btn btn-danger" onClick={this.handleDelete}>Supprimer l'annonce </button>;
     }
-    if(this.state.data) {return (
+    if(this.state.data) {
+
+      let carousel = null;
+      if (this.state.data.thumbnail !== undefined | this.state.data.images !== undefined) {
+        carousel = <div id="carouselExampleControls" className="carousel slide col-sm row align-items-center" data-ride="carousel">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img className="d-block w-100" src={this.state.data.thumbnail} alt="First slide"/>
+              </div>
+                {this.state.data.image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
+                  <img className="d-block w-100 img-fluid" src={img} alt="Second slide"/>
+                </div>)}
+              </div>
+              <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+              </a>
+              <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+              </a>
+          </div>;
+      }
+
+    return (
     <div className="jumbotron jumbotron fluid">
       <div className="container">
         <h1 className="display-4">{this.state.data.title}</h1>
       </div>
       <br/>
       <div className="row align-items-center">
-        <div id="carouselExampleControls" className="carousel slide col-sm row align-items-center" data-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img className="d-block w-100" src={this.state.data.thumbnail} alt="First slide"/>
-            </div>
-              {this.state.data.image.map((img) =><div className="carousel-item">
-                <img className="d-block w-100 img-fluid" src={img} alt="Second slide"/>
-              </div>)}
-            </div>
-            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="sr-only">Next</span>
-            </a>
-        </div>
+        {carousel}
         <div className="col-sm">
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
           <p>{this.state.data.description}</p>
@@ -104,7 +112,7 @@ export default class Ad extends Component {
   render() {
     let className = "card h-90"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
     return (<a className="style-1" href="#">
-              <div className={className} style={{"width": "18rem"}}>
+              <div className={className} style={{"width": "18rem"}} >
                 <LinkContainer to={"/ad/"+this.props.data._id}>
                   <img className="card-img-top" src={this.props.data.thumbnail} />
                 </LinkContainer>
