@@ -76,6 +76,7 @@ export class Page extends Component {
   }
 }
 
+
 export default class Ad extends Component {
   constructor(props) {
     super(props)
@@ -87,15 +88,23 @@ export default class Ad extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  printDescription = () => {
+    if (this.props.data.description.length > 200){
+      return (this.props.data.description.slice(0,150) + " ...");
+    }
+    else {
+      return (this.props.data.description)
+    }
+  }
   handleChange(event) {
     this.setState({value: event.target.value})
     this.props.updateParent("title", event.target.value)
   }
 
   render() {
-    let className = "card center"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
+    let className = "card h-90"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
     return (<a className="style-1" href="#">
-              <div className={className} style={{"marginTop": "20px", "width": "18rem"}}>
+              <div className={className} style={{"width": "18rem"}}>
                 <LinkContainer to={"/ad/"+this.props.data._id}>
                   <img className="card-img-top" src={this.props.data.thumbnail} />
                 </LinkContainer>
@@ -103,7 +112,7 @@ export default class Ad extends Component {
                 <div className="card-body ">
                   <h5 className="card-title">{this.props.data.title}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre "+ this.props.data.reward: "")}</h6>
-                  <p className="card-text">{this.props.data.description}</p>
+                  <p className="card-text">{this.printDescription()}</p>
                   </div>
                 </LinkContainer>
               </div>

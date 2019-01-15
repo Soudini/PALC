@@ -35,8 +35,8 @@ export default class Search extends Component {
   render () {
 
       return (
-        <div className="row flex-wrap d-flex align-self-stretch">
-          {this.state.data.map(dat => (<div className="col-sm d-flex" key={dat._id}><Ad key={dat._id} data={dat}/></div>))}
+        <div className="card-deck">
+            {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
         </div>
       )
    }

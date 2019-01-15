@@ -27,9 +27,9 @@ export default class Perso extends Component {
           <div>
             <h3>Mes annonces</h3>
           </div>
-          <div className="card-group">
-              {this.state.data ? this.state.data.map(dat => (<div className="col-sm d-flex"><Ad data={dat}/></div>)): "Aucune donnée trouvée"}
-          </div>
+            <div className="card-deck">
+                {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
+            </div>
         </div>
       )
    }
