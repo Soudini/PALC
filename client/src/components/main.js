@@ -10,7 +10,7 @@ import SearchEngine from './../views/searchEngine.js';
 import {Page} from './ad.js';
 import OauthEnd from './oauthend.js';
 import Cookies from 'universal-cookie';
-
+import UpdatePost from './../views/updatePost.js';
 
 function makeid() {
   var text = "";
@@ -43,6 +43,7 @@ const Main = () => (
           <Route exact path='/ad/:id' component={Page}/>
           <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=http://138.195.139.246/oauthend&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state='+random+'&scope=default'; return null;} }/>
           <Route exact path='/oauthend' component={OauthEnd}/>
+          <Route exact path='/updatePost/:id' component={UpdatePost}/>
         </Switch>
       </div>
     </div>

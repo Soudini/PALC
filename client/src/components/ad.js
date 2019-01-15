@@ -23,9 +23,11 @@ export class Page extends Component {
 
       if (window.confirm("Voulez vous vraiment supprimer cette annonce ?"))
       {axios.post("/api/deleteData", {id :this.props.match.params.id });
-    this.props.history.push("/");}
+        this.props.history.push("/");}
+  }
+  handleUpdate =()=> {
 
-
+      this.props.history.push("/updatePost/"+ this.props.match.params.id);
 
   }
 
@@ -34,11 +36,14 @@ export class Page extends Component {
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
   };
   render() {
-    let button = null;
+    let buttonDelete = null;
+    let buttonUpdate = null;
 
     if (this.state.data && this.state.data.author_id == cookies.get("id")) {
       console.log(this.state.data.author_id , cookies.get("id"))
-      button = <button className="btn btn-danger" onClick={this.handleDelete}>Supprimer l'annonce </button>;
+      buttonDelete = <button className="btn btn-danger"  style={{"marginRight": "1rem"}} onClick={this.handleDelete}>Supprimer l'annonce </button>;
+      buttonUpdate = <button className="btn btn-primary" style={{"marginRight": "1rem"}}onClick={this.handleUpdate}>Modifier l'annonce</button>;
+
     }
     if(this.state.data) {
 
@@ -75,7 +80,8 @@ export class Page extends Component {
         <div className="col-sm">
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
           <p>{this.state.data.description}</p>
-          {button}
+          {buttonUpdate}
+          {buttonDelete}
         </div>
       </div>
 
