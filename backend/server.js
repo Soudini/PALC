@@ -97,7 +97,7 @@ router.post("/searchById", (req, res) => {
 
 router.post("/searchData", (req, res) => {
   let {search, number} = req.body;
-  //console.log("search data with parameters (search,number)",search,number);
+  console.log("search data with parameters (search,number)",search,number);
   if (!number) {number = 10}
   Data.find(search).sort({"updatedAt": -1 }).limit(number).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });

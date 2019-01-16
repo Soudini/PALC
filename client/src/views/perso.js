@@ -11,18 +11,21 @@ export default class Perso extends Component {
   }
 
   componentDidMount = () => {
+
+  console.log("test");
   this.searchDataFromDb(cookies.get("id"));
   }
 
 
   searchDataFromDb = (searchText) => {
+    console.log(searchText);
     axios.post("/api/searchData", {search : {author_id: searchText}})
-      .then(data => data.data).then(res => {this.setState({ data: res.data })});
+      .then(data => data.data).then(res => {console.log(res.data);this.setState({ data: res.data })});
 
   };
 
   render () {
-      return (
+      if (this.state.data){return (
         <div>
           <div>
             <h3>Mes annonces</h3>
@@ -31,6 +34,8 @@ export default class Perso extends Component {
                 {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
             </div>
         </div>
-      )
+      )}
+      else{
+        return (<div></div>)}
    }
 }
