@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import "./updatePost.css"
 const cookies = new Cookies();
-
 
 
 class PostType extends Component {
@@ -16,12 +16,21 @@ class PostType extends Component {
   }
 
   subFields(){
-    if (this.state.type === "search") {
+    if (this.props.type === "search") {
+      let optionsReward = {Palc: "Palc","Calin <3": "Calin <3", Rien : "Rien"}
+      let opt = [];
+      for (let i in optionsReward){
+
+        if (i == this.props.reward){
+          opt.push(<option selected="True" key={i}>{optionsReward[i]}</option>);
+        }
+        else{
+          opt.push(<option key={i}>{optionsReward[i]}</option>);
+        }
+      }
       return (
                 <div><br/><p>Récompense</p><select className="form-control" onChange={(e) => this.handleChange(e,"secondary")}>
-                  <option>Palc</option>
-                  <option>Calin &lt;3</option>
-                  <option>Rien :( </option>
+                  {opt}
                 </select></div>);
     }
     else {
@@ -43,17 +52,16 @@ class PostType extends Component {
   }
 
   render(){
-    let options = {search:"Annonce recherche", found:"Annonce trouvaille"}
+    let optionsType = {search:"Annonce recherche", found:"Annonce trouvaille"}
     let opt = [];
-    for (let i in options){
-      if (i == this.props.text){
-        opt.push(<option active="True" key={i}>{options[i]}</option>);
+    for (let i in optionsType){
+      if (i == this.props.type){
+        opt.push(<option selected key={i}>{optionsType[i]}</option>);
       }
       else{
-        opt.push(<option key={i}>{options[i]}</option>);
+        opt.push(<option key={i}>{optionsType[i]}</option>);
       }
     }
-    console.log(opt);
     return(
           <div>
             <select className="form-control" onChange={(e) => this.handleChange(e,"primary")}>
@@ -82,9 +90,8 @@ class Description extends Component {
   }
 
   render() {
-    console.log(this.props.text)
     return (<div className="form-group">
-      <textarea className="form-control" placeholder="Entrez une description brève de l'objet" onChange={this.handleChange}>{this.props.text}</textarea>
+      <textarea className="form-control" value={this.props.text} placeholder="Entrez une description brève de l'objet" onChange={this.handleChange}>{this.props.text}</textarea>
     </div>)
   }
 }
@@ -106,7 +113,7 @@ class Title extends Component {
 
   render() {
     return (<div className="form-group">
-      <input className="form-control" placeholder="Entrez le titre de votre annonce" onChange={this.handleChange}>{this.props.text}</input>
+      <input className="form-control" placeholder="Entrez le titre de votre annonce" value={this.props.text} onChange={this.handleChange}></input>
     </div>)
   }
 }
@@ -118,12 +125,14 @@ class CreatePost extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      type:"search",
-      reward: "Palc",
+      author : "",
+      author_id : null,
       title: null,
+      type: null,
+      reward: null,
       description: null,
-      thumbnail : null,
-      image: [],
+      thumbnail: null,
+      image: null,
       data: [],
     }
 
@@ -131,6 +140,7 @@ class CreatePost extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImage = this.handleImage.bind(this);
 
+    this.searchDataFromDb = this.searchDataFromDb.bind(this);
     this.handleThumbnail = this.handleThumbnail.bind(this);
   }
 
@@ -143,7 +153,8 @@ class CreatePost extends Component {
   }
 
   updateParent(key, value) {
-    this.setState({[key]: value})
+    this.setState({[key]: value});
+
   }
 
   handleSubmit(event) {
@@ -270,17 +281,16 @@ class CreatePost extends Component {
 
   searchDataFromDb = () => {
     axios.post("/api/searchById", {id :this.props.match.params.id })
-      .then(data => data.data).then(res => {for (let i in res.data) {this.setState({i: res.data[i]})}});
+      .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}});
   };
 
   render () {
       let {thumbnailPreviewUrl} = this.state;
       let $thumbnailPreview = null;
       if (thumbnailPreviewUrl) {
-        $thumbnailPreview = (<img className="img-fluid img-thumbnail w-25 h-25" src={thumbnailPreviewUrl} />);
+        $thumbnailPreview = (<img className="img-fluid img-thumbnail h-100" src={thumbnailPreviewUrl} />);
       }
-      console.log(this.state)
-      let type = <PostType updateParent={this.updateParent} text={this.state.type}/>;
+      let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.state.reward}/>;
       let description = <Description updateParent={this.updateParent} text={this.state.description}/>;
       let title = <Title updateParent={this.updateParent} text={this.state.title}/>;
       return (
