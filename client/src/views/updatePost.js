@@ -127,13 +127,14 @@ class CreatePost extends Component {
     this.state = {
       author : "",
       author_id : null,
-      title: null,
-      type: null,
-      reward: null,
-      description: null,
+      title: "",
+      type: "",
+      reward: "",
+      description: "",
       thumbnail: null,
       image: null,
       data: [],
+      loader : true,
     }
 
     this.updateParent = this.updateParent.bind(this);
@@ -171,8 +172,8 @@ class CreatePost extends Component {
         img.onload = () => {var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
-        var MAX_WIDTH = 400;
-        var MAX_HEIGHT = 400;
+        var MAX_WIDTH = 200;
+        var MAX_HEIGHT = 200;
         var width = img.width;
         var height = img.height;
         if (width > height) {
@@ -191,7 +192,7 @@ class CreatePost extends Component {
         var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         let dataurl = canvas.toDataURL("image/jpeg");
-        this.setState({thumbnailPreviewUrl:dataurl});}
+        this.setState({thumbnail:dataurl});}
     }
     reader.readAsDataURL(file);
 
@@ -209,8 +210,8 @@ class CreatePost extends Component {
           img.onload = () => {var canvas = document.createElement("canvas");
             var ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0);
-            var MAX_WIDTH = 400;
-            var MAX_HEIGHT = 400;
+            var MAX_WIDTH = 200;
+            var MAX_HEIGHT = 200;
             var width = img.width;
             var height = img.height;
             if (width > height) {
@@ -244,39 +245,22 @@ class CreatePost extends Component {
 
   };
 
-  // our put method that uses our backend api
-  // to create new query into our data base
-  putDataToDB = infos => {
-    const fd = new FormData();
-    if (this.state.image)
-    {
-      fd.append('image', this.state.image, this.state.image.name)
-    }
-    axios.post("/api/putData", {
-      author : cookies.get("firstName") + " " + cookies.get("lastName"),
-      author_id : cookies.get("id"),
-      title: infos.title,
-      type: infos.type,
-      reward: this.state.reward,
-      description: infos.description,
-      thumbnail: infos.thumbnailPreviewUrl,
-      image: infos.image,
-    });
-    console.log({
-      author : cookies.get("firstName") + " " + cookies.get("lastName"),
-      author_id : cookies.get("id"),
-      title: infos.title,
-      image: infos.image,
-      type: infos.type,
-      reward: this.state.reward,
-      description: infos.description,
-    });
-  };
 
-  handleUpdate =()=> {
+  handleSubmit =()=> {
 
-      axios.post("/api/updateData", {id :this.props.match.params.id });
 
+        setTimeout(axios.post("/api/updateData", {id :this.props.match.params.id, update : {
+          author : cookies.get("firstName") + " " + cookies.get("lastName"),
+          author_id : cookies.get("id"),
+          title: this.state.title,
+          type: this.state.type,
+          reward: this.state.reward,
+          description: this.state.description,
+          thumbnail: this.state.thumbnail,
+          image: this.state.image,
+        } }).then(this.state.loader = true).catch(err => console.log(err))
+        , 10000);
+        this.props.history.push("/ad/"+this.props.match.params.id);
   }
 
   searchDataFromDb = () => {
@@ -285,7 +269,9 @@ class CreatePost extends Component {
   };
 
   render () {
-      let {thumbnailPreviewUrl} = this.state;
+
+      if (this.state){
+      let thumbnailPreviewUrl = this.state.thumbnail;
       let $thumbnailPreview = null;
       if (thumbnailPreviewUrl) {
         $thumbnailPreview = (<img className="img-fluid img-thumbnail h-100" src={thumbnailPreviewUrl} />);
@@ -293,6 +279,7 @@ class CreatePost extends Component {
       let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.state.reward}/>;
       let description = <Description updateParent={this.updateParent} text={this.state.description}/>;
       let title = <Title updateParent={this.updateParent} text={this.state.title}/>;
+      let loader = this.state.loader ? <div className="loader"/> : null;
       return (
         <div>
           <form onSubmit={(e) => this.handleSubmit(e)}>
@@ -314,12 +301,13 @@ class CreatePost extends Component {
                 </div>
               </div>
               <br/>
-              <button type="submit" className="btn btn-primary">Update</button>
+              <button className="btn btn-primary" onCLick={() => this.handleSubmit()}>Update</button>{loader}
 
           </form>
-        </div>
+        </div>)}
+        else{return (<div></div>)}
 
-      )
+
    }
 }
 

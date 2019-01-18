@@ -10,6 +10,10 @@ const app = express();
 const router = express.Router();
 const request = require("request");
 
+
+mongoose.set('useFindAndModify', false);
+
+
 // this is our MongoDB database
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
 
@@ -109,8 +113,9 @@ router.post("/searchData", (req, res) => {
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
   const { id, update } = req.body;
+  console.log(id,update)
   Data.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
+    if (err) {console.log(err); return res.json({ success: false, error: err });};
     return res.json({ success: true });
   });
 });
