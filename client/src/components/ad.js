@@ -116,7 +116,7 @@ export default class Ad extends Component {
   }
 
   render() {
-    let className = "card"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
+    let className = "card h-98"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
     return (<a className="style-1" href="#">
               <div className={className} style={{"width": "18rem"}} >
                 <LinkContainer to={"/ad/"+this.props.data._id}>

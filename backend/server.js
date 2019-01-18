@@ -13,7 +13,7 @@ const request = require("request");
 
 mongoose.set('useFindAndModify', false);
 
-
+app.use(express.bodyParser({limit: '50mb'}));
 // this is our MongoDB database
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
 

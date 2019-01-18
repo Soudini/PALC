@@ -12,8 +12,8 @@ class Banner extends Component{
   }
 
   componentDidMount = () => {
-    //this.checkAuth()
-    //setInterval(this.checkAuth, 10000)
+    this.checkAuth()
+    setInterval(this.checkAuth, 10000)
     cookies.set("id", 7425)
 
     console.log(date.getTime()/1000)
