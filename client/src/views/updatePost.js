@@ -132,7 +132,7 @@ class CreatePost extends Component {
       reward: "",
       description: "",
       thumbnail: null,
-      image: null,
+      image: [],
       data: [],
       loader : true,
     }
@@ -161,6 +161,11 @@ class CreatePost extends Component {
   handleSubmit(event) {
     this.putDataToDB(this.state)
   }
+
+
+
+  deleteImage = (e) => {this.setState({image:[]})}
+  deleteThumbnail = (e) => {this.setState({thumbnail: null})}
 
   handleThumbnail(event) {
     var reader = new FileReader();
@@ -271,11 +276,45 @@ class CreatePost extends Component {
   render () {
 
       if (this.state){
-      let thumbnailPreviewUrl = this.state.thumbnail;
-      let $thumbnailPreview = null;
-      if (thumbnailPreviewUrl) {
-        $thumbnailPreview = (<img className="img-fluid img-thumbnail h-100" src={thumbnailPreviewUrl} />);
-      }
+        let {thumbnail} = this.state;
+        let $thumbnailPreview = <div className="form-group col-6">
+                                  <label>Ajoutez une image de l'objet</label>
+                                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
+                                </div>;
+        if (thumbnail) {
+          $thumbnailPreview = (<div className="col-sm container-fluid">
+                                <img className="img-fluid img-thumbnail row" src={thumbnail} />
+                                <button type="button" className="btn btn-danger row" style={{"marginTop": "1rem","marginBottom": "1rem"}} onClick={this.deleteThumbnail}>Supprimer cette image</button>
+                              </div>);
+        }
+        let {image} = this.state;
+        let $imagePreview = <div className="form-group col-6">
+                              <label>Ajoutez des images supplémentaires si possible</label>
+                              <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
+                            </div>;
+        if (image.length) {
+           $imagePreview = <div className="col-sm">
+                           <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
+                           <div className="carousel-inner">
+                             <div className="carousel-item active">
+                               <img className="d-block w-100" src={image[0]} alt="First slide"/>
+                             </div>
+                             {image.slice(1).map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
+                               <img className="d-block w-100 img-fluid" src={img} alt="Second slide"/>
+                             </div>)}
+                           </div>
+                             <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                               <span className="sr-only">Previous</span>
+                             </a>
+                             <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                               <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                               <span className="sr-only">Next</span>
+                             </a>
+                            </div>
+                            <button type="button" className="row btn btn-danger " style={{"marginTop": "1rem"}} onClick={(e) => this.deleteImage(e)} >Supprimer ces images </button>
+                            </div>;
+        }
       let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.state.reward}/>;
       let description = <Description updateParent={this.updateParent} text={this.state.description}/>;
       let title = <Title updateParent={this.updateParent} text={this.state.title}/>;
@@ -290,18 +329,11 @@ class CreatePost extends Component {
                 <br/>
                 {description}
               <div className="row justify-content-start">
-                <div className="form-group col-3">
-                  <label>Ajoutez une image de l'objet</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
-                </div>
                 {$thumbnailPreview}
-                <div className="form-group col-3">
-                  <label>Ajoutez des images supplémentaires si possible</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
-                </div>
+                {$imagePreview}
               </div>
               <br/>
-              <button className="btn btn-primary" onCLick={() => this.handleSubmit()}>Update</button>{loader}
+              <button className="btn btn-primary" onClick={() => this.handleSubmit()}>Update</button>{loader}
 
           </form>
         </div>)}

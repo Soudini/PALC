@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import "./createPost.css";
 const cookies = new Cookies();
-
 
 
 class PostType extends Component {
@@ -170,7 +170,7 @@ class CreatePost extends Component {
         var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         let dataurl = canvas.toDataURL("image/jpeg");
-        this.setState({thumbnailPreviewUrl:dataurl});}
+        this.setState({thumbnail:dataurl});}
     }
     reader.readAsDataURL(file);
 
@@ -238,7 +238,7 @@ class CreatePost extends Component {
       type: infos.type,
       reward: this.state.reward,
       description: infos.description,
-      thumbnail: infos.thumbnailPreviewUrl,
+      thumbnail: infos.thumbnail,
       image: infos.image,
     });
     console.log({
@@ -271,10 +271,8 @@ class CreatePost extends Component {
   };
 
 
-  getUserInfo = () => {
-
-
-  }
+  deleteImage = (e) => {this.setState({image:[]})}
+  deleteThumbnail = (e) => {this.setState({thumbnail: null})}
 
   // our update method that uses our backend api
   // to overwrite existing data base information
@@ -294,11 +292,46 @@ class CreatePost extends Component {
 
 
   render () {
-      let {thumbnailPreviewUrl} = this.state;
-      let $thumbnailPreview = null;
-      if (thumbnailPreviewUrl) {
-        $thumbnailPreview = (<img className="img-fluid img-thumbnail w-25 h-25" src={thumbnailPreviewUrl} />);
+      let {thumbnail} = this.state;
+      let $thumbnailPreview = <div className="form-group col-6">
+                                <label>Ajoutez une image de l'objet</label>
+                                <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
+                              </div>;
+      if (thumbnail) {
+        $thumbnailPreview = (<div className="col-sm container-fluid">
+                              <img className="img-fluid img-thumbnail row" src={thumbnail} />
+                              <button type="button" className="btn btn-danger row" style={{"marginTop": "1rem","marginBottom": "1rem"}} onClick={this.deleteThumbnail}>Supprimer cette image</button>
+                            </div>);
       }
+      let {image} = this.state;
+      let $imagePreview = <div className="form-group col-6">
+                            <label>Ajoutez des images supplémentaires si possible</label>
+                            <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
+                          </div>;
+      if (image.length) {
+         $imagePreview = <div className="col-sm">
+                         <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
+                         <div className="carousel-inner">
+                           <div className="carousel-item active">
+                             <img className="d-block w-100" src={image[0]} alt="First slide"/>
+                           </div>
+                           {image.slice(1).map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
+                             <img className="d-block w-100 img-fluid" src={img} alt="Second slide"/>
+                           </div>)}
+                         </div>
+                           <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                             <span className="sr-only">Previous</span>
+                           </a>
+                           <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                             <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                             <span className="sr-only">Next</span>
+                           </a>
+                          </div>
+                          <button type="button" className="row btn btn-danger " style={{"marginTop": "1rem"}} onClick={(e) => this.deleteImage(e)} >Supprimer ces images </button>
+                          </div>;
+      }
+
       let type = <PostType updateParent={this.updateParent}/>;
       let description = <Description updateParent={this.updateParent}/>;
       let title = <Title updateParent={this.updateParent}/>;
@@ -311,16 +344,10 @@ class CreatePost extends Component {
                 {title}
                 <br/>
                 {description}
-              <div className="row justify-content-start">
-                <div className="form-group col-3">
-                  <label>Ajoutez une image de l'objet</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
-                </div>
+              <div className="row justify-content-center d-flex">
                 {$thumbnailPreview}
-                <div className="form-group col-3">
-                  <label>Ajoutez des images supplémentaires si possible</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
-                </div>
+                {$imagePreview}
+
               </div>
               <br/>
               <button type="submit" className="btn btn-primary">Submit</button>

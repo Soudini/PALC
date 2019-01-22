@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './banner.css';
 import { withRouter} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Nav} from 'react-bootstrap';
