@@ -113,8 +113,8 @@ router.post("/searchData", (req, res) => {
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
   const { id, update } = req.body;
-  console.log(id,update)
-  Data.findOneAndUpdate(id, update, err => {
+  console.log(id, mongoose.Types.ObjectId(id))
+  Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id)}, update, err => {
     if (err) {console.log(err); return res.json({ success: false, error: err });};
     return res.json({ success: true });
   });

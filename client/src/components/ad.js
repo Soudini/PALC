@@ -49,7 +49,7 @@ export class Page extends Component {
 
       let carousel = null;
       if (this.state.data.thumbnail !== undefined | this.state.data.images !== undefined) {
-        carousel = <div id="carouselExampleControls" className="carousel slide col-sm row align-items-center" data-ride="carousel">
+        carousel = <div id="carouselExampleControls" className="carousel slide col-sm-6 row align-items-center" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <img className="d-block w-100" src={this.state.data.thumbnail} alt="First slide"/>
@@ -77,7 +77,7 @@ export class Page extends Component {
       <br/>
       <div className="row align-items-center">
         {carousel}
-        <div className="col-sm">
+        <div className="col-sm-6">
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
           <p>{this.state.data.description}</p>
           {buttonUpdate}
@@ -103,7 +103,7 @@ export default class Ad extends Component {
   }
 
   printDescription = () => {
-    if (this.props.data.description.length > 200){
+    if (this.props.data.description && this.props.data.description.length > 200){
       return (this.props.data.description.slice(0,150) + " ...");
     }
     else {
