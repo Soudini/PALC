@@ -240,6 +240,7 @@ class CreatePost extends Component {
       description: infos.description,
       thumbnail: infos.thumbnail,
       image: infos.image,
+      code : cookies.get("code")
     });
     console.log({
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
