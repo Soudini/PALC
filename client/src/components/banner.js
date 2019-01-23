@@ -13,11 +13,13 @@ class Banner extends Component{
   componentDidMount = () => {
     this.checkAuth()
     setInterval(this.checkAuth, 10000)
-    //cookies.set("id", 7425);
-    //cookies.set("code","b0d9c85bf2ac59d4506b392fe0df2b9332dfefc5");
+    cookies.set("id", 7425)
 
-    console.log(date.getTime()/1000);
-    console.log(cookies);
+    console.log(date.getTime()/1000)
+    console.log(cookies)
+    if (cookies.get("expires_at")+3600 < date.getTime()/1000){
+      this.props.history.push("/oauth");
+    }
   }
 
   checkAuth = () => {
