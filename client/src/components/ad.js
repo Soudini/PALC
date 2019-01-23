@@ -52,13 +52,14 @@ export class Page extends Component {
         carousel = <div id="carouselExampleControls" className="carousel slide col-sm-6 row align-items-center" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <img className="d-block w-100" src={this.state.data.thumbnail} alt="First slide"/>
+                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="h-100 img-fluid " src={this.state.data.thumbnail} alt="Second slide"/></div></div>
+
               </div>
-                {this.state.data.image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
-                  <img className="d-block w-100 img-fluid" src={img} alt="Second slide"/>
-                </div>)}
+              {this.state.data.image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
+                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="h-100 img-fluid " src={img} alt="Second slide"/></div></div>
+              </div>)}
               </div>
-              <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <a className="carousel-control-prev " style={{"color": "red"}} href="#carouselExampleControls" role="button" data-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="sr-only">Previous</span>
               </a>
@@ -70,7 +71,7 @@ export class Page extends Component {
       }
 
     return (
-    <div className="jumbotron jumbotron fluid">
+    <div className="jumbotron fluid">
       <div className="container">
         <h1 className="display-4">{this.state.data.title}</h1>
       </div>
