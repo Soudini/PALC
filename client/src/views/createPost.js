@@ -294,29 +294,39 @@ class CreatePost extends Component {
   render () {
       let {thumbnail} = this.state;
       let $thumbnailPreview = <div className="form-group col-6">
-                                <label>Ajoutez une image de l'objet</label>
-                                <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
+                                <div className="row justify-content-center">
+                                  <label>Ajoutez une image de l'objet</label>
+                                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
+                                </div>
                               </div>;
       if (thumbnail) {
-        $thumbnailPreview = (<div className="col-sm container-fluid">
-                              <img className="img-fluid img-thumbnail row" src={thumbnail} />
-                              <button type="button" className="btn btn-danger row" style={{"marginTop": "1rem","marginBottom": "1rem"}} onClick={this.deleteThumbnail}>Supprimer cette image</button>
-                            </div>);
+        $thumbnailPreview = <div className="col-sm container-fluid">
+                              <div className="row justify-content-center">
+                                <img className="img-fluid img-thumbnail row" src={thumbnail} style={{"height" : "200px"}} />
+                              </div>
+                              <div className="row justify-content-center">
+                                <button type="button" className="btn btn-danger" style={{"marginTop": "1rem","marginBottom": "1rem"}} onClick={this.deleteThumbnail}>Supprimer cette image</button>
+                              </div>
+                            </div>;
       }
       let {image} = this.state;
       let $imagePreview = <div className="form-group col-6">
-                            <label>Ajoutez des images supplémentaires si possible</label>
-                            <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
+                            <div className="row justify-content-center">
+                              <label>Ajoutez des images supplémentaires si possible</label>
+                              <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
+                            </div>
                           </div>;
       if (image.length) {
          $imagePreview = <div className="col-sm">
+
                          <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
-                         <div className="carousel-inner">
+                         <div className="carousel-inner" >
                            <div className="carousel-item active">
-                             <img className="d-block w-100" src={image[0]} alt="First slide"/>
+                           <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={image[0]} alt="Second slide"/></div></div>
+
                            </div>
                            {image.slice(1).map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
-                             <img className="d-block w-100 img-fluid" src={img} alt="Second slide"/>
+                             <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={img} alt="Second slide"/></div></div>
                            </div>)}
                          </div>
                            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -328,8 +338,9 @@ class CreatePost extends Component {
                              <span className="sr-only">Next</span>
                            </a>
                           </div>
-                          <button type="button" className="row btn btn-danger " style={{"marginTop": "1rem"}} onClick={(e) => this.deleteImage(e)} >Supprimer ces images </button>
-                          </div>;
+                          <div className="row justify-content-center">
+                            <button type="button" className="btn btn-danger" style={{"marginTop": "1rem","marginBottom": "1rem"}} onClick={this.deleteImage}>Supprimer ces images</button>
+                          </div></div>;
       }
 
       let type = <PostType updateParent={this.updateParent}/>;
