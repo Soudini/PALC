@@ -54,11 +54,11 @@ export class Page extends Component {
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="h-100 img-fluid " src={this.state.data.thumbnail} alt="Second slide"/></div></div>
+                <div><div className="row justify-content-center" style={{"maxHeight" : "300px"}}><img className="h-100 img-fluid " src={this.state.data.thumbnail} alt="Second slide"/></div></div>
 
               </div>
               {this.state.data.image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
-                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="h-100 img-fluid " src={img} alt="Second slide"/></div></div>
+                <div><div className="row justify-content-center" style={{"maxHeight" : "300px"}}><img className="h-100 img-fluid " src={img} alt="Second slide"/></div></div>
               </div>)}
               </div>
               <a className="carousel-control-prev " style={{"color": "red"}} href="#carouselExampleControls" role="button" data-slide="prev">
