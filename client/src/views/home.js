@@ -37,8 +37,10 @@ export default class Home extends Component {
 
 
       return (
-          <div className="card-deck">
-              {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
+          <div className="row justify-content-center">
+            <div className="card-deck">
+                {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
+            </div>
           </div>
       )
    }

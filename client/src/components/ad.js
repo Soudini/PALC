@@ -48,8 +48,10 @@ export class Page extends Component {
     if(this.state.data) {
 
       let carousel = null;
-      if (this.state.data.thumbnail !== undefined | this.state.data.images !== undefined) {
-        carousel = <div id="carouselExampleControls" className="carousel slide col-sm-6 row align-items-center" data-ride="carousel">
+
+      if (0){console.log("eosifjei")}
+      if (this.state.data.thumbnail != null | this.state.data.image.length) {
+        carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="h-100 img-fluid " src={this.state.data.thumbnail} alt="Second slide"/></div></div>
@@ -119,8 +121,8 @@ export default class Ad extends Component {
   }
 
   render() {
-    let className = "card h-98"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
-    return (<a className="style-1" href="#">
+    let className = "card h-100"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
+    return (<a className="style-1" href="#" style={{"marginTop":"1rem"}}>
               <div className={className} style={{"width": "18rem"}} >
                 <LinkContainer to={"/ad/"+this.props.data._id}>
                   <img className="card-img-top" src={this.props.data.thumbnail} />

@@ -7,8 +7,8 @@
     text-decoration: none;
 }
 
-.h-98 {
-  height: 98%;
+.h-custom {
+  height: 100%;
 }
 
 .carousel-control-prev-icon {
