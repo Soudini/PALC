@@ -111,6 +111,7 @@ router.post("/updateData", (req, res) => {
   console.log(id, auth_author_login)
   if (admin.includes(auth_author_login))
   {
+    console.log("update by admin")
     Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id)}, update, err => {
       if (err) {console.log(err); return res.json({ success: false, error: err });};
       return res.json({ success: true });
@@ -134,6 +135,7 @@ router.post("/deleteData", (req, res) => {
   console.log("id to be removed", req, id );
 
   if (admin.includes(auth_author_login)){
+    console.log("delete by admin")
     Data.findOneAndDelete({_id : id}, err => {
       if (err) {
         console.log("delete unsuccessful because : ",error);
