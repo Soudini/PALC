@@ -82,7 +82,7 @@ router.post("/getUserInfo", (req, res) => {
                       axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.access_token)}})
                       .then(response => {console.log(response.data);
                                         response.data["expires_at"]= data.expires_at;
-                                        response.date["auth"] = crypto.AES.encrypt(response.data.login, key).toString();
+                                        response.data["auth"] = crypto.AES.encrypt(response.data.login, key).toString();
                                         return res.json({data: response.data})})}
 
                   });
@@ -121,7 +121,8 @@ router.post("/searchData", (req, res) => {
 // this is our update method
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
-  const { id, update } = req.body;
+  const { id, update, auth } = req.body;
+  console.log(crypto.AES.decrypt(auth, key).toString())
   console.log(id, mongoose.Types.ObjectId(id))
   Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id)}, update, err => {
     if (err) {console.log(err); return res.json({ success: false, error: err });};
@@ -132,7 +133,8 @@ router.post("/updateData", (req, res) => {
 // this is our delete method
 // this method removes existing data in our database
 router.post("/deleteData", (req, res) => {
-  const { id } = req.body;
+  const { id, auth } = req.body;
+  console.log("login",crypto.AES.decrypt(auth, key).toString())
   console.log("id to be removed", req, id );
   Data.findOneAndDelete({_id : id}, err => {
     if (err) {

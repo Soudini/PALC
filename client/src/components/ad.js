@@ -21,7 +21,7 @@ export class Page extends Component {
   handleDelete =()=> {
 
       if (window.confirm("Voulez vous vraiment supprimer cette annonce ?"))
-      {axios.post("/api/deleteData", {id :this.props.match.params.id });
+      {axios.post("/api/deleteData", {id :this.props.match.params.id, auth : cookies.get("auth")});
         this.props.history.push("/");}
   }
   handleUpdate =()=> {

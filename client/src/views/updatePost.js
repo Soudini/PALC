@@ -263,7 +263,7 @@ class CreatePost extends Component {
           description: this.state.description,
           thumbnail: this.state.thumbnail,
           image: this.state.image,
-        } }).then(this.state.loader = true).catch(err => console.log(err));
+        }, auth : cookies.get("auth") }).then(this.state.loader = true).catch(err => console.log(err));
         this.props.history.push("/ad/"+this.props.match.params.id);
 
   }
