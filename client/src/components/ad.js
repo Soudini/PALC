@@ -32,7 +32,7 @@ export class Page extends Component {
   searchDataFromDb = () => {
     console.log(cookies.get("auth"));
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
-      .then(data => data.data).then(res => {console.log(res.data.show_button);this.setState({ data: res.data })});
+      .then(data => {console.log(data); return(data.data)}).then(res => {console.log(res.data.show_button);this.setState({ data: res.data })});
   };
   render() {
     let buttonDelete = null;
@@ -47,7 +47,6 @@ export class Page extends Component {
 
       let carousel = null;
 
-      if (0){console.log("eosifjei")}
       if (this.state.data.thumbnail != null | this.state.data.image.length) {
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
             <div className="carousel-inner">
