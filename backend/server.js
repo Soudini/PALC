@@ -92,7 +92,7 @@ router.post("/searchById", (req, res) => {
   Data.findById(id).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
     data.show_button = (auth_author_login == data.author_login | admin.includes(auth_author_login));
-    console.log(data);
+    console.log(data.show_button);
     return res.json({ success: true, data: data });
   });
 });
