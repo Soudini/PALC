@@ -226,6 +226,7 @@ class CreatePost extends Component {
 
   // our put method that uses our backend api
   // to create new query into our data base
+  console.log(cookies.get("login"));
   putDataToDB = infos => {
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
