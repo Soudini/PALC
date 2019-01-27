@@ -18,11 +18,6 @@ app.use(bodyParser({limit: '50mb'}));
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
 keyEncrypt = "1sd'o-tevtb!"
 
-var encryptedAES = crypto.AES.encrypt("2018louysa", keyEncrypt).toString();
-var decryptedBytes = crypto.AES.decrypt(encryptedAES, keyEncrypt);
-var plaintext = decryptedBytes.toString(crypto.enc.Utf8);
-
-console.log(encryptedAES,decryptedBytes,plaintext)
 
 
 // connects our back end code with the database
@@ -81,7 +76,6 @@ router.post("/getUserInfo", (req, res) => {
                     else {
                       axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.access_token)}})
                       .then(response => {console.log(response.data);
-                                        console.log(response.data.login,crypto.AES.encrypt(response.data.login, keyEncrypt).toString(), keyEncrypt,crypto.AES.decrypt(crypto.AES.encrypt(response.data.login, keyEncrypt).toString(), keyEncrypt).toString(crypto.enc.Utf8));
                                         response.data["expires_at"]= data.expires_at;
                                         response.data["auth"] = crypto.AES.encrypt(response.data.login, keyEncrypt).toString();
                                         return res.json({data: response.data})})}
@@ -123,7 +117,7 @@ router.post("/searchData", (req, res) => {
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
   const { id, update, auth } = req.body;
-  console.log(auth, "login", crypto.AES.decrypt(auth, keyEncrypt).toString())
+  console.log(auth, "login", crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8))
   console.log(id, mongoose.Types.ObjectId(id))
   Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id)}, update, err => {
     if (err) {console.log(err); return res.json({ success: false, error: err });};
@@ -135,7 +129,7 @@ router.post("/updateData", (req, res) => {
 // this method removes existing data in our database
 router.post("/deleteData", (req, res) => {
   const { id, auth } = req.body;
-  console.log("login",crypto.AES.decrypt(auth, keyEncrypt).toString())
+  console.log("login",crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8))
   console.log("id to be removed", req, id );
   Data.findOneAndDelete({_id : id}, err => {
     if (err) {
@@ -152,7 +146,7 @@ router.post("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { author, author_id, title, type, reward, description, thumbnail, image } = req.body;
+  const { author, author_id, author_login, title, type, reward, description, thumbnail, image } = req.body;
   console.log("new ad posted by :", author);
 
   data.title = title;
@@ -161,6 +155,7 @@ router.post("/putData", (req, res) => {
   data.description = description;
   data.author = author;
   data.author_id = author_id;
+  data.author_login = author_login;
   data.thumbnail = thumbnail;
   data.image = image;
   data.save(err => {

@@ -230,6 +230,7 @@ class CreatePost extends Component {
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
       author_id : cookies.get("id"),
+      author_login : cookies.get("login"),
       title: infos.title,
       type: infos.type,
       reward: this.state.reward,

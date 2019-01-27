@@ -257,6 +257,7 @@ class CreatePost extends Component {
       axios.post("/api/updateData", {id :this.props.match.params.id, update : {
           author : cookies.get("firstName") + " " + cookies.get("lastName"),
           author_id : cookies.get("id"),
+          author_login : cookies.get("login"),          
           title: this.state.title,
           type: this.state.type,
           reward: this.state.reward,
