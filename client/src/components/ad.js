@@ -6,7 +6,6 @@ import "./ad.css";
 import Cookies from 'universal-cookie';
 
 let cookies = new Cookies();
-let admin = ["2018louysa"]
 export class Page extends Component {
 
 

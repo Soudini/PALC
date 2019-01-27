@@ -87,6 +87,7 @@ router.post("/getUserInfo", (req, res) => {
 router.post("/searchById", (req, res) => {
   let {id, auth} = req.body;
   console.log("search by id :",id);
+  console.log(auth);
   auth_author_login = crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   Data.findById(id).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
