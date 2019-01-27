@@ -9,13 +9,21 @@ const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 const request = require("request");
-
+const crypto = require("crypto-js");
 
 mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser({limit: '50mb'}));
 // this is our MongoDB database
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
+
+var encryptedAES = crypto.AES.encrypt("Test", "My Secret Passphrase").toString();
+var decryptedBytes = crypto.AES.decrypt(encryptedAES, "My Secret Passphrase");
+var plaintext = decryptedBytes.toString(crypto.enc.Utf8);
+
+console.log(encryptedAES,decryptedBytes,plaintext)
+
+keyEncrypt = "1sd'o-tevtb!"
 
 // connects our back end code with the database
 mongoose.connect(
@@ -74,6 +82,7 @@ router.post("/getUserInfo", (req, res) => {
                       axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.access_token)}})
                       .then(response => {console.log(response.data);
                                         response.data["expires_at"]= data.expires_at;
+                                        response.date["auth"] = crypto.AES.encrypt(response.data.login, key).toString();
                                         return res.json({data: response.data})})}
 
                   });
