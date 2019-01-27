@@ -16,14 +16,14 @@ mongoose.set('useFindAndModify', false);
 app.use(bodyParser({limit: '50mb'}));
 // this is our MongoDB database
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
+keyEncrypt = "1sd'o-tevtb!"
 
-var encryptedAES = crypto.AES.encrypt("Test", "My Secret Passphrase").toString();
-var decryptedBytes = crypto.AES.decrypt(encryptedAES, "My Secret Passphrase");
+var encryptedAES = crypto.AES.encrypt("2018louysa", keyEncrypt).toString();
+var decryptedBytes = crypto.AES.decrypt(encryptedAES, keyEncrypt);
 var plaintext = decryptedBytes.toString(crypto.enc.Utf8);
 
 console.log(encryptedAES,decryptedBytes,plaintext)
 
-keyEncrypt = "1sd'o-tevtb!"
 
 // connects our back end code with the database
 mongoose.connect(
@@ -81,6 +81,7 @@ router.post("/getUserInfo", (req, res) => {
                     else {
                       axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.access_token)}})
                       .then(response => {console.log(response.data);
+                                        console.log(response.data.login);
                                         response.data["expires_at"]= data.expires_at;
                                         response.data["auth"] = crypto.AES.encrypt(response.data.login, keyEncrypt).toString();
                                         return res.json({data: response.data})})}
