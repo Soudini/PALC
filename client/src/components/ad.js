@@ -37,9 +37,8 @@ export class Page extends Component {
   render() {
     let buttonDelete = null;
     let buttonUpdate = null;
-
+    console.log(this.state.data);
     if (this.state.data && this.state.data.author_id === cookies.get("id")) {
-      console.log(this.state.data.author_id , cookies.get("id"))
       buttonDelete = <button className="btn btn-danger col"  onClick={this.handleDelete}>Supprimer l'annonce </button>;
       buttonUpdate = <button className="btn btn-primary col" style={{"marginRight": "1rem","marginLeft": "1rem"}}onClick={this.handleUpdate}>Modifier l'annonce</button>;
 
