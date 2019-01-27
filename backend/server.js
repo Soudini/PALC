@@ -130,8 +130,9 @@ router.post("/updateData", (req, res) => {
 router.post("/deleteData", (req, res) => {
   const { id, auth } = req.body;
   console.log("login",crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8))
+  auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   console.log("id to be removed", req, id );
-  Data.findOneAndDelete({_id : id}, err => {
+  Data.findOneAndDelete({_id : id, author_login : auth_author_login}, err => {
     if (err) {
       console.log("delete unsuccessful because : ",error);
       return res.send(err);}
