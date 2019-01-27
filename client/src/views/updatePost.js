@@ -21,7 +21,7 @@ class PostType extends Component {
       let opt = [];
       for (let i in optionsReward){
 
-        if (i == this.props.reward){
+        if (i === this.props.reward){
           opt.push(<option selected="True" key={i}>{optionsReward[i]}</option>);
         }
         else{
@@ -55,7 +55,7 @@ class PostType extends Component {
     let optionsType = {search:"Annonce recherche", found:"Annonce trouvaille"}
     let opt = [];
     for (let i in optionsType){
-      if (i == this.props.type){
+      if (i === this.props.type){
         opt.push(<option selected key={i}>{optionsType[i]}</option>);
       }
       else{
@@ -194,7 +194,7 @@ class CreatePost extends Component {
         }
         canvas.width = width;
         canvas.height = height;
-        var ctx = canvas.getContext("2d");
+        ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         let dataurl = canvas.toDataURL("image/jpeg");
         this.setState({thumbnail:dataurl});}
@@ -232,7 +232,7 @@ class CreatePost extends Component {
             }
             canvas.width = width;
             canvas.height = height;
-            var ctx = canvas.getContext("2d");
+            ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, width, height);
             let dataurl = canvas.toDataURL("image/jpeg");
             const image = this.state.image.slice();
@@ -331,7 +331,7 @@ class CreatePost extends Component {
       let loader = this.state.loader ? <div className="loader"/> : null;
       return (
         <div>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
+          <form>
               <div>Quel est le type d'annonce que vous voulez poster ?</div>
                 {type}
                 <br/>

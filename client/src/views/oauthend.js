@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { withRouter} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import axios from 'axios';

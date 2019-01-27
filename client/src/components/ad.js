@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
 
-import { withRouter} from 'react-router-dom';
 import axios from "axios";
 import "./ad.css";
 import Cookies from 'universal-cookie';
@@ -39,7 +38,7 @@ export class Page extends Component {
     let buttonDelete = null;
     let buttonUpdate = null;
 
-    if (this.state.data && this.state.data.author_id == cookies.get("id")) {
+    if (this.state.data && this.state.data.author_id === cookies.get("id")) {
       console.log(this.state.data.author_id , cookies.get("id"))
       buttonDelete = <button className="btn btn-danger col"  onClick={this.handleDelete}>Supprimer l'annonce </button>;
       buttonUpdate = <button className="btn btn-primary col" style={{"marginRight": "1rem","marginLeft": "1rem"}}onClick={this.handleUpdate}>Modifier l'annonce</button>;
@@ -54,11 +53,11 @@ export class Page extends Component {
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="img-fluid img-test" src={this.state.data.thumbnail} alt="Second slide"/></div></div>
+                <div><div className="row justify-content-center" style={{"maxHeight" : "300px"}}><img className="img-fluid img-test" src={this.state.data.thumbnail} alt="Second slide"/></div></div>
 
               </div>
               {this.state.data.image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
-                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="img-fluid img-test" src={img} alt="Second slide"/></div></div>
+                <div><div className="row justify-content-center" style={{"maxHeight" : "300px"}}><img className="img-fluid img-test" src={img} alt="Second slide"/></div></div>
               </div>)}
               </div>
               <a className="carousel-control-prev " style={{"color": "red"}} href="#carouselExampleControls" role="button" data-slide="prev">

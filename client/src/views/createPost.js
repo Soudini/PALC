@@ -133,11 +133,12 @@ class CreatePost extends Component {
   }
 
   updateParent(key, value) {
-    this.setState({[key]: value})
+    this.setState({[key]: value});
   }
 
   handleSubmit(event) {
-    this.putDataToDB(this.state)
+    this.putDataToDB(this.state);
+    this.props.history.push("/");
   }
 
   handleThumbnail(event) {
@@ -167,7 +168,7 @@ class CreatePost extends Component {
         }
         canvas.width = width;
         canvas.height = height;
-        var ctx = canvas.getContext("2d");
+        ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         let dataurl = canvas.toDataURL("image/jpeg");
         this.setState({thumbnail:dataurl});}
@@ -205,7 +206,7 @@ class CreatePost extends Component {
             }
             canvas.width = width;
             canvas.height = height;
-            var ctx = canvas.getContext("2d");
+            ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, width, height);
             let dataurl = canvas.toDataURL("image/jpeg");
             const image = this.state.image.slice();
@@ -258,7 +259,7 @@ class CreatePost extends Component {
   deleteFromDB = idTodelete => {
     let objIdToDelete = null;
     this.state.data.forEach(dat => {
-      if (dat.id == idTodelete) {
+      if (dat.id === idTodelete) {
         objIdToDelete = dat._id;
       }
     });
@@ -279,7 +280,7 @@ class CreatePost extends Component {
   updateDB = (idToUpdate, updateToApply) => {
     let objIdToUpdate = null;
     this.state.data.forEach(dat => {
-      if (dat.id == idToUpdate) {
+      if (dat.id === idToUpdate) {
         objIdToUpdate = dat._id;
       }
     });
@@ -348,7 +349,7 @@ class CreatePost extends Component {
       let title = <Title updateParent={this.updateParent}/>;
       return (
         <div>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
+          <form >
               <div>Quel est le type d'annonce que vous voulez poster ?</div>
                 {type}
                 <br/>
@@ -361,7 +362,7 @@ class CreatePost extends Component {
 
               </div>
               <br/>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="button" onClick={(e) => this.handleSubmit(e)} className="btn btn-primary">Submit</button>
 
           </form>
         </div>
