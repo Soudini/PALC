@@ -1,1 +1,1 @@
-admin = ["2018louysa"]
+export default admin = ["2018louysa"]
