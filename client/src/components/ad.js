@@ -32,7 +32,7 @@ export class Page extends Component {
   searchDataFromDb = () => {
     console.log(cookies.get("auth"));
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
-      .then(data => data.data).then(res => {console.log(res.data);this.setState({ data: res.data })});
+      .then(data => {console.log(data); data.data}).then(res => {console.log(res.data);this.setState({ data: res.data })});
   };
   render() {
     let buttonDelete = null;
