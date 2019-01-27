@@ -1,4 +1,4 @@
-import admin from "../admin.js";
+const admin require("../admin.js");
 
 const mongoose = require("mongoose");
 const express = require("express");
