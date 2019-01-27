@@ -265,6 +265,7 @@ class CreatePost extends Component {
           image: this.state.image,
         } }).then(this.state.loader = true).catch(err => console.log(err));
         this.props.history.push("/ad/"+this.props.match.params.id);
+
   }
 
   searchDataFromDb = () => {

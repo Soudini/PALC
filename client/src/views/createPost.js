@@ -227,11 +227,6 @@ class CreatePost extends Component {
   // our put method that uses our backend api
   // to create new query into our data base
   putDataToDB = infos => {
-    const fd = new FormData();
-    if (this.state.image)
-    {
-      fd.append('image', this.state.image, this.state.image.name)
-    }
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
       author_id : cookies.get("id"),
