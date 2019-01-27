@@ -1,4 +1,3 @@
-const admin = require("../admin.js");
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -20,7 +19,7 @@ app.use(bodyParser({limit: '50mb'}));
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
 keyEncrypt = "1sd'o-tevtb!"
 
-console.log(admin);
+admin = ["2018louysa"]
 
 // connects our back end code with the database
 mongoose.connect(
