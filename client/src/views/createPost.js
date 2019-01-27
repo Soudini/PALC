@@ -242,6 +242,7 @@ class CreatePost extends Component {
     console.log({
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
       author_id : cookies.get("id"),
+      author_login : cookies.get("login"),
       title: infos.title,
       image: infos.image,
       type: infos.type,
