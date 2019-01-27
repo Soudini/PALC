@@ -19,7 +19,7 @@ app.use(bodyParser({limit: '50mb'}));
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
 keyEncrypt = "1sd'o-tevtb!"
 
-admin = ["2018louysa"]
+let admin = ["2018louysa"]
 
 // connects our back end code with the database
 mongoose.connect(
@@ -85,10 +85,12 @@ router.post("/getUserInfo", (req, res) => {
 });
 
 router.post("/searchById", (req, res) => {
-  let {id} = req.body;
+  let {id, auth} = req.body;
   console.log("search by id :",id);
+  auth_author_login = crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   Data.findById(id).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
+    data["show_button"] = (auth_author_login == data.author_login | admin.includes(auth_author_login));
     return res.json({ success: true, data: data });
   });
 });
