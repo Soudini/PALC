@@ -91,9 +91,8 @@ router.post("/searchById", (req, res) => {
   auth_author_login = crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   Data.findById(id).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
-    data.show_button = (auth_author_login == data.author_login | admin.includes(auth_author_login));
-    console.log(Object.keys(data));
-    return res.json({ success: true, data: data });
+    show_button = (auth_author_login == data.author_login | admin.includes(auth_author_login));
+    return res.json({ success: true, data: data, show_button : show_button });
   });
 });
 
