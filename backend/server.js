@@ -18,7 +18,7 @@ app.use(bodyParser({limit: '50mb'}));
 const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
 keyEncrypt = "1sd'o-tevtb!"
 
-
+admin = ["2018louysa"]
 
 // connects our back end code with the database
 mongoose.connect(
@@ -81,16 +81,6 @@ router.post("/getUserInfo", (req, res) => {
                                         return res.json({data: response.data})})}
 
                   });
-
-
-    /*axios.post(url, requestBody, config)
-      .then((result,err) => {
-        console.log(result,res);
-        return res.json(result);
-      }).catch((err) => {
-    console.log(err)
-  })*/
-
 });
 
 router.post("/searchById", (req, res) => {
@@ -119,10 +109,20 @@ router.post("/updateData", (req, res) => {
   const { id, update, auth } = req.body;
   auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   console.log(id, auth_author_login)
-  Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id), author_login: auth_author_login}, update, err => {
-    if (err) {console.log(err); return res.json({ success: false, error: err });};
-    return res.json({ success: true });
-  });
+  if (admin.includes(auth_author_login))
+  {
+    Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id)}, update, err => {
+      if (err) {console.log(err); return res.json({ success: false, error: err });};
+      return res.json({ success: true });
+    });
+  }
+
+  else {
+    Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id), author_login: auth_author_login}, update, err => {
+      if (err) {console.log(err); return res.json({ success: false, error: err });};
+      return res.json({ success: true });
+    });
+  }
 });
 
 // this is our delete method
@@ -132,14 +132,27 @@ router.post("/deleteData", (req, res) => {
   console.log("login",crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8))
   auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   console.log("id to be removed", req, id );
-  Data.findOneAndDelete({_id : id, author_login : auth_author_login}, err => {
-    if (err) {
-      console.log("delete unsuccessful because : ",error);
-      return res.send(err);}
 
-    console.log("delete successful");
-    return res.json({ success: true });
-  });
+  if (admin.includes(auth_author_login)){
+    Data.findOneAndDelete({_id : id}, err => {
+      if (err) {
+        console.log("delete unsuccessful because : ",error);
+        return res.send(err);}
+
+      console.log("delete successful");
+      return res.json({ success: true });
+    });
+  }
+  else{
+    Data.findOneAndDelete({_id : id, author_login : auth_author_login}, err => {
+      if (err) {
+        console.log("delete unsuccessful because : ",error);
+        return res.send(err);}
+
+      console.log("delete successful");
+      return res.json({ success: true });
+    });
+  }
 });
 
 // this is our create methid
