@@ -16,7 +16,7 @@ mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser({limit: '50mb'}));
 // this is our MongoDB database
-const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
+const dbRoute = "mongodb://localhost/ads";
 keyEncrypt = "1sd'o-tevtb!"
 
 let admin = ["2018louysa"]
