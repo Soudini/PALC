@@ -19,7 +19,7 @@ export default class Perso extends Component {
 
   searchDataFromDb = (searchText) => {
     console.log(searchText);
-    axios.post("http://localhost:3001/api/searchData", {search : {author_id: searchText}})
+    axios.post("/api/searchData", {search : {author_id: searchText}})
       .then(data => data.data).then(res => {console.log(res.data);this.setState({ data: res.data })});
 
   };

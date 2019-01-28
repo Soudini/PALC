@@ -26,7 +26,7 @@ export default class Home extends Component {
 
 
   searchDataFromDb = () => {
-    axios.post("http://localhost:3001/api/searchData", {search : {}})
+    axios.post("/api/searchData", {search : {}})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };

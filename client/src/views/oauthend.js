@@ -9,7 +9,7 @@ class OauthEnd extends Component {
   searchDataFromDb = (searchText) => {
 
 
-    axios.post("http://localhost:3001/api/getUserInfo", {code : cookies.get("code")})
+    axios.post("/api/getUserInfo", {code : cookies.get("code")})
       .then(data => {
         console.log("response", data.data.data);
         for (var i in data.data.data){

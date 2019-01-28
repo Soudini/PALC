@@ -244,7 +244,7 @@ class CreatePost extends Component {
   }
 
   getDataFromDb = () => {
-    fetch("http://localhost:3001/api/getData")
+    fetch("/api/getData")
       .then(data => data.json())
       .then(res => {this.setState({ data: res.data })});
 
@@ -254,7 +254,7 @@ class CreatePost extends Component {
   handleSubmit =()=> {
 
 
-      axios.post("http://localhost:3001/api/updateData", {id :this.props.match.params.id, update : {
+      axios.post("/api/updateData", {id :this.props.match.params.id, update : {
           author : cookies.get("firstName") + " " + cookies.get("lastName"),
           author_id : cookies.get("id"),
           author_login : cookies.get("login"),
@@ -271,7 +271,7 @@ class CreatePost extends Component {
 
   searchDataFromDb = () => {
     console.log(cookies.get("auth"));
-    axios.post("http://localhost:3001/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
+    axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
       .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}});
   };
 
