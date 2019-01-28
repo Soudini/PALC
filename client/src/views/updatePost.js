@@ -257,7 +257,7 @@ class CreatePost extends Component {
       axios.post("/api/updateData", {id :this.props.match.params.id, update : {
           author : cookies.get("firstName") + " " + cookies.get("lastName"),
           author_id : cookies.get("id"),
-          author_login : cookies.get("login"),          
+          author_login : cookies.get("login"),
           title: this.state.title,
           type: this.state.type,
           reward: this.state.reward,
@@ -270,7 +270,7 @@ class CreatePost extends Component {
   }
 
   searchDataFromDb = () => {
-    axios.post("/api/searchById", {id :this.props.match.params.id })
+    axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
       .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}});
   };
 
