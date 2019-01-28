@@ -29,8 +29,10 @@ export default class Perso extends Component {
 
       }
       return (
+        <div className="row justify-content-center">
         <div className="card-group">
             {this.state.data ? this.state.data.map(dat => (<div className="col-sm d-flex"><Ad data={dat}/></div>)): "Aucune donnée trouvée"}
+        </div>
         </div>
       )
    }

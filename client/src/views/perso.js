@@ -30,9 +30,11 @@ export default class Perso extends Component {
           <div>
             <h3>Mes annonces</h3>
           </div>
+          <div className="row justify-content-center">
             <div className="card-deck">
                 {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
             </div>
+          </div>
         </div>
       )}
       else{
