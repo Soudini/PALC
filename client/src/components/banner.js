@@ -12,7 +12,7 @@ class Banner extends Component{
 
   componentDidMount = () => {
     this.checkAuth();
-    setInterval(this.checkAuth, 1000);
+    //setInterval(this.checkAuth, 1000);
     cookies.set("id", 7425);
     console.log(date.getTime()/1000);
     console.log(cookies);
@@ -23,6 +23,7 @@ class Banner extends Component{
     if (!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000){
       this.props.history.push("/oauth");
     }
+    setTimeout(this.checkAuth, 1000);
   }
   handleKeyPress = (e) =>
   {
