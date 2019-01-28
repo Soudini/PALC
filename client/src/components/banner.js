@@ -51,14 +51,14 @@ class Banner extends Component{
           <LinkContainer to="/search">
             <Nav.Item>
             <li className="nav-item">
-              <a className="nav-link" href="#">Annonces Recherche <span className="sr-only">(current)</span></a>
+              <a className="nav-link" href="#">Recherche <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
           <LinkContainer to="/found">
             <Nav.Item>
             <li className="nav-item">
-              <a className="nav-link" href="#">Annonces Trouvaille <span className="sr-only">(current)</span></a>
+              <a className="nav-link" href="#">Trouvaille <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
