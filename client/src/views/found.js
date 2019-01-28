@@ -26,7 +26,7 @@ export default class Found extends Component {
 
 
   searchDataFromDb = () => {
-    axios.post("/api/searchData", {search : {"type": "found"}})
+    axios.post("http://localhost:3001/api/searchData", {search : {"type": "found"}})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };

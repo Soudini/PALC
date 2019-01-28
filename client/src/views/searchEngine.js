@@ -17,7 +17,7 @@ export default class Perso extends Component {
 
 
   searchDataFromDb = (searchText) => {
-    axios.post("/api/searchData", {search : { "$or":[{"type":{"$regex": searchText, "$options" : "i"}},{"author":{"$regex": searchText, "$options" : "i"}},{"reward":{"$regex": searchText, "$options" : "i"}},{"description":{"$regex": searchText, "$options" : "i"}} ]}})
+    axios.post("http://localhost:3001/api/searchData", {search : { "$or":[{"type":{"$regex": searchText, "$options" : "i"}},{"author":{"$regex": searchText, "$options" : "i"}},{"reward":{"$regex": searchText, "$options" : "i"}},{"description":{"$regex": searchText, "$options" : "i"}} ]}})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
