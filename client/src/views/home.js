@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Ad from "../components/ad.js";
 
-axios.defaults.port = 3001;
-
-
 export default class Home extends Component {
   state = {
     data: [],
