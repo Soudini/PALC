@@ -26,7 +26,7 @@ export default class Home extends Component {
 
 
   searchDataFromDb = () => {
-    axios.post("localhost:3001/api/searchData", {search : {}})
+    axios.post("/api/searchData", {proxy: {  host: '127.0.0.1', port: 3001 }, search : {}})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
