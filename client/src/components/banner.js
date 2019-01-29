@@ -3,9 +3,11 @@ import { withRouter} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Nav} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
-
+import "./banner.css";
 const date = new Date();
 const cookies = new Cookies();
+
+
 class Banner extends Component{
   state = {
     search: "",
@@ -31,58 +33,40 @@ class Banner extends Component{
     if (e.key === 'Enter') {
       this.props.history.push("/searchEngine/"+this.state.search);
     }
+
   }
+  handlePageChange = (page) => { this.props.history.push("/" +page)}
+
   handleSearchText = (e) => {this.setState({search: e.target.value})}
   render(){
 
     return(
-      <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark col-lg-12">
-
-        <LinkContainer to="/">
-          <Nav.Item>
-            <a className="navbar-brand" href="#top">Objets-Trouvés</a>
-          </Nav.Item>
-        </LinkContainer>
+      <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark col-lg-12">
+        <a className="navbar-brand" data-toggle="collapse" href="#navbar"  onClick={() => this.handlePageChange("")}>Objets-Trouvés</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
           </button>
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("search")}>Recherche <span className="sr-only">(current)</span></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("found")}>Trouvaille <span className="sr-only">(current)</span></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("createPost")}>Créer une annonce <span className="sr-only">(current)</span></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
+          </li>
 
-          <LinkContainer to="/search">
-            <Nav.Item>
-            <li className="nav-item" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
-              <a className="nav-link" href="#">Recherche <span className="sr-only">(current)</span></a>
-            </li>
-            </Nav.Item>
-          </LinkContainer>
-          <LinkContainer to="/found">
-            <Nav.Item>
-            <li className="nav-item" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
-              <a className="nav-link" href="#">Trouvaille <span className="sr-only">(current)</span></a>
-            </li>
-            </Nav.Item>
-          </LinkContainer>
-          <LinkContainer to="/createPost">
-            <Nav.Item>
-            <li className="nav-item" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
-              <a className="nav-link" href="#">Créer une annonce <span className="sr-only">(current)</span></a>
-            </li>
-            </Nav.Item>
-          </LinkContainer>
-          <LinkContainer to="/perso" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
-            <Nav.Item>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Mon Compte <span className="sr-only">(current)</span></a>
-            </li>
-            </Nav.Item>
-          </LinkContainer>
 
           </ul>
             <input id="searchBar" className="form-control mr-sm-2 col-sm-2" onKeyPress={this.handleKeyPress} placeholder="Search" aria-label="Search" onChange={this.handleSearchText}></input>
-            <button className="btn btn-outline-success my-2 my-sm-0"><LinkContainer to={"/searchEngine/"+this.state.search}>
+            <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.handlePageChange("searchEngine/"+this.state.search)}>
                 <strong>Chercher une annonce</strong>
-            </LinkContainer></button>
+            </button>
         </div>
       </nav>
     )
