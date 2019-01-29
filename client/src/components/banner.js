@@ -3,6 +3,7 @@ import { withRouter} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Nav} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
+
 const date = new Date();
 const cookies = new Cookies();
 class Banner extends Component{
@@ -11,7 +12,7 @@ class Banner extends Component{
   }
 
   componentDidMount = () => {
-    this.checkAuth();
+    //this.checkAuth();
     cookies.set("id", 7425);
     console.log(date.getTime()/1000);
     console.log(cookies);
@@ -50,26 +51,26 @@ class Banner extends Component{
 
           <LinkContainer to="/search">
             <Nav.Item>
-            <li className="nav-item">
+            <li className="nav-item" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
               <a className="nav-link" href="#">Recherche <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
           <LinkContainer to="/found">
             <Nav.Item>
-            <li className="nav-item">
+            <li className="nav-item" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
               <a className="nav-link" href="#">Trouvaille <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
           <LinkContainer to="/createPost">
             <Nav.Item>
-            <li className="nav-item">
+            <li className="nav-item" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
               <a className="nav-link" href="#">Créer une annonce <span className="sr-only">(current)</span></a>
             </li>
             </Nav.Item>
           </LinkContainer>
-          <LinkContainer to="/perso">
+          <LinkContainer to="/perso" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
             <Nav.Item>
             <li className="nav-item">
               <a className="nav-link" href="#">Mon Compte <span className="sr-only">(current)</span></a>
