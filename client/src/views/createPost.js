@@ -218,7 +218,7 @@ class CreatePost extends Component {
   }
 
   getDataFromDb = () => {
-    fetch("localhost:3001/api/getData")
+    fetch("/api/getData")
       .then(data => data.json())
       .then(res => {this.setState({ data: res.data })});
 
@@ -228,7 +228,7 @@ class CreatePost extends Component {
   // to create new query into our data base
   putDataToDB = infos => {
     console.log("test",cookies.get("login"));
-    axios.post("localhost:3001/api/putData", {
+    axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
       author_id : cookies.get("id"),
       author_login : cookies.get("login"),
@@ -262,7 +262,7 @@ class CreatePost extends Component {
       }
     });
 
-    axios.delete("localhost:3001/api/deleteData", {
+    axios.delete("/api/deleteData", {
       data: {
         id: objIdToDelete
       }
@@ -283,7 +283,7 @@ class CreatePost extends Component {
       }
     });
 
-    axios.post("localhost:3001/api/updateData", {
+    axios.post("/api/updateData", {
       id: objIdToUpdate,
       update: { message: updateToApply }
     });
