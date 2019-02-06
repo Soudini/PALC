@@ -81,7 +81,7 @@ export class Page extends Component {
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
           <p>{this.state.data.description}</p>
           <div className="row">
-            <button className="btn btn-secondary col"  onClick={() => this.props.history.push("https://linkcs.fr/user/"+this.state.data.author_login)}> LinkCS </button>;
+            <a href={"https://linkcs.fr/user/"+this.state.data.author_login}><button className="btn btn-secondary col"  > LinkCS </button></a>
             {buttonUpdate}
             {buttonDelete}
           </div>
