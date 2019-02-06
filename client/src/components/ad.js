@@ -79,9 +79,9 @@ export class Page extends Component {
         {carousel}
         <div className="col-sm-6">
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
-          <a href={"https://linkcs.fr/user/"+this.state.data.author_login}>Lien vers sa page LinkCS</a>
           <p>{this.state.data.description}</p>
           <div className="row">
+            <button className="btn btn-secondary col"  onClick={() => this.props.history.push("https://linkcs.fr/user/"+this.state.data.author_login)}> LinkCS </button>;
             {buttonUpdate}
             {buttonDelete}
           </div>
