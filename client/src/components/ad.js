@@ -104,6 +104,15 @@ export default class Ad extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  printTitle = () => {
+    if (this.props.data.title && this.props.data.title.length > 120){
+      return (this.props.data.title.slice(0,100) + " ...");
+    }
+    else {
+      return (this.props.data.title)
+    }
+  }
+
   printDescription = () => {
     if (this.props.data.description && this.props.data.description.length > 200){
       return (this.props.data.description.slice(0,150) + " ...");
