@@ -14,7 +14,7 @@ class Banner extends Component{
   }
 
   componentDidMount = () => {
-    this.checkAuth();
+    //<this.checkAuth();
     cookies.set("id", 7425);
     console.log(date.getTime()/1000);
     console.log(cookies);
@@ -35,7 +35,12 @@ class Banner extends Component{
     }
 
   }
-  handlePageChange = (page) => { this.props.history.push("/" +page)}
+  handlePageChange = (page) => {
+    this.props.history.push("/" +page);
+    if (document.getElementById("navbar").classList.contains("show")){
+      document.getElementById("navbar-toggler").click();
+    }
+  }
 
   handleSearchText = (e) => {this.setState({search: e.target.value})}
   render(){
@@ -43,7 +48,7 @@ class Banner extends Component{
     return(
       <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark col-lg-12">
         <a className="navbar-brand" data-toggle="collapse" href="#navbar"  onClick={() => this.handlePageChange("")}>Objets-Trouvés</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
           </button>
         <div className="collapse navbar-collapse" id="navbar">
@@ -75,25 +80,3 @@ class Banner extends Component{
 }
 
 export default withRouter(Banner);
-
-
-/*      <Navbar inverse bg-dark>
-          <Navbar.Brand>
-            <a href="#home">React-Bootstrap</a>
-          </Navbar.Brand>
-        <Nav>
-          <Nav.Item eventKey={1} href="#">
-            Link
-          </Nav.Item>
-          <Nav.Item eventKey={2} href="#">
-            Link
-          </Nav.Item>
-          <Dropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-            <Dropdown.Item eventKey={3.1}>Action</Dropdown.Item>
-            <Dropdown.Item eventKey={3.2}>Another action</Dropdown.Item>
-            <Dropdown.Item eventKey={3.3}>Something else here</Dropdown.Item>
-            <Dropdown.Item divider />
-            <Dropdown.Item eventKey={3.4}>Separated link</Dropdown.Item>
-          </Dropdown>
-        </Nav>
-      </Navbar>*/
