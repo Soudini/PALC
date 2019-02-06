@@ -129,7 +129,7 @@ export default class Ad extends Component {
 
   render() {
     let className = "card h-100"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
-    return (<a className="style-1" href="#" style={{"marginTop":"1rem" , "marginLeft" : "auto", "marginRight" : "auto"}}>
+    return (<a className="style-1" href="#" style={{"marginTop":"1rem" , "marginLeft" : "auto", "marginRight" : "auto", "marginBottom": "1rem"}}>
               <div className={className} style={{"width": "18rem"}} >
                 <LinkContainer to={"/ad/"+this.props.data._id}>
                   <img className="card-img-top test" style={{"maxHeight" : "1px"}} src={this.props.data.thumbnail} />
