@@ -14,7 +14,7 @@ const crypto = require("crypto-js");
 
 mongoose.set('useFindAndModify', false);
 
-app.use(bodyParser({limit: '20mb'}));
+app.use(bodyParser({limit: '35mb'}));
 // this is our MongoDB database
 const dbRoute = "mongodb://localhost/ads";
 keyEncrypt = "1sd'o-tevtb!"

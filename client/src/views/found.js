@@ -35,12 +35,13 @@ export default class Found extends Component {
 
 
 
-
     return (
         <div className="row justify-content-center">
           <div className="card-deck">
               {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
-          </div>
+
+
+            </div>
         </div>
     )
    }
