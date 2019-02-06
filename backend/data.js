@@ -8,6 +8,8 @@ const DataSchema = new Schema(
   {
     type: String,
     author: String,
+    author_id:String,
+    author_login:String,
     title: String,
     reward : String,
     description : String,

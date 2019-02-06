@@ -4,13 +4,23 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
 const fs = require("fs");
-
+const axios = require("axios");
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
+const request = require("request");
+const crypto = require("crypto-js");
 
+
+mongoose.set('useFindAndModify', false);
+
+app.use(bodyParser({limit: '50mb'}));
 // this is our MongoDB database
-const dbRoute = "mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves";
+const dbRoute = "mongodb://localhost/ads";
+keyEncrypt = "1sd'o-tevtb!"
+
+let admin = ["2018louysa"]
+
 
 // connects our back end code with the database
 mongoose.connect(
@@ -40,23 +50,59 @@ router.get("/getData", (req, res) => {
   });
 });
 
+router.post("/getUserInfo", (req, res) => {
+    let {code} = req.body;
+    console.log(code);
+    //const requestBody = "grant_type=authorization_code&code="+code+"&redirect_uri=http://138.195.139.246/&client_id=279c525e5961df88feb2b6053f210f7537265270&client_secret=f9e8e9c0a1a1eb060601e491286613f33f76ae73";
+    const requestBody = {
+      grant_type : "authorization_code",
+      code : code,
+      redirect_uri : "http://objets-trouves.viarezo.fr/oauthend",
+      client_id : "279c525e5961df88feb2b6053f210f7537265270",
+      client_secret : "f9e8e9c0a1a1eb060601e491286613f33f76ae73"
+    }
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+    const url = "https://auth.viarezo.fr/oauth/token"
+    request.post("https://auth.viarezo.fr/oauth/token", {form: requestBody}, (err, response, body)=>{
+                    const data = JSON.parse(body);
+                    console.log(body);
+
+                    if (data.error) {
+                      return res.json({error:err})
+                    }
+                    else {
+                      axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.access_token)}})
+                      .then(response => {console.log(response.data);
+                                        response.data["expires_at"]= data.expires_at;
+                                        response.data["auth"] = crypto.AES.encrypt(response.data.login, keyEncrypt).toString();
+                                        return res.json({data: response.data})})}
+
+                  });
+});
 
 router.post("/searchById", (req, res) => {
-  let {id} = req.body;
-  console.log(id);
+  let {id, auth} = req.body;
+  console.log("search by id :",id);
+  console.log(auth);
+  auth_author_login = crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   Data.findById(id).exec((err, data) => {
-    console.log(err,data);
     if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data: data });
+    show_button = (auth_author_login == data.author_login | admin.includes(auth_author_login));
+    return res.json({ success: true, data: data, show_button : show_button });
   });
 });
 
 
 router.post("/searchData", (req, res) => {
   let {search, number} = req.body;
-  console.log(search,number);
+  console.log("search data with parameters (search,number)",search,number);
   if (!number) {number = 10}
-  Data.find(search).sort({"updatedAt": -1 }).limit(number).exec((err, data) => {
+  Data.find(search,{"image" : 0}).sort({"updatedAt": -1 }).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
@@ -65,21 +111,55 @@ router.post("/searchData", (req, res) => {
 // this is our update method
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
-  const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
+  const { id, update, auth } = req.body;
+  auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
+  console.log(id, auth_author_login)
+  if (admin.includes(auth_author_login))
+  {
+    console.log("update by admin")
+    Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id)}, update, err => {
+      if (err) {console.log(err); return res.json({ success: false, error: err });};
+      return res.json({ success: true });
+    });
+  }
+
+  else {
+    Data.findOneAndUpdate({_id : mongoose.Types.ObjectId(id), author_login: auth_author_login}, update, err => {
+      if (err) {console.log(err); return res.json({ success: false, error: err });};
+      return res.json({ success: true });
+    });
+  }
 });
 
 // this is our delete method
 // this method removes existing data in our database
-router.delete("/deleteData", (req, res) => {
-  const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
-    if (err) return res.send(err);
-    return res.json({ success: true });
-  });
+router.post("/deleteData", (req, res) => {
+  const { id, auth } = req.body;
+  console.log("login",crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8))
+  auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
+  console.log("id to be removed", req, id );
+
+  if (admin.includes(auth_author_login)){
+    console.log("delete by admin")
+    Data.findOneAndDelete({_id : id}, err => {
+      if (err) {
+        console.log("delete unsuccessful because : ",error);
+        return res.send(err);}
+
+      console.log("delete successful");
+      return res.json({ success: true });
+    });
+  }
+  else{
+    Data.findOneAndDelete({_id : id, author_login : auth_author_login}, err => {
+      if (err) {
+        console.log("delete unsuccessful because : ",error);
+        return res.send(err);}
+
+      console.log("delete successful");
+      return res.json({ success: true });
+    });
+  }
 });
 
 // this is our create methid
@@ -87,21 +167,26 @@ router.delete("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { author, title, type, reward, description, thumbnail, image } = req.body;
-
+  const { author, author_id, author_login, title, type, reward, description, thumbnail, image } = req.body;
+  console.log("new ad posted with infos :", author, author_id, author_login, title, type);
 
   data.title = title;
   data.type = type;
   data.reward = reward;
   data.description = description;
   data.author = author;
+  data.author_id = author_id;
+  data.author_login = author_login;
   data.thumbnail = thumbnail;
   data.image = image;
   data.save(err => {
-    if (err) return res.json({ success: false, error: err });
+    if (err) {return res.json({ success: false, error: err });}
     return res.json({ success: true });
   });
 });
+
+
+
 
 
 

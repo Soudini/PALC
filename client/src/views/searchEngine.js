@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Ad from "../components/ad.js";
+import Cookies from 'universal-cookie';
+
+let cookies = new Cookies();
 
 export default class Perso extends Component {
   state = {
@@ -14,7 +17,7 @@ export default class Perso extends Component {
 
 
   searchDataFromDb = (searchText) => {
-    axios.post("/api/searchData", {search : { "$or":[{"type":{"$regex": searchText}},{"author":{"$regex": searchText}},{"reward":{"$regex": searchText}},{"description":{"$regex": searchText}} ]}})
+    axios.post("/api/searchData", {search : { "$or":[{"type":{"$regex": searchText, "$options" : "i"}},{"author":{"$regex": searchText, "$options" : "i"}},{"reward":{"$regex": searchText, "$options" : "i"}},{"description":{"$regex": searchText, "$options" : "i"}} ]}})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
@@ -26,8 +29,10 @@ export default class Perso extends Component {
 
       }
       return (
+        <div className="row justify-content-center">
         <div className="card-group">
             {this.state.data ? this.state.data.map(dat => (<div className="col-sm d-flex"><Ad data={dat}/></div>)): "Aucune donnée trouvée"}
+        </div>
         </div>
       )
    }
