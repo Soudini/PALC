@@ -79,7 +79,7 @@ export class Page extends Component {
         {carousel}
         <div className="col-sm-6">
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
-          <a href={"https://linkcs.fr/user/"+this.state.data.author_id}>Lien vers LinkCS</a>
+          <a href={"https://linkcs.fr/user/"+this.state.data.author_login}>Lien vers LinkCS</a>
           <p>{this.state.data.description}</p>
           <div className="row">
             {buttonUpdate}
