@@ -31,7 +31,8 @@ class Banner extends Component{
   {
 
     if (e.key === 'Enter') {
-      this.props.history.push("/searchEngine/"+this.state.search);
+      if (this.state.search == ""){this.props.history.push("/");}
+      else{this.props.history.push("/searchEngine/"+this.state.search);}
     }
 
   }
