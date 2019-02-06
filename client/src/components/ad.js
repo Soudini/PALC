@@ -135,7 +135,7 @@ export default class Ad extends Component {
                 </LinkContainer>
                 <LinkContainer to={"/ad/"+this.props.data._id}>
                 <div className="card-body ">
-                  <h5 className="card-title">{printTitle()}</h5>
+                  <h5 className="card-title">{this.printTitle()}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre "+ this.props.data.reward: "")}</h6>
                   <p className="card-text">{this.printDescription()}</p>
                   </div>
