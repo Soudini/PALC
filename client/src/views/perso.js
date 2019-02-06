@@ -13,13 +13,13 @@ export default class Perso extends Component {
   componentDidMount = () => {
 
   console.log("test");
-  this.searchDataFromDb(cookies.get("id"));
+  this.searchDataFromDb(cookies.get("login"));
   }
 
 
   searchDataFromDb = (searchText) => {
     console.log(searchText);
-    axios.post("/api/searchData", {search : {author_id: searchText}})
+    axios.post("/api/searchData", {search : {author_login: searchText}})
       .then(data => data.data).then(res => {console.log(res.data);this.setState({ data: res.data })});
 
   };
