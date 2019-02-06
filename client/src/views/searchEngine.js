@@ -17,7 +17,8 @@ export default class Perso extends Component {
 
 
   searchDataFromDb = (searchText) => {
-    if (searchText === ""){
+    if (searchText == ""){
+      console.log(searchText);
       this.props.history.push("/");
     }
     else {
