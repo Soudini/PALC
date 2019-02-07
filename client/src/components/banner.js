@@ -48,7 +48,7 @@ class Banner extends Component{
 
     return(
       <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark col-lg-12">
-        <a className="navbar-brand" href=""  onClick={() => this.handlePageChange("")}>Objets-Trouvés</a>
+        <a className="navbar-brand" href=""  onClick={() => this.handlePageChange("")}>Palc</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
           </button>
@@ -69,7 +69,7 @@ class Banner extends Component{
 
 
           </ul>
-            <input id="searchBar" className="form-control mr-sm-2 col-sm-2" onKeyPress={this.handleKeyPress} placeholder="Search" aria-label="Search" onChange={this.handleSearchText}></input>
+            <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{"marginBottom" :"1rem"}} onKeyPress={this.handleKeyPress} placeholder="Search" aria-label="Search" onChange={this.handleSearchText}></input>
             <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.handlePageChange("searchEngine/"+this.state.search)}>
                 <strong>Chercher une annonce</strong>
             </button>
