@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Ad from "../components/ad.js";
+import Cookies from "universal-cookie"
 
+let cookies = new Cookies(); 
 export default class Home extends Component {
   state = {
     data: [],
