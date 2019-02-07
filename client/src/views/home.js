@@ -46,7 +46,7 @@ export default class Home extends Component {
       for (let i = 0; i<this.state.pageNumber / 10; i++){
         pagination.push(i)
       }
-
+      console.log(this.state);
       return (
           <div className="row justify-content-center">
             <div className="card-deck">
