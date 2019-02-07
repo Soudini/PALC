@@ -10,13 +10,13 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this.searchDataFromDb();
+    this.searchDataFromDb(cookies.get("login"));
     if (!this.state.intervalIsSet) {
       let interval = setInterval(this.getDataFromDb, 1000);
       this.setState({ intervalIsSet: interval });
 
     }
-    this.getNumberAds();
+    this.getNumberAds(cookies.get("login"));
   }
 
   // never let a process live forever
@@ -28,12 +28,12 @@ export default class Home extends Component {
     }
   }
 
-  getNumberAds = () => {
+  getNumberAds = (searchText) => {
     axios.post("/api/getNumberAds",{search : {author_login: searchText}})
       .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
 
   }
-  searchDataFromDb = () => {
+  searchDataFromDb = (searchText) => {
     console.log("searchDataFromDb",this.state);
     axios.post("/api/searchData", {search : {author_login: searchText}, number : this.state.number , page:this.state.page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
@@ -42,13 +42,13 @@ export default class Home extends Component {
 
   changePage = (i) => {
     this.state.page = i ;
-    this.searchDataFromDb();
+    this.searchDataFromDb(cookies.get("login"));
     console.log("this.state.page", this.state.page);
   }
 
   previousNext = (i) => {
     this.state.page = this.state.page + i ;
-    this.searchDataFromDb();
+    this.searchDataFromDb(cookies.get("login"));
   }
 
   render () {
