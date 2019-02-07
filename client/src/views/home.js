@@ -5,7 +5,7 @@ import Ad from "../components/ad.js";
 export default class Home extends Component {
   state = {
     data: [],
-    number : 12,
+    number : 24,
     page:0
   }
 
