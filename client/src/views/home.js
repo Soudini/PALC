@@ -43,7 +43,7 @@ export default class Home extends Component {
   changePage = (i) => {
     this.setState({page : i},console.log("test",this.state.page,i))
     this.searchDataFromDb();
-    console.log(i);
+    console.log("this.state.page", this.state.page);
   }
   render () {
 
