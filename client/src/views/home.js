@@ -5,6 +5,8 @@ import Ad from "../components/ad.js";
 export default class Home extends Component {
   state = {
     data: [],
+    number : 10,
+    page:0
   }
 
   componentDidMount() {
@@ -12,7 +14,9 @@ export default class Home extends Component {
     if (!this.state.intervalIsSet) {
       let interval = setInterval(this.getDataFromDb, 1000);
       this.setState({ intervalIsSet: interval });
+
     }
+    this.getNumberAds();
   }
 
   // never let a process live forever
@@ -24,16 +28,23 @@ export default class Home extends Component {
     }
   }
 
+  getNumberAds = () => {
+    axios.post("/api/getNumberAds")
+      .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
 
+  }
   searchDataFromDb = () => {
-    axios.post("/api/searchData", {search : {}})
+    axios.post("/api/searchData", {search : {}, number : this.state.number , page:this.state.page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
 
   render () {
 
-
+      let pagination = [];
+      for (let i; i<this.state.pageNumber / 10; i++){
+        pagination.push(i)
+      }
 
 
       return (
@@ -41,6 +52,13 @@ export default class Home extends Component {
             <div className="card-deck">
                 {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
             </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                {pagination.map( i => (<li class="page-item"><a class="page-link" href="" onClick={() => (this.setState({page : i}))}>i</a></li>))}
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
           </div>
       )
    }

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+oxyconst mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
@@ -44,6 +44,7 @@ app.use(logger("dev"));
 // this is our get method
 // this method fetches all available data in our database
 router.get("/getData", (req, res) => {
+
   Data.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
@@ -98,11 +99,23 @@ router.post("/searchById", (req, res) => {
 });
 
 
+
+router.post("/getNumberAds", (req, res) => {
+
+  console.log("get number of ads");
+  Data.count().exec((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
+
 router.post("/searchData", (req, res) => {
-  let {search, number} = req.body;
-  console.log("search data with parameters (search,number)",search,number);
-  if (!number) {number = 10}
-  Data.find(search,{"image" : 0}).sort({"updatedAt": -1 }).exec((err, data) => {
+  let {search, number, page} = req.body;
+  if (!number) {number = 10};
+  if (!page) {page = 0};
+  console.log("search data with parameters (search,number,page)",search,number,page);
+  Data.find(search,{"image" : 0}).sort({"updatedAt": -1 }).limit(number).skip(page*number).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
