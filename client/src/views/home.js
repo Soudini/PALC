@@ -60,7 +60,7 @@ export default class Home extends Component {
             <nav aria-label="Page navigation example">
               <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                {pagination.map( i => (<li class="page-item"><a class="page-link" href="" onClick={changePage(i)}>{i}</a></li>))}
+                {pagination.map( i => (<li class="page-item"><a class="page-link" href="" onClick={changePage(i)}>{i+1}</a></li>))}
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
               </ul>
             </nav>
