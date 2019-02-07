@@ -48,7 +48,7 @@ class Banner extends Component{
 
     return(
       <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark col-lg-12">
-        <a className="navbar-brand" href=""  onClick={() => this.handlePageChange("")}>Objets-Trouvés</a>
+        <a className="navbar-brand" href=""  onClick={() => this.handlePageChange("")}>Palc</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
           </button>
