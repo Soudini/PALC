@@ -34,7 +34,7 @@ export default class Home extends Component {
 
   }
   searchDataFromDb = () => {
-    console.log(this.state);
+    console.log("searchDataFromDb",this.state);
     axios.post("/api/searchData", {search : {}, number : this.state.number , page:this.state.page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
@@ -51,7 +51,7 @@ export default class Home extends Component {
       for (let i = 0; i<this.state.pageNumber / 10; i++){
         pagination.push(i)
       }
-      console.log(this.state);
+      console.log("render",this.state);
       return (
           <div className="row justify-content-center">
             <div className="card-deck">
