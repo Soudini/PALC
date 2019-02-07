@@ -58,7 +58,7 @@ router.post("/getUserInfo", (req, res) => {
     const requestBody = {
       grant_type : "authorization_code",
       code : code,
-      redirect_uri : "http://objets-trouves.viarezo.fr/oauthend",
+      redirect_uri : "http://palc.viarezo.fr/oauthend",
       client_id : "279c525e5961df88feb2b6053f210f7537265270",
       client_secret : "f9e8e9c0a1a1eb060601e491286613f33f76ae73"
     }
