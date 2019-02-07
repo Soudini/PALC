@@ -110,7 +110,7 @@ router.post("/getNumberAds", (req, res) => {
 
 router.post("/searchData", (req, res) => {
   let {search, number, page} = req.body;
-  if (!number) {number = 10};
+  if (!number) {number = 16};
   if (!page) {page = 0};
   console.log("search data with parameters (search,number,page)",search,number,page);
   Data.find(search,{"image" : 0}).sort({"updatedAt": -1 }).limit(number).skip(page*number).exec((err, data) => {
