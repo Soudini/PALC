@@ -48,7 +48,7 @@ export default class Home extends Component {
   render () {
 
       let pagination = [];
-      for (let i = 0; i<this.state.pageNumber / tjis.state.number; i++){
+      for (let i = 0; i<this.state.pageNumber / this.state.number; i++){
         pagination.push(i)
       }
       console.log("render",this.state);
