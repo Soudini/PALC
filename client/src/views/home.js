@@ -45,6 +45,12 @@ export default class Home extends Component {
     this.searchDataFromDb();
     console.log("this.state.page", this.state.page);
   }
+
+  previousNext = (i) => {
+    this.state.page = this.state.page + i ;
+    this.searchDataFromDb();
+  }
+
   render () {
 
       let pagination = [];
@@ -59,9 +65,9 @@ export default class Home extends Component {
             </div>
             <nav aria-label="Page navigation example">
               <ul class="pagination">
-                <li class="page-item"><a class="page-link">Previous</a></li>
-                {pagination.map( i => (<li class="page-item"><a class="page-link" onClick={() => this.changePage(i)}>{i+1}</a></li>))}
-                <li class="page-item"><a class="page-link" >Next</a></li>
+                <li class="page-item"><a class="page-link" href="#" onClick={() => this.previousNext(-1)}>Previous</a></li>
+                {pagination.map( i => (<li class="page-item"><a class="page-link" href="#" onClick={() => this.changePage(i)}>{i+1}</a></li>))}
+                <li class="page-item"><a class="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
               </ul>
             </nav>
           </div>
