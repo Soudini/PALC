@@ -3,11 +3,11 @@ import axios from "axios";
 import Ad from "../components/ad.js";
 import Cookies from "universal-cookie"
 
-let cookies = new Cookies(); 
+let cookies = new Cookies();
 export default class Home extends Component {
   state = {
     data: [],
-    number : 24,
+    number : 16,
     page:0
   }
 
