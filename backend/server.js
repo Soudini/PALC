@@ -71,15 +71,13 @@ router.post("/getUserInfo", (req, res) => {
     const url = "https://auth.viarezo.fr/oauth/token"
     request.post("https://auth.viarezo.fr/oauth/token", {form: requestBody}, (err, response, body)=>{
                     const data = JSON.parse(body);
-                    console.log(body);
 
                     if (data.error) {
                       return res.json({error:err})
                     }
                     else {
                       axios.get("https://auth.viarezo.fr/api/user/show/me", {headers : {Authorization: 'Bearer '.concat(data.access_token)}})
-                      .then(response => {console.log(response.data);
-                                        response.data["expires_at"]= data.expires_at;
+                      .then(response => {response.data["expires_at"]= data.expires_at;
                                         response.data["auth"] = crypto.AES.encrypt(response.data.login, keyEncrypt).toString();
                                         return res.json({data: response.data})})}
 
