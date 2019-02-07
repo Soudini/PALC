@@ -42,10 +42,10 @@ export default class Home extends Component {
   render () {
 
       let pagination = [];
-      for (let i; i<this.state.pageNumber / 10; i++){
+      for (let i = 0; i<this.state.pageNumber / 10; i++){
         pagination.push(i)
       }
-
+      console.log(pagination)
 
       return (
           <div className="row justify-content-center">
