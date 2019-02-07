@@ -46,7 +46,6 @@ export default class Home extends Component {
       for (let i = 0; i<this.state.pageNumber / 10; i++){
         pagination.push(i)
       }
-      console.log(pagination)
 
       return (
           <div className="row justify-content-center">
@@ -56,7 +55,7 @@ export default class Home extends Component {
             <nav aria-label="Page navigation example">
               <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                {pagination.map( i => (<li class="page-item"><a class="page-link" href="" onClick={() => {this.setState({page : i},this.searchDataFromDb()) ; console.log(i);}}>{i}</a></li>))}
+                {pagination.map( i => (<li class="page-item"><a class="page-link" href="" onClick={() => {this.setState({page : i},() => {console.log(this.state.page,i) ;this.searchDataFromDb()}) ; console.log(i);}}>{i}</a></li>))}
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
               </ul>
             </nav>
