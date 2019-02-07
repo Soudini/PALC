@@ -29,7 +29,7 @@ export default class Home extends Component {
   }
 
   getNumberAds = () => {
-    axios.post("/api/getNumberAds")
+    axios.post("/api/getNumberAds",{search : {}})
       .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
 
   }

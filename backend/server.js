@@ -99,9 +99,9 @@ router.post("/searchById", (req, res) => {
 
 
 router.post("/getNumberAds", (req, res) => {
-
+  let {search} = req.body;
   console.log("get number of ads");
-  Data.count().exec((err, data) => {
+  Data.count(search).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
