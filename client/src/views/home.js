@@ -11,21 +11,12 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.searchDataFromDb();
-    if (!this.state.intervalIsSet) {
-      let interval = setInterval(this.getDataFromDb, 1000);
-      this.setState({ intervalIsSet: interval });
-
-    }
     this.getNumberAds();
   }
 
   // never let a process live forever
   // always kill a process everytime we are done using it
   componentWillUnmount() {
-    if (this.state.intervalIsSet) {
-      clearInterval(this.state.intervalIsSet);
-      this.setState({ intervalIsSet: null });
-    }
   }
 
   getNumberAds = () => {
@@ -48,6 +39,12 @@ export default class Home extends Component {
 
   previousNext = (i) => {
     this.state.page = this.state.page + i ;
+    if (this.state.page < 0) {
+      this.state.page = 0;
+    };
+    if (this.state.page > this.state.pageNumber / this.state.number) {
+      this.state.page = Math.floor(this.state.pageNumber / this.state.number);
+    };
     this.searchDataFromDb();
   }
 

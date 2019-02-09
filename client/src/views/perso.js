@@ -13,11 +13,6 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.searchDataFromDb(cookies.get("login"));
-    if (!this.state.intervalIsSet) {
-      let interval = setInterval(this.getDataFromDb, 1000);
-      this.setState({ intervalIsSet: interval });
-
-    }
     this.getNumberAds(cookies.get("login"));
   }
 
@@ -50,6 +45,12 @@ export default class Home extends Component {
 
   previousNext = (i) => {
     this.state.page = this.state.page + i ;
+    if (this.state.page < 0) {
+      this.state.page = 0;
+    };
+    if (this.state.page > this.state.pageNumber / this.state.number) {
+      this.state.page = Math.floor(this.state.pageNumber / this.state.number);
+    };
     this.searchDataFromDb(cookies.get("login"));
   }
 
