@@ -18,7 +18,7 @@ class Banner extends Component{
     cookies.set("id", 7425);
     console.log(date.getTime()/1000);
     console.log(cookies);
-    let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
+    recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
     if (recaptchaBadge.length){
       recaptchaBadge[0].remove();
     }
@@ -27,9 +27,8 @@ class Banner extends Component{
   }
 
   checkAuth = () => {
-    if ((!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000)  && cookies.get("lastAuthTry") - date.getTime() > 2500){
+    if (!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000){
       this.props.history.push("/oauth");
-      cookies.set("lastAuthTry", date.getTime())
     }
     setTimeout(this.checkAuth, 5000);
   }
