@@ -20,7 +20,7 @@ const dbRoute = "mongodb://localhost/ads";
 let keyEncrypt = "1sd'o-tevtb!";
 let reCaptchaKey =  "6LcpTZAUAAAAAHx6KlhmNV7PjWFBENNzpOVjCe3V";
 let admin = ["2018louysa"];
-let ban = ["2018louysa"];
+let ban = [];
 
 
 // connects our back end code with the database
