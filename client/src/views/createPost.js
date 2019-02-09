@@ -334,7 +334,7 @@ class CreatePost extends Component {
             <ReCaptcha
             action='submitAd'
             sitekey="6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR"
-            verifyCallback={verifyCallback}
+            verifyCallback={this.verifyCallback}
             />
           <form >
               <div>Quel est le type d'annonce que vous voulez poster ?</div>
