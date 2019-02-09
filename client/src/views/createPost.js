@@ -5,6 +5,11 @@ import "./createPost.css";
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
 
+const verifyCallback = token => {
+  // Here you will get the final token!!!
+  console.log('verifycallback token:', token)
+}
+
 
 class PostType extends Component {
   constructor(props){
@@ -326,6 +331,11 @@ class CreatePost extends Component {
       let title = <Title updateParent={this.updateParent}/>;
       return (
         <div>
+            <ReCaptcha
+            action='submitAd'
+            sitekey="6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR"
+            verifyCallback={verifyCallback}
+            />
           <form >
               <div>Quel est le type d'annonce que vous voulez poster ?</div>
                 {type}
@@ -340,11 +350,6 @@ class CreatePost extends Component {
               </div>
               <br/>
               <button type="button" onClick={(e) => this.handleSubmit(e)} className="btn btn-primary">Submit</button>
-              <ReCaptcha
-                          sitekey="6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR"
-                          action='submitAd'
-                          verifyCallback={this.verifyCallback}
-                      />
           </form>
         </div>
 
