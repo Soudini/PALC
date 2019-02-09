@@ -3,8 +3,11 @@ import './App.css';
 import Main from './components/main.js';
 import Banner from './components/banner.js';
 import Cookies from 'universal-cookie';
+import { loadReCaptcha } from 'recaptcha-v3-react';
 
 const cookies = new Cookies();
+
+const date = new Date();
 
 class App extends Component {
 
