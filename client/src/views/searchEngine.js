@@ -18,7 +18,7 @@ export default class Perso extends Component {
   }
 
 
-  getNumberAds = () => {
+  getNumberAds = (searchText) => {
     axios.post("/api/getNumberAds",{search : { "$or":[{"type":{"$regex": searchText, "$options" : "i"}},{"author":{"$regex": searchText, "$options" : "i"}},{"reward":{"$regex": searchText, "$options" : "i"}},{"description":{"$regex": searchText, "$options" : "i"}},{"title":{"$regex": searchText, "$options" : "i"}} ]}})
       .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
 
@@ -51,6 +51,10 @@ export default class Perso extends Component {
         this.state.search = this.props.match.params.searchText;
         this.searchDataFromDb(this.props.match.params.searchText);
 
+      }
+      let pagination = [];
+      for (let i = 0; i<this.state.pageNumber / this.state.number; i++){
+        pagination.push(i)
       }
       return (
         <div className="row justify-content-center">
