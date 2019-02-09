@@ -18,16 +18,21 @@ class Banner extends Component{
     cookies.set("id", 7425);
     console.log(date.getTime()/1000);
     console.log(cookies);
-    let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
-    console.log(recaptchaBadge,recaptchaBadge.length);
-    if (recaptchaBadge[0]){
-      console.log("attempt to remove");
-      recaptchaBadge[0].remove();
-    }
 
+    this.killReCaptchaBadge();
 
   }
 
+
+  killReCaptchaBadge = () => {
+    let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
+    console.log(recaptchaBadge,recaptchaBadge.length);
+    if (recaptchaBadge.length){
+      console.log("attempt to remove");
+      recaptchaBadge[0].remove();
+    }
+    setTimeout(this.killReCaptchaBadge,1000)
+  }
   checkAuth = () => {
     if (!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000){
       this.props.history.push("/oauth");
