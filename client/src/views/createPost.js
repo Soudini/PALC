@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import "./createPost.css";
+import { ReCaptcha } from 'react-recaptcha-v3';
 const cookies = new Cookies();
 
 
@@ -114,6 +115,7 @@ class CreatePost extends Component {
       thumbnail : null,
       image: [],
       data: [],
+      reCaptchaToken : null,
     }
 
     this.updateParent = this.updateParent.bind(this);
@@ -137,8 +139,8 @@ class CreatePost extends Component {
   }
 
   handleSubmit(event) {
-    this.putDataToDB(this.state);
-    this.props.history.push("/");
+      this.putDataToDB(this.state);
+      this.props.history.push("/");
   }
 
   handleThumbnail(event) {
@@ -217,15 +219,7 @@ class CreatePost extends Component {
       }
   }
 
-  getDataFromDb = () => {
-    fetch("/api/getData")
-      .then(data => data.json())
-      .then(res => {this.setState({ data: res.data })});
 
-  };
-
-  // our put method that uses our backend api
-  // to create new query into our data base
   putDataToDB = infos => {
     console.log("test",cookies.get("login"));
     axios.post("/api/putData", {
@@ -238,36 +232,12 @@ class CreatePost extends Component {
       description: infos.description,
       thumbnail: infos.thumbnail,
       image: infos.image,
-    });
-    console.log({
-      author : cookies.get("firstName") + " " + cookies.get("lastName"),
-      author_id : cookies.get("id"),
-      author_login : cookies.get("login"),
-      title: infos.title,
-      image: infos.image,
-      type: infos.type,
-      reward: this.state.reward,
-      description: infos.description,
+      reCaptchaToken : infos.reCaptchaToken,
     });
   };
 
 
-  // our delete method that uses our backend api
-  // to remove existing database information
-  deleteFromDB = idTodelete => {
-    let objIdToDelete = null;
-    this.state.data.forEach(dat => {
-      if (dat.id === idTodelete) {
-        objIdToDelete = dat._id;
-      }
-    });
 
-    axios.delete("/api/deleteData", {
-      data: {
-        id: objIdToDelete
-      }
-    });
-  };
 
 
   deleteImage = (e) => {this.setState({image:[]})}
@@ -289,6 +259,10 @@ class CreatePost extends Component {
     });
   };
 
+
+  verifyCallbackCaptcha = (token) => {
+    this.setState({reCaptchaToken : token});
+  };
 
   render () {
       let {thumbnail} = this.state;
@@ -361,7 +335,11 @@ class CreatePost extends Component {
               </div>
               <br/>
               <button type="button" onClick={(e) => this.handleSubmit(e)} className="btn btn-primary">Submit</button>
-
+              <ReCaptcha
+                          sitekey="6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR"
+                          action='submitAd'
+                          verifyCallback={this.verifyCallback}
+                      />
           </form>
         </div>
 

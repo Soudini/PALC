@@ -17,8 +17,8 @@ mongoose.set('useFindAndModify', false);
 app.use(bodyParser({limit: '35mb'}));
 // this is our MongoDB database
 const dbRoute = "mongodb://localhost/ads";
-keyEncrypt = "1sd'o-tevtb!"
-
+let keyEncrypt = "1sd'o-tevtb!";
+let reCaptchaKey =  "6LcpTZAUAAAAAHx6KlhmNV7PjWFBENNzpOVjCe3V";
 let admin = ["2018louysa"]
 
 
@@ -178,8 +178,8 @@ router.post("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { author, author_id, author_login, title, type, reward, description, thumbnail, image } = req.body;
-  console.log("new ad posted with infos :", author, author_id, author_login, title, type);
+  const { author, author_id, author_login, title, type, reward, description, thumbnail, image, reCaptchaToken } = req.body;
+  console.log("new ad posted with infos :", author, author_id, author_login, title, type, reCaptchaToken);
 
   data.title = title;
   data.type = type;
@@ -190,6 +190,8 @@ router.post("/putData", (req, res) => {
   data.author_login = author_login;
   data.thumbnail = thumbnail;
   data.image = image;
+
+  request.post("https://www.google.com/recaptcha/api/siteverify", {secret : reCaptchaKey, response :reCaptchaToken}, (err, response, body) => {console.log("body",JSON.parse(body)); console.log("response",response)})
   data.save(err => {
     if (err) {return res.json({ success: false, error: err });}
     return res.json({ success: true });
