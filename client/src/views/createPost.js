@@ -199,43 +199,47 @@ class CreatePost extends Component {
   }
 
   handleImage(event) {
+    if (event.target.files.length > 5){
+      alert("Le nombre d'image est limité à 5")
+    }
+    else {
+      for (let i = 0; i<event.target.files.length; i++) {
+        var reader = new FileReader();
+        let file = event.target.files[i];
+        reader.onloadend = (e) => {
 
-    for (let i = 0; i<event.target.files.length; i++) {
-      var reader = new FileReader();
-      let file = event.target.files[i];
-      reader.onloadend = (e) => {
-
-          var img = new Image();
-          img.src = e.target.result;
-          img.onload = () => {var canvas = document.createElement("canvas");
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
-            var MAX_WIDTH = 400;
-            var MAX_HEIGHT = 400;
-            var width = img.width;
-            var height = img.height;
-            if (width > height) {
-                if (width > MAX_WIDTH) {
-                    height *= MAX_WIDTH / width;
-                    width = MAX_WIDTH;
-                }
-            } else {
-                if (height > MAX_HEIGHT) {
-                    width *= MAX_HEIGHT / height;
-                    height = MAX_HEIGHT;
-                }
+            var img = new Image();
+            img.src = e.target.result;
+            img.onload = () => {var canvas = document.createElement("canvas");
+              var ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0);
+              var MAX_WIDTH = 400;
+              var MAX_HEIGHT = 400;
+              var width = img.width;
+              var height = img.height;
+              if (width > height) {
+                  if (width > MAX_WIDTH) {
+                      height *= MAX_WIDTH / width;
+                      width = MAX_WIDTH;
+                  }
+              } else {
+                  if (height > MAX_HEIGHT) {
+                      width *= MAX_HEIGHT / height;
+                      height = MAX_HEIGHT;
+                  }
+              }
+              canvas.width = width;
+              canvas.height = height;
+              ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0, width, height);
+              let dataurl = canvas.toDataURL("image/jpeg");
+              const image = this.state.image.slice();
+              image.push(dataurl);
+              this.setState({image: image})}
             }
-            canvas.width = width;
-            canvas.height = height;
-            ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
-            let dataurl = canvas.toDataURL("image/jpeg");
-            const image = this.state.image.slice();
-            image.push(dataurl);
-            this.setState({image: image})}
-          }
-      reader.readAsDataURL(file);
-      }
+        reader.readAsDataURL(file);
+        }
+    }
   }
 
 

@@ -195,7 +195,7 @@ router.post("/putData", (req, res) => {
   request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {
     json = JSON.parse(body);
     console.log(json)
-    if (json.success && json.score > 0.6 && auth_author_login == author_login && !ban.includes(auth_author_login) && title != "" && description != "" && description.length < 1000 && title.length < 300) {
+    if (json.success && json.score > 0.6 && auth_author_login == author_login && !ban.includes(auth_author_login) && title != "" && description != "" && description.length < 1000 && title.length < 300 && image.length < 6) {
       console.log("ad validated and posted")
       data.save(err => {
         if (err) {return res.json({ success: false, error: err });}
