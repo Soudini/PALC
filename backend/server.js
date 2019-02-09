@@ -191,7 +191,7 @@ router.post("/putData", (req, res) => {
   data.thumbnail = thumbnail;
   data.image = image;
 
-  request.post("https://www.google.com/recaptcha/api/siteverify", {secret : reCaptchaKey, response :reCaptchaToken}, (err, response, body) => {console.log("body",JSON.parse(body)); console.log("response",response)})
+  request.post("https://www.google.com/recaptcha/api/siteverify", {secret : reCaptchaKey, response :reCaptchaToken}, (err, response, body) => {console.log("body",JSON.parse(body));})
   data.save(err => {
     if (err) {return res.json({ success: false, error: err });}
     return res.json({ success: true });
