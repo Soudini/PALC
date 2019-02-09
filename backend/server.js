@@ -148,7 +148,7 @@ router.post("/deleteData", (req, res) => {
   const { id, auth } = req.body;
   console.log("login",crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8))
   auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
-  console.log("id to be removed", req, id );
+  console.log("id to be removed", id );
 
   if (admin.includes(auth_author_login)){
     console.log("delete by admin")
@@ -190,7 +190,7 @@ router.post("/putData", (req, res) => {
   data.author_login = author_login;
   data.thumbnail = thumbnail;
   data.image = image;
-
+  console.
   request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {console.log("body",JSON.parse(body));})
   data.save(err => {
     if (err) {return res.json({ success: false, error: err });}
