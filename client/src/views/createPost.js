@@ -234,7 +234,7 @@ class CreatePost extends Component {
       image: infos.image,
       reCaptchaToken : infos.reCaptchaToken,
     });
-    console.log("reCaptchaToken", reCaptchaToken);
+    console.log("reCaptchaToken", infos.reCaptchaToken);
   };
 
 
