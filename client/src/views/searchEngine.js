@@ -32,7 +32,7 @@ export default class Perso extends Component {
 
   changePage = (i) => {
     this.state.page = i ;
-    this.searchDataFromDb();
+    this.searchDataFromDb(this.props.match.params.searchText);
     console.log("this.state.page", this.state.page);
   }
 
@@ -44,7 +44,7 @@ export default class Perso extends Component {
     if (this.state.page > this.state.pageNumber / this.state.number) {
       this.state.page = Math.floor(this.state.pageNumber / this.state.number);
     };
-    this.searchDataFromDb();
+    this.searchDataFromDb(this.props.match.params.searchText);
   }
 
 
