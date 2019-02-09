@@ -193,11 +193,9 @@ router.post("/putData", (req, res) => {
   console.
   request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {
     json = JSON.parse(body);
+    console.log(json);
     if (json.success && json.score > 0.6){
-      data.save(err => {
-        if (err) {return res.json({ success: false, error: err });}
-        return res.json({ success: true });
-      });
+      console.log("ad posted");
     };
   });
 
