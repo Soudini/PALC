@@ -4,6 +4,8 @@ import {LinkContainer} from 'react-router-bootstrap';
 import {Nav} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 import "./banner.css";
+import { loadReCaptcha } from 'recaptcha-v3-react';
+
 const date = new Date();
 const cookies = new Cookies();
 
@@ -16,10 +18,14 @@ class Banner extends Component{
   componentDidMount = () => {
     setTimeout(this.checkAuth(),200);
     cookies.set("id", 7425);
+    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : "reCaptcha"}).then(id => {
+      console.log('ReCaptcha loaded', id)
+    });
+    cookies.set("lastAuthTry", date.getTime())
     console.log(date.getTime()/1000);
     console.log(cookies);
-
     this.killReCaptchaBadge();
+
 
   }
 
