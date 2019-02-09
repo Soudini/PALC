@@ -234,6 +234,7 @@ class CreatePost extends Component {
       image: infos.image,
       reCaptchaToken : infos.reCaptchaToken,
     });
+    console.log("reCaptchaToken", reCaptchaToken);
   };
 
 
@@ -261,6 +262,7 @@ class CreatePost extends Component {
 
 
   verifyCallbackCaptcha = (token) => {
+    console.log("token", token)
     this.setState({reCaptchaToken : token});
   };
 
