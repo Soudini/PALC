@@ -19,8 +19,8 @@ class Banner extends Component{
     console.log(date.getTime()/1000);
     console.log(cookies);
     let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
-    console.log(recaptchaBadge);
-    if (recaptchaBadge.length){
+    if (recaptchaBadge.lenghth){
+      console.log("attempt to remove");
       recaptchaBadge[0].remove();
     }
 
