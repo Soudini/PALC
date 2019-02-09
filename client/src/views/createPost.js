@@ -115,8 +115,8 @@ class CreatePost extends Component {
     this.state = {
       type:"search",
       reward: "Palc",
-      title: null,
-      description: null,
+      title: "",
+      description: "",
       thumbnail : null,
       image: [],
       data: [],
@@ -150,8 +150,13 @@ class CreatePost extends Component {
   }
 
   handleSubmit(event) {
-      this.putDataToDB(this.state);
-      this.props.history.push("/");
+    if (this.state.title == "" | this.state.description == ""){
+      alert("Veuillez entrer un titre et une description")
+    }
+    else {
+        this.putDataToDB(this.state);
+        this.props.history.push("/");
+      }
   }
 
   handleThumbnail(event) {
