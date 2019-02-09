@@ -72,7 +72,7 @@ router.post("/getUserInfo", (req, res) => {
     const url = "https://auth.viarezo.fr/oauth/token"
     request.post("https://auth.viarezo.fr/oauth/token", {form: requestBody}, (err, response, body)=>{
                     const data = JSON.parse(body);
-
+                    console.log("user info error",err);
                     if (data.error) {
                       return res.json({error:err})
                     }
