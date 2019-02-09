@@ -191,11 +191,16 @@ router.post("/putData", (req, res) => {
   data.thumbnail = thumbnail;
   data.image = image;
   console.
-  request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {console.log("body",JSON.parse(body));})
-  data.save(err => {
-    if (err) {return res.json({ success: false, error: err });}
-    return res.json({ success: true });
+  request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {
+    json = JSON.parse(body);
+    if (json.success && json.score > 0.6){
+      data.save(err => {
+        if (err) {return res.json({ success: false, error: err });}
+        return res.json({ success: true });
+      });
+    };
   });
+
 });
 
 
