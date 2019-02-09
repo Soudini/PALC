@@ -24,7 +24,7 @@ class Banner extends Component{
     cookies.set("lastAuthTry", date.getTime())
     console.log(date.getTime()/1000);
     console.log(cookies);
-    //this.killReCaptchaBadge();
+    this.killReCaptchaBadge();
 
 
   }
