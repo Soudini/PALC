@@ -190,12 +190,15 @@ router.post("/putData", (req, res) => {
   data.author_login = author_login;
   data.thumbnail = thumbnail;
   data.image = image;
-  console.
   request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {
     json = JSON.parse(body);
-    console.log(json);
+    console.log(json)
     if (json.success && json.score > 0.6){
-      console.log("ad posted");
+      console.log("ad validated and posted")
+      data.save(err => {
+        if (err) {return res.json({ success: false, error: err });}
+        return res.json({ success: true });
+      });
     };
   });
 
