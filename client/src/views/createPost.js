@@ -132,7 +132,7 @@ class CreatePost extends Component {
 
 
   componentDidMount() {
-    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : 42}).then(id => {
+    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : "reCaptcha"}).then(id => {
         console.log('ReCaptcha loaded', id)
       });
   }
@@ -140,6 +140,9 @@ class CreatePost extends Component {
   // never let a process live forever
   // always kill a process everytime we are done using it
   componentWillUnmount() {
+    let scriptReCaptcha = document.getElementById("reCaptcha");
+    scriptReCaptcha.parentNode.removeChild(scriptReCaptcha);
+    document.getElementsByClassName("grecaptcha-badge")[0].remove()
   }
 
   updateParent(key, value) {
