@@ -127,7 +127,9 @@ class CreatePost extends Component {
 
 
   componentDidMount() {
-    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : 42});
+    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : 42}).then(id => {
+        console.log('ReCaptcha loaded', id)
+      });
   }
 
   // never let a process live forever
