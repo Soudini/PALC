@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import "./createPost.css";
-import { loadReCaptcha, ReCaptcha } from 'react-recaptcha-v3';
+import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react  ';
 const cookies = new Cookies();
 
 
@@ -127,7 +127,7 @@ class CreatePost extends Component {
 
 
   componentDidMount() {
-    loadReCaptcha("6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR");
+    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : 42});
   }
 
   // never let a process live forever
