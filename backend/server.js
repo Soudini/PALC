@@ -19,7 +19,8 @@ app.use(bodyParser({limit: '35mb'}));
 const dbRoute = "mongodb://localhost/ads";
 let keyEncrypt = "1sd'o-tevtb!";
 let reCaptchaKey =  "6LcpTZAUAAAAAHx6KlhmNV7PjWFBENNzpOVjCe3V";
-let admin = ["2018louysa"]
+let admin = ["2018louysa"];
+let ban = [];
 
 
 // connects our back end code with the database
@@ -178,8 +179,8 @@ router.post("/deleteData", (req, res) => {
 router.post("/putData", (req, res) => {
   let data = new Data();
 
-  const { author, author_id, author_login, title, type, reward, description, thumbnail, image, reCaptchaToken } = req.body;
-  console.log("new ad posted with infos :", author, author_id, author_login, title, type, reCaptchaToken);
+  const { author, author_id, author_login, title, type, reward, description, thumbnail, image, reCaptchaToken, auth } = req.body;
+  console.log("new ad posted with infos :", author, author_id, author_login, title, type);
 
   data.title = title;
   data.type = type;
@@ -190,10 +191,11 @@ router.post("/putData", (req, res) => {
   data.author_login = author_login;
   data.thumbnail = thumbnail;
   data.image = image;
+  auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {
     json = JSON.parse(body);
     console.log(json)
-    if (json.success && json.score > 0.6){
+    if (json.success && json.score > 0.6 && auth_author_login == author_login && !ban.includes(auth_author_login)) {
       console.log("ad validated and posted")
       data.save(err => {
         if (err) {return res.json({ success: false, error: err });}
