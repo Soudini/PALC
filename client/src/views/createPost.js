@@ -153,10 +153,13 @@ class CreatePost extends Component {
     if (this.state.title == "" | this.state.description == ""){
       alert("Veuillez entrer un titre et une description")
     }
-    else {
+    else if (this.state.description.length > 1000 | this.state.title.length > 300){
+      alert("la description doit contenir moins de 1000 caractères et le titre moins de 300")
+    }
+    else    {
         this.putDataToDB(this.state);
         this.props.history.push("/");
-      }
+      };
   }
 
   handleThumbnail(event) {
