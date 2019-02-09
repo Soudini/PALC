@@ -24,7 +24,7 @@ class Banner extends Component{
     cookies.set("lastAuthTry", date.getTime())
     console.log(date.getTime()/1000);
     console.log(cookies);
-    //this.killReCaptchaBadge();
+    this.killReCaptchaBadge();
 
 
   }
@@ -34,7 +34,7 @@ class Banner extends Component{
     let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
     if (recaptchaBadge.length){
       console.log("attempt to remove");
-      recaptchaBadge[0].remove();
+      recaptchaBadge[0].style.display = "none"
     }
     else{
       setTimeout(this.killReCaptchaBadge,50)
