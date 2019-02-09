@@ -58,6 +58,7 @@ export default class Perso extends Component {
       for (let i = 0; i<this.state.pageNumber / this.state.number; i++){
         pagination.push(i)
       }
+      console.log(pagination)
       return (
         <div className="row justify-content-center">
           <div className="card-deck">
