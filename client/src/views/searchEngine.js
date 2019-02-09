@@ -9,6 +9,8 @@ export default class Perso extends Component {
   state = {
     data: null,
     search : this.props.match.params.searchText,
+    number : 16,
+    page:0
   }
 
   componentDidMount = () => {
