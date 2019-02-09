@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './components/main.js';
 import Banner from './components/banner.js';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class App extends Component {
 
-
+  componentDidMount = () => {
+    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : "reCaptcha"}).then(id => {
+        console.log('ReCaptcha loaded', id)
+      });
+    cookies.set("lastAuthTry", date.getTime())
+  }
 
   render() {
 

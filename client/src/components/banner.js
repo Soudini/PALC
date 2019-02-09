@@ -27,8 +27,9 @@ class Banner extends Component{
   }
 
   checkAuth = () => {
-    if (!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000){
+    if ((!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000)  && cookies.get("lastAuthTry") - date.getTime() > 2500){
       this.props.history.push("/oauth");
+      cookies.set("lastAuthTry", date.getTime())
     }
     setTimeout(this.checkAuth, 5000);
   }
