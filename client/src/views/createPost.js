@@ -150,6 +150,7 @@ class CreatePost extends Component {
   }
 
   handleSubmit(event) {
+    console.log("title and description", this.state.title, this.state.description);
     if (this.state.title == "" | this.state.description == ""){
       alert("Veuillez entrer un titre et une description")
     }
