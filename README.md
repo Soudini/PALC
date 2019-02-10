@@ -31,7 +31,7 @@ Les requêtes du front vers le back sont proxy via l'adresse `/api/` par nginx d
 
 ## Front :
 
-Il a été créé par `create-react-app` donc la documentation de ce module s'applique en grande partie. Le site utilise actuellement `react-router` qui fait un fonctionne plutôt très bien. Les différentes routes sont définies dans
+Il a été créé par `create-react-app` donc la documentation de ce module s'applique en grande partie. Le site utilise actuellement `react-router` qui fonctionne plutôt très bien. Les différentes routes sont définies dans
 
 ### Architecture :
 
