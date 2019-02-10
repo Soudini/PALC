@@ -47,15 +47,15 @@ export class Page extends Component {
 
       let carousel = null;
 
-      if (this.state.data.thumbnail != null | this.state.data.image.length) {
+      if ((this.state.data.thumbnail != null & this.state.data.tumbnail != "") | this.state.data.image.length) {
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="img-fluid img-test" src={this.state.data.thumbnail} alt="Second slide"/></div></div>
+                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="img-fluid img-test" src={this.state.data.thumbnail} alt="thumbnail"/></div></div>
 
               </div>
               {this.state.data.image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
-                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="img-fluid img-test" src={img} alt="Second slide"/></div></div>
+                <div><div className="row justify-content-center" style={{"height" : "300px"}}><img className="img-fluid img-test" src={img} alt="images"/></div></div>
               </div>)}
               </div>
               <a className="carousel-control-prev " style={{"color": "red"}} href="#carouselExampleControls" role="button" data-slide="prev">
@@ -81,6 +81,7 @@ export class Page extends Component {
           <h5>{"Cette annonce a été créée par "+this.state.data.author}</h5>
           <p>{this.state.data.description}</p>
           <div className="row">
+            <a className="col" href={"https://linkcs.fr/user/"+this.state.data.author_login}><button className="btn btn-secondary w-100 h-100"  > LinkCS </button></a>
             {buttonUpdate}
             {buttonDelete}
           </div>
@@ -128,7 +129,7 @@ export default class Ad extends Component {
 
   render() {
     let className = "card h-100"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
-    return (<a className="style-1" href="#" style={{"marginTop":"1rem" , "marginLeft" : "auto", "marginRight" : "auto"}}>
+    return (<a className="style-1" href="#" style={{"marginTop":"1rem" , "marginLeft" : "auto", "marginRight" : "auto", "marginBottom": "1rem"}}>
               <div className={className} style={{"width": "18rem"}} >
                 <LinkContainer to={"/ad/"+this.props.data._id}>
                   <img className="card-img-top test" style={{"maxHeight" : "1px"}} src={this.props.data.thumbnail} />

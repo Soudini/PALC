@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import "./createPost.css";
+import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
+
+const verifyCallback = token => {
+  // Here you will get the final token!!!
+  console.log('verifycallback token:', token)
+}
 
 
 class PostType extends Component {
@@ -109,11 +115,12 @@ class CreatePost extends Component {
     this.state = {
       type:"search",
       reward: "Palc",
-      title: null,
-      description: null,
+      title: "",
+      description: "",
       thumbnail : null,
       image: [],
       data: [],
+      reCaptchaToken : null,
     }
 
     this.updateParent = this.updateParent.bind(this);
@@ -125,20 +132,29 @@ class CreatePost extends Component {
 
 
   componentDidMount() {
+
   }
 
   // never let a process live forever
   // always kill a process everytime we are done using it
   componentWillUnmount() {
-  }
+      }
 
   updateParent(key, value) {
     this.setState({[key]: value});
   }
 
   handleSubmit(event) {
-    this.putDataToDB(this.state);
-    this.props.history.push("/");
+    if (this.state.title == "" | this.state.description == ""){
+      alert("Veuillez entrer un titre et une description")
+    }
+    else if (this.state.description.length > 1000 | this.state.title.length > 300){
+      alert("la description doit contenir moins de 1000 caractères et le titre moins de 300")
+    }
+    else    {
+        this.putDataToDB(this.state);
+        this.props.history.push("/");
+      };
   }
 
   handleThumbnail(event) {
@@ -178,54 +194,50 @@ class CreatePost extends Component {
   }
 
   handleImage(event) {
+    if (event.target.files.length > 5){
+      alert("Le nombre d'image est limité à 5")
+    }
+    else {
+      for (let i = 0; i<event.target.files.length; i++) {
+        var reader = new FileReader();
+        let file = event.target.files[i];
+        reader.onloadend = (e) => {
 
-    for (let i = 0; i<event.target.files.length; i++) {
-      var reader = new FileReader();
-      let file = event.target.files[i];
-      reader.onloadend = (e) => {
-
-          var img = new Image();
-          img.src = e.target.result;
-          img.onload = () => {var canvas = document.createElement("canvas");
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
-            var MAX_WIDTH = 400;
-            var MAX_HEIGHT = 400;
-            var width = img.width;
-            var height = img.height;
-            if (width > height) {
-                if (width > MAX_WIDTH) {
-                    height *= MAX_WIDTH / width;
-                    width = MAX_WIDTH;
-                }
-            } else {
-                if (height > MAX_HEIGHT) {
-                    width *= MAX_HEIGHT / height;
-                    height = MAX_HEIGHT;
-                }
+            var img = new Image();
+            img.src = e.target.result;
+            img.onload = () => {var canvas = document.createElement("canvas");
+              var ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0);
+              var MAX_WIDTH = 400;
+              var MAX_HEIGHT = 400;
+              var width = img.width;
+              var height = img.height;
+              if (width > height) {
+                  if (width > MAX_WIDTH) {
+                      height *= MAX_WIDTH / width;
+                      width = MAX_WIDTH;
+                  }
+              } else {
+                  if (height > MAX_HEIGHT) {
+                      width *= MAX_HEIGHT / height;
+                      height = MAX_HEIGHT;
+                  }
+              }
+              canvas.width = width;
+              canvas.height = height;
+              ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0, width, height);
+              let dataurl = canvas.toDataURL("image/jpeg");
+              const image = this.state.image.slice();
+              image.push(dataurl);
+              this.setState({image: image})}
             }
-            canvas.width = width;
-            canvas.height = height;
-            ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
-            let dataurl = canvas.toDataURL("image/jpeg");
-            const image = this.state.image.slice();
-            image.push(dataurl);
-            this.setState({image: image})}
-          }
-      reader.readAsDataURL(file);
-      }
+        reader.readAsDataURL(file);
+        }
+    }
   }
 
-  getDataFromDb = () => {
-    fetch("/api/getData")
-      .then(data => data.json())
-      .then(res => {this.setState({ data: res.data })});
 
-  };
-
-  // our put method that uses our backend api
-  // to create new query into our data base
   putDataToDB = infos => {
     console.log("test",cookies.get("login"));
     axios.post("/api/putData", {
@@ -238,36 +250,14 @@ class CreatePost extends Component {
       description: infos.description,
       thumbnail: infos.thumbnail,
       image: infos.image,
+      reCaptchaToken : infos.reCaptchaToken,
+      auth : cookies.get("auth")
     });
-    console.log({
-      author : cookies.get("firstName") + " " + cookies.get("lastName"),
-      author_id : cookies.get("id"),
-      author_login : cookies.get("login"),
-      title: infos.title,
-      image: infos.image,
-      type: infos.type,
-      reward: this.state.reward,
-      description: infos.description,
-    });
+    console.log("reCaptchaToken", infos.reCaptchaToken);
   };
 
 
-  // our delete method that uses our backend api
-  // to remove existing database information
-  deleteFromDB = idTodelete => {
-    let objIdToDelete = null;
-    this.state.data.forEach(dat => {
-      if (dat.id === idTodelete) {
-        objIdToDelete = dat._id;
-      }
-    });
 
-    axios.delete("/api/deleteData", {
-      data: {
-        id: objIdToDelete
-      }
-    });
-  };
 
 
   deleteImage = (e) => {this.setState({image:[]})}
@@ -289,6 +279,11 @@ class CreatePost extends Component {
     });
   };
 
+
+  verifyCallbackCaptcha = (token) => {
+    console.log("token", token)
+    this.setState({reCaptchaToken : token});
+  };
 
   render () {
       let {thumbnail} = this.state;
@@ -347,6 +342,11 @@ class CreatePost extends Component {
       let title = <Title updateParent={this.updateParent}/>;
       return (
         <div>
+            <ReCaptcha
+            action='submitAd'
+            sitekey="6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR"
+            verifyCallback={this.verifyCallbackCaptcha}
+            />
           <form >
               <div>Quel est le type d'annonce que vous voulez poster ?</div>
                 {type}
@@ -361,8 +361,8 @@ class CreatePost extends Component {
               </div>
               <br/>
               <button type="button" onClick={(e) => this.handleSubmit(e)} className="btn btn-primary">Submit</button>
-
           </form>
+          <h6 style={{"marginTop" : "1rem"}} className="font-weight-light">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</h6>
         </div>
 
       )
