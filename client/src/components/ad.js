@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
-
 import axios from "axios";
 import "./ad.css";
 import Cookies from 'universal-cookie';
 
-let cookies = new Cookies();
-export class Page extends Component {
+let cookies = new Cookies(); //initialize cookies
+
+
+
+export class Page extends Component { // full page view of the ad with the id written in the URI
 
 
   state = {
@@ -14,40 +16,47 @@ export class Page extends Component {
   }
 
   componentDidMount () {
-    this.searchDataFromDb();
+    this.searchDataFromDb(); // get ads to display
   }
 
-  handleDelete =()=> {
+  handleDelete = () => { // delete the ad
 
       if (window.confirm("Voulez vous vraiment supprimer cette annonce ?"))
-      {axios.post("/api/deleteData", {id :this.props.match.params.id, auth : cookies.get("auth")});
-        this.props.history.push("/");}
+      {
+        axios.post("/api/deleteData", {id :this.props.match.params.id, auth : cookies.get("auth")}); // auth to check whether it is the true author or not (or an admin)
+        this.props.history.push("/");
+      }
+
   }
-  handleUpdate =()=> {
+
+  handleUpdate =()=> { // redirect to the page to update the ad
 
       this.props.history.push("/updatePost/"+ this.props.match.params.id);
 
   }
 
-  searchDataFromDb = () => {
+  searchDataFromDb = () => { // gather data from the DB
+
     console.log(cookies.get("auth"));
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
-      .then(data => {console.log(data); return(data.data)}).then(res => {console.log(res.show_button);this.setState({show_button:res.show_button});this.setState({ data: res.data })});
+      .then(data => {console.log(data); return(data.data)})
+      .then(res => {console.log(res.show_button); this.setState({show_button:res.show_button}); this.setState({ data: res.data })}); // data : content of ads, show_button : whether to show update and delete buttons
   };
   render() {
     let buttonDelete = null;
     let buttonUpdate = null;
-    console.log(this.state.data);
-    if (this.state.data && this.state.show_button) {
+
+    if (this.state.data && this.state.show_button) { // if we have some data and have to show the button
       buttonDelete = <button className="btn btn-danger col"  onClick={this.handleDelete}>Supprimer l'annonce </button>;
       buttonUpdate = <button className="btn btn-primary col" style={{"marginRight": "1rem","marginLeft": "1rem"}}onClick={this.handleUpdate}>Modifier l'annonce</button>;
 
     }
-    if(this.state.data) {
+
+    if(this.state.data) { //if we have data
 
       let carousel = null;
 
-      if ((this.state.data.thumbnail != null & this.state.data.tumbnail != "") | this.state.data.image.length) {
+      if ((this.state.data.thumbnail != null & this.state.data.tumbnail != "") | this.state.data.image.length) { //if there is a thumbnail or images to show create the carousel
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
@@ -94,7 +103,7 @@ export class Page extends Component {
 }
 
 
-export default class Ad extends Component {
+export default class Ad extends Component { // card for the mutliple ads view
   constructor(props) {
     super(props)
     this.state = {
@@ -105,26 +114,31 @@ export default class Ad extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  printTitle = () => {
+  printTitle = () => { //cut the title if too long
+
     if (this.props.data.title && this.props.data.title.length > 120){
       return (this.props.data.title.slice(0,100) + " ...");
     }
     else {
-      return (this.props.data.title)
+      return (this.props.data.title);
     }
+
   }
 
-  printDescription = () => {
+  printDescription = () => { // cut the description if too long
+
     if (this.props.data.description && this.props.data.description.length > 200){
       return (this.props.data.description.slice(0,150) + " ...");
     }
     else {
-      return (this.props.data.description)
+      return (this.props.data.description);
     }
+
   }
+
   handleChange(event) {
-    this.setState({value: event.target.value})
-    this.props.updateParent("title", event.target.value)
+    this.setState({value: event.target.value});
+    this.props.updateParent("title", event.target.value);
   }
 
   render() {
@@ -139,7 +153,7 @@ export default class Ad extends Component {
                   <h5 className="card-title">{this.printTitle()}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre "+ this.props.data.reward: "")}</h6>
                   <p className="card-text">{this.printDescription()}</p>
-                  </div>
+                </div>
                 </LinkContainer>
               </div>
             </a>

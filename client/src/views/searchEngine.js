@@ -25,7 +25,7 @@ export default class Perso extends Component {
       .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
 
   }
-  searchDataFromDb = (searchText) => {
+  searchDataFromDb = (searchText) => { // search in every fields without caring for case
       axios.post("/api/searchData", {search : { "$or":[{"type":{"$regex": searchText, "$options" : "i"}},{"author":{"$regex": searchText, "$options" : "i"}},{"reward":{"$regex": searchText, "$options" : "i"}},{"description":{"$regex": searchText, "$options" : "i"}},{"title":{"$regex": searchText, "$options" : "i"}} ]},number : this.state.number , page:this.state.page})
         .then(data => data.data).then(res => {this.setState({ data: res.data })});
   };

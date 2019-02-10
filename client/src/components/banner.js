@@ -16,53 +16,60 @@ class Banner extends Component{
   }
 
   componentDidMount = () => {
-    setTimeout(this.checkAuth(),200);
-    cookies.set("id", 7425);
-    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : "reCaptcha"}).then(id => {
-      console.log('ReCaptcha loaded', id)
+
+    setTimeout(this.checkAuth(),200); // prevent spam bounce (it is executed at each opening of the website)
+    loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : "reCaptcha"}).then(id => { // load recaptcha with the website key
+      console.log('ReCaptcha loaded', id);
     });
-    cookies.set("lastAuthTry", date.getTime())
-    console.log(date.getTime()/1000);
-    console.log(cookies);
-    this.killReCaptchaBadge();
-
+    this.killReCaptchaBadge(); // hide the reCaptcha badge (it means that we have to state that we are using it btw)
 
   }
 
 
-  killReCaptchaBadge = () => {
+  killReCaptchaBadge = () => { //hide the badge
+
     let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
-    if (recaptchaBadge.length){
-      console.log("attempt to remove");
-      recaptchaBadge[0].style.display = "none"
+    if (recaptchaBadge.length) {
+      recaptchaBadge[0].style.display = "none"; // hide the bage
     }
-    else{
-      setTimeout(this.killReCaptchaBadge,50)
+    else {
+      setTimeout(this.killReCaptchaBadge,50); // if not yet loaded retry after 50 ms
     }
+
   }
-  checkAuth = () => {
+  checkAuth = () => { //check if auth is still valable
+    date = new Date();
     if (!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime()/1000){
       this.props.history.push("/oauth");
     }
-    setTimeout(this.checkAuth, 5000);
+    setTimeout(this.checkAuth, 5000); //check every 5s
   }
-  handleKeyPress = (e) =>
-  {
+
+  handleKeyPress = (e) => { // search if enter is pressed in the search bar
 
     if (e.key === 'Enter') {
-      if (this.state.search == ""){this.props.history.push("/");}
-      else{this.props.history.push("/searchEngine/"+this.state.search);}
+      if (this.state.search == "") {
+        this.props.history.push("/");
+      }
+      else {
+        this.props.history.push("/searchEngine/"+this.state.search);
+      }
     }
 
   }
-  handlePageChange = (page) => {
+
+  handlePageChange = (page) => { // navigate between pages
+
     this.props.history.push("/" +page);
     if (document.getElementById("navbar").classList.contains("show")){
       document.getElementById("navbar-toggler").click();
     }
   }
 
-  handleSearchText = (e) => {this.setState({search: e.target.value})}
+  handleSearchText = (e) => { // update the state of the component with the content of the search bar
+    this.setState({search: e.target.value})
+  }
+
   render(){
 
     return(
@@ -70,28 +77,26 @@ class Banner extends Component{
         <a className="navbar-brand" href=""  onClick={() => this.handlePageChange("")}>Palc</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
-          </button>
+        </button>
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("search")}>Recherche <span className="sr-only">(current)</span></a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("found")}>Trouvaille <span className="sr-only">(current)</span></a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("createPost")}>Créer une annonce <span className="sr-only">(current)</span></a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
-          </li>
-
-
+            <li className="nav-item">
+              <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("search")}>Recherche <span className="sr-only">(current)</span></a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("found")}>Trouvaille <span className="sr-only">(current)</span></a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("createPost")}>Créer une annonce <span className="sr-only">(current)</span></a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
+            </li>
           </ul>
-            <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{"marginBottom" :"1rem", "marginTop":"1rem"}} onKeyPress={this.handleKeyPress} placeholder="Search" aria-label="Search" onChange={this.handleSearchText}></input>
-            <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.handlePageChange("searchEngine/"+this.state.search)}>
-                <strong>Chercher une annonce</strong>
-            </button>
+          <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{"marginBottom" :"1rem", "marginTop":"1rem"}} onKeyPress={this.handleKeyPress} placeholder="Search" aria-label="Search" onChange={this.handleSearchText}></input>
+          <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.handlePageChange("searchEngine/"+this.state.search)}>
+              <strong>Chercher une annonce</strong>
+          </button>
         </div>
       </nav>
     )
