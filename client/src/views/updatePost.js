@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 import "./updatePost.css"
 const cookies = new Cookies();
 
-
+//--------------idem as createPost.js----------------
 class PostType extends Component {
   constructor(props){
     super(props)
