@@ -2,8 +2,6 @@ Pour installer tout ce qu'il faut, il suffit normalement de lancer la commande `
 
 Ensuite pour lancer le serveur et la base de données, il faut lancer `npm start` depuis le dossier fullstack_app.
 
-Pour l'instant, la base de donnée est hébergée sur mLab mais c'est juste pour débuter sans avoir à tout installer.
-
 # Issues :
   - confusion onglets
   - improve modération
@@ -54,3 +52,4 @@ Ce sont les composants récurrents dans le site, par exemple les cartes pour les
 
 # VM :
 Le projet est dans `~/objets-trouves`. `client/build.sh` lancé avec les droits admins permet de créer le build de production et de le mettre dans `/var/www`. Pour le back, il faut lancer `npm start` dans `backend/`.
+La base de donnée est `ads` et les données sont stockées dans la collection `datas`
