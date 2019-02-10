@@ -11,9 +11,11 @@ class OauthEnd extends Component {
 
     axios.post("/api/getUserInfo", {code : cookies.get("code")})
       .then(data => {
-        for (var i in data.data.data){
-          cookies.set(i, data.data.data[i]);
-      }});
+          for (var i in data.data.data){
+            cookies.set(i, data.data.data[i]);
+            }
+          this.props.history.push("/");
+      });
 
     }
 
@@ -28,7 +30,6 @@ class OauthEnd extends Component {
       dict[string[i][0]] = string[i][1];
     }
     cookies.set('code', dict["code"]);
-    this.props.history.push("/");
     this.searchDataFromDb();
     return true;
   }
