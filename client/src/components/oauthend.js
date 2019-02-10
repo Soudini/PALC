@@ -7,19 +7,19 @@ let cookies = new Cookies();
 
 
 class OauthEnd extends Component {
-  searchDataFromDb = (searchText) => {
-
+  searchDataFromDb = (searchText) => {//get user info from the auth through the back for security reasons
 
     axios.post("/api/getUserInfo", {code : cookies.get("code")})
       .then(data => {
-        console.log("response", data.data.data);
         for (var i in data.data.data){
           cookies.set(i, data.data.data[i]);
-      }});}
+      }});
+
+    }
 
 
 
-  render(){
+  render(){ // unpack the infos from the auth
     let string = this.props.location.search.substr(1);
     string = string.split("&");
     const dict = {};
@@ -30,7 +30,6 @@ class OauthEnd extends Component {
     cookies.set('code', dict["code"]);
     this.props.history.push("/");
     this.searchDataFromDb();
-    console.log(cookies)
     return true;
   }
 }

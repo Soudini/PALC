@@ -5,13 +5,9 @@ import "./createPost.css";
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
 
-const verifyCallback = token => {
-  // Here you will get the final token!!!
-  console.log('verifycallback token:', token)
-}
 
+class PostType extends Component { // selctor for the post type
 
-class PostType extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -21,7 +17,7 @@ class PostType extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  subFields(){
+  subFields(){ // if the post type is search display the possible rewards
     if (this.state.type === "search") {
       return (
                 <div><br/><p>Récompense</p><select className="form-control" onChange={(e) => this.handleChange(e,"secondary")}>
@@ -35,16 +31,16 @@ class PostType extends Component {
     }
   }
 
-  handleChange(event,type) {
+  handleChange(event,type) { // handle change of type of post
       if (type === "primary") {
         this.setState({type: event.target.value === "Annonce recherche"? "search":"found"});
         if (event.target.value !== "Annonce recherche"){
-          this.props.updateParent("reward", null)
+          this.props.updateParent("reward", null);// update parent component (defined below)
         }
-        this.props.updateParent("type", event.target.value === "Annonce recherche"? "search":"found")
+        this.props.updateParent("type", event.target.value === "Annonce recherche"? "search":"found") ; // update parent component (defined below)
       }
       else if (type === "secondary") {
-        this.props.updateParent("reward", event.target.value);
+        this.props.updateParent("reward", event.target.value); // update parent component (defined below)
       }
   }
 
@@ -62,7 +58,7 @@ class PostType extends Component {
 
 
 
-class Description extends Component {
+class Description extends Component { // text area for description
   constructor(props) {
     super(props)
     this.state = {
@@ -72,7 +68,7 @@ class Description extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  handleChange(event) { //handle change and set state of the component with the content of the text area
     this.setState({value: event.target.value})
     this.props.updateParent("description", event.target.value)
   }
@@ -108,7 +104,7 @@ class Title extends Component {
 
 
 
-class CreatePost extends Component {
+class CreatePost extends Component { //parent component
 
   constructor(props) {
     super(props)
@@ -130,21 +126,11 @@ class CreatePost extends Component {
     this.handleThumbnail = this.handleThumbnail.bind(this);
   }
 
-
-  componentDidMount() {
-
-  }
-
-  // never let a process live forever
-  // always kill a process everytime we are done using it
-  componentWillUnmount() {
-      }
-
-  updateParent(key, value) {
+  updateParent(key, value) { //allow children component to setState of this component
     this.setState({[key]: value});
   }
 
-  handleSubmit(event) {
+  handleSubmit(event) { // check if the ads fullfil the requirements
     if (this.state.title == "" | this.state.description == ""){
       alert("Veuillez entrer un titre et une description")
     }
@@ -157,43 +143,45 @@ class CreatePost extends Component {
       };
   }
 
-  handleThumbnail(event) {
+  handleThumbnail(event) { //import, convert and resize the thumbnail
     var reader = new FileReader();
     let file = event.target.files[0];
     reader.onloadend = (e) => {
 
         var img = new Image();
         img.src = e.target.result;
-        img.onload = () => {var canvas = document.createElement("canvas");
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        var MAX_WIDTH = 400;
-        var MAX_HEIGHT = 400;
-        var width = img.width;
-        var height = img.height;
-        if (width > height) {
-            if (width > MAX_WIDTH) {
-                height *= MAX_WIDTH / width;
-                width = MAX_WIDTH;
-            }
-        } else {
-            if (height > MAX_HEIGHT) {
-                width *= MAX_HEIGHT / height;
-                height = MAX_HEIGHT;
-            }
+        img.onload = () => {
+          var canvas = document.createElement("canvas");
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          var MAX_WIDTH = 400;
+          var MAX_HEIGHT = 400;
+          var width = img.width;
+          var height = img.height;
+          if (width > height) {
+              if (width > MAX_WIDTH) {
+                  height *= MAX_WIDTH / width;
+                  width = MAX_WIDTH;
+              }
+          } else {
+              if (height > MAX_HEIGHT) {
+                  width *= MAX_HEIGHT / height;
+                  height = MAX_HEIGHT;
+              }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+          let dataurl = canvas.toDataURL("image/jpeg");
+          this.setState({thumbnail:dataurl});
         }
-        canvas.width = width;
-        canvas.height = height;
-        ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, width, height);
-        let dataurl = canvas.toDataURL("image/jpeg");
-        this.setState({thumbnail:dataurl});}
     }
     reader.readAsDataURL(file);
 
   }
 
-  handleImage(event) {
+  handleImage(event) { //import, convert and resize the images
     if (event.target.files.length > 5){
       alert("Le nombre d'image est limité à 5")
     }
@@ -205,7 +193,8 @@ class CreatePost extends Component {
 
             var img = new Image();
             img.src = e.target.result;
-            img.onload = () => {var canvas = document.createElement("canvas");
+            img.onload = () => {
+              var canvas = document.createElement("canvas");
               var ctx = canvas.getContext("2d");
               ctx.drawImage(img, 0, 0);
               var MAX_WIDTH = 400;
@@ -238,7 +227,7 @@ class CreatePost extends Component {
   }
 
 
-  putDataToDB = infos => {
+  putDataToDB = infos => { //post the ad to the DB
     console.log("test",cookies.get("login"));
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
@@ -257,36 +246,24 @@ class CreatePost extends Component {
   };
 
 
+  deleteImage = (e) => { // delete images
+    this.setState({image:[]});
+  }
 
 
-
-  deleteImage = (e) => {this.setState({image:[]})}
-  deleteThumbnail = (e) => {this.setState({thumbnail: null})}
-
-  // our update method that uses our backend api
-  // to overwrite existing data base information
-  updateDB = (idToUpdate, updateToApply) => {
-    let objIdToUpdate = null;
-    this.state.data.forEach(dat => {
-      if (dat.id === idToUpdate) {
-        objIdToUpdate = dat._id;
-      }
-    });
-
-    axios.post("/api/updateData", {
-      id: objIdToUpdate,
-      update: { message: updateToApply }
-    });
-  };
+  deleteThumbnail = (e) => { //delete thumbnail
+    this.setState({thumbnail: null});
+  }
 
 
-  verifyCallbackCaptcha = (token) => {
-    console.log("token", token)
+  verifyCallbackCaptcha = (token) => { // get token from captcha
     this.setState({reCaptchaToken : token});
   };
 
   render () {
       let {thumbnail} = this.state;
+
+      //if no thumbnail ask for one else display it and offer to delete it
       let $thumbnailPreview = <div className="form-group col-6">
                                 <div className="row justify-content-center">
                                   <label>Ajoutez une image de l'objet</label>
@@ -304,6 +281,8 @@ class CreatePost extends Component {
                             </div>;
       }
       let {image} = this.state;
+      //if no images ask for one else display it/them and offer to delete it/them
+
       let $imagePreview = <div className="form-group col-6">
                             <div className="row justify-content-center">
                               <label>Ajoutez des images supplémentaires si possible</label>

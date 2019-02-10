@@ -15,30 +15,27 @@ export default class Home extends Component {
 
   }
 
-  // never let a process live forever
-  // always kill a process everytime we are done using it
-  componentWillUnmount() {
-  }
+  getNumberAds = () => {// get from the back the number of ads to compute the number of pages necessary
 
-  getNumberAds = () => {
     axios.post("/api/getNumberAds",{search : {type: "found"}})
       .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
 
   }
-  searchDataFromDb = () => {
+
+  searchDataFromDb = () => { //get ads' data
     console.log("searchDataFromDb",this.state);
     axios.post("/api/searchData", {search : {type: "found"}, number : this.state.number , page:this.state.page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
 
-  changePage = (i) => {
+  changePage = (i) => { // change to page i
     this.state.page = i ;
     this.searchDataFromDb();
     console.log("this.state.page", this.state.page);
   }
 
-  previousNext = (i) => {
+  previousNext = (i) => { // goto the next or previous page
     this.state.page = this.state.page + i ;
     if (this.state.page < 0) {
       this.state.page = 0;
