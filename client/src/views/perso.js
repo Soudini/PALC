@@ -16,15 +16,6 @@ export default class Home extends Component {
     this.getNumberAds(cookies.get("login"));
   }
 
-  // never let a process live forever
-  // always kill a process everytime we are done using it
-  componentWillUnmount() {
-    if (this.state.intervalIsSet) {
-      clearInterval(this.state.intervalIsSet);
-      this.setState({ intervalIsSet: null });
-    }
-  }
-
   getNumberAds = (searchText) => {
     axios.post("/api/getNumberAds",{search : {author_login: searchText}})
       .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});

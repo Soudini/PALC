@@ -14,10 +14,6 @@ export default class Home extends Component {
     this.getNumberAds();
   }
 
-  // never let a process live forever
-  // always kill a process everytime we are done using it
-  componentWillUnmount() {
-  }
 
   getNumberAds = () => {
     axios.post("/api/getNumberAds",{search : {}})
