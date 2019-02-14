@@ -51,5 +51,7 @@ Ce sont les composants récurrents dans le site, par exemple les cartes pour les
   - `oauthend.js` : gère le callback de l'auth et stocke les données dans les cookies
 
 # VM :
-Le projet est dans `~/objets-trouves`. `client/build.sh` lancé avec les droits admins permet de créer le build de production et de le mettre dans `/var/www`. Pour le back, il faut lancer `npm start` dans `backend/`.
+Le projet est dans `~/objets-trouves`. Afin d'installer les différents modules nécessaires au fonctionnement site il faut lancer `install.sh`. `client/build.sh` lancé avec les droits admins permet de créer le build de production et de le mettre dans `/var/www`. Pour le back, il faut lancer `npm start` dans `backend/`.
+
+La config nginx peut être trouvée dans `ǹginx.conf`. L'article du wiki sur comment mettre en prod le site devrait suffire, à noter que cette config a été créée par CertBot, il faut donc l'avoir lancer pour que ca marche, s'il n'y en a pas besoin il suffit de virer tout ce qu'il y a en dessous de la ligne 11 sans oublier de fermer les {} si besoin.
 La base de donnée est `ads` et les données sont stockées dans la collection `datas`
