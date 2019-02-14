@@ -1,7 +1,3 @@
-Pour installer tout ce qu'il faut, il suffit normalement de lancer la commande `npm i` dans les dossiers `fullstack_app, client et backend`.
-
-Ensuite pour lancer le serveur et la base de données, il faut lancer `npm start` depuis le dossier fullstack_app.
-
 # Issues :
   - confusion onglets
   - improve modération
