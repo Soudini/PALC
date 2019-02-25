@@ -80,16 +80,16 @@ class Banner extends Component{
         </button>
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav mr-auto">
-            <li className={"nav-item" + this.props.history.location.pathname == "/search" ? " active":""}>
+            <li className={"nav-item" + (this.props.history.location.pathname == "/search" ? " active":"")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("search")}>Recherche <span className="sr-only">(current)</span></a>
             </li>
-            <li className={"nav-item" + this.props.history.location.pathname == "/found" ? " active":""}>
+            <li className={"nav-item" + (this.props.history.location.pathname == "/found" ? " active":"")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("found")}>Trouvaille <span className="sr-only">(current)</span></a>
             </li>
-            <li className={"nav-item" + this.props.history.location.pathname == "/createPost" ? " active":""}>
+            <li className={"nav-item" + (this.props.history.location.pathname == "/createPost" ? " active":"")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("createPost")}>Créer une annonce <span className="sr-only">(current)</span></a>
             </li>
-            <li className={"nav-item" + this.props.history.location.pathname == "/perso" ? " active":""}>
+            <li className={"nav-item" + (this.props.history.location.pathname == "/perso" ? " active":"")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
             </li>
           </ul>
