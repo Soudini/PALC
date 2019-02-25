@@ -71,7 +71,7 @@ class Banner extends Component{
   }
 
   render(){
-    console.log(this.props.history)
+    console.log(this.props.history.location.pathname );
     return(
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark col-lg-12">
         <a className="navbar-brand" href=""  onClick={() => this.handlePageChange("")}>Palc</a>
