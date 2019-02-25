@@ -139,7 +139,6 @@ class CreatePost extends Component { //parent component
     }
     else    {
         this.putDataToDB(this.state);
-        this.props.history.push("/");
       };
   }
 
@@ -240,7 +239,7 @@ class CreatePost extends Component { //parent component
       image: infos.image,
       reCaptchaToken : infos.reCaptchaToken,
       auth : cookies.get("auth")
-    });
+    }).then(this.props.history.push("/"));
   };
 
 
