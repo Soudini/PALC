@@ -20,16 +20,15 @@ export default class Home extends Component {
       .then(data => data.data).then(res => {this.setState({ numberAds: res.data }, console.log("number of ads",res.data))});
 
   }
-  searchDataFromDb = (page) => {
-    console.log("searchDataFromDb",this.state);
-    axios.post("/api/searchData", {search : {}, number : this.state.numberAds , page:page})
+  searchDataFromDb = (page, numberAdsToGet) => {
+    axios.post("/api/searchData", {search : {}, numberAdsToGet : numberAdsToGet , page:page })
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
 
   render () {
       return (
-        <Display searchDataFromDb={(page) => this.searchDataFromDb(page)} numberAds={this.state.numberAds} data={this.state.data}/>
+        <Display searchDataFromDb={(page, numberAdsToGet) => this.searchDataFromDb(page, numberAdsToGet)} numberAds={this.state.numberAds} data={this.state.data}/>
       )
    }
 }

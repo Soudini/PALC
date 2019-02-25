@@ -5,24 +5,23 @@ import Display from "../components/display.js";
 export default class Home extends Component {
   state = {
     data: [],
-    number : 16,
-    page:0
+    numberAds : 0,
   }
 
   componentDidMount() {
-    this.searchDataFromDb();
+    this.searchDataFromDb(0);
     this.getNumberAds();
   }
 
 
   getNumberAds = () => {
     axios.post("/api/getNumberAds",{search : {type: "found"}})
-      .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
+      .then(data => data.data).then(res => {this.setState({ numberAds: res.data }, console.log("number of ads",res.data))});
 
   }
-  searchDataFromDb = (page) => {
+  searchDataFromDb = (page, numberAdsToGet) => {
     console.log("searchDataFromDb",this.state);
-    axios.post("/api/searchData", {search : {type: "found"}, number : this.state.number , page: page})
+    axios.post("/api/searchData", {search : {type: "found"}, numberAdsToGet : numberAdsToGet , page: page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
@@ -30,7 +29,7 @@ export default class Home extends Component {
 
   render () {
       return (
-        <Display searchDataFromDb={(page) => this.searchDataFromDb(page)} numberAds={this.state.numberAds} data={this.state.data}/>
+        <Display searchDataFromDb={(page, numberAdsToGet) => this.searchDataFromDb(page, numberAdsToGet)} numberAds={this.state.numberAds} data={this.state.data}/>
       )
    }
 }

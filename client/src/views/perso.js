@@ -7,7 +7,7 @@ let cookies = new Cookies();
 export default class Home extends Component {
   state = {
     data: [],
-    number : 16,
+    numberAds : 0,
     page:0
   }
 
@@ -18,19 +18,19 @@ export default class Home extends Component {
 
   getNumberAds = (search) => {
     axios.post("/api/getNumberAds",{search : {author_login: search}})
-      .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
+      .then(data => data.data).then(res => {this.setState({ numberAds: res.data }, console.log("number of ads",res.data))});
 
   }
-  searchDataFromDb = (search,page) => {
+  searchDataFromDb = (search,page, numberAdsToGet) => {
     console.log("searchDataFromDb",this.state);
-    axios.post("/api/searchData", {search : {author_login: search}, number : this.state.number , page: page})
+    axios.post("/api/searchData", {search : {author_login: search}, numberAdsToGet :numberAdsToGet, page: page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
 
   render () {
       return (
-        <Display searchDataFromDb={(page) => this.searchDataFromDb(cookies.get("login"),page)} numberAds={this.state.numberAds} data={this.state.data}/>
+        <Display searchDataFromDb={(page, numberAdsToGet) => this.searchDataFromDb(cookies.get("login"),page, numberAdsToGet)} numberAds={this.state.numberAds} data={this.state.data}/>
       )
    }
 }

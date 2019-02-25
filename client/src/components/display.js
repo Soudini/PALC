@@ -10,7 +10,7 @@ export default class Display extends Component {
 
   changePage = (i) => {
     this.state.page = i ;
-    this.props.searchDataFromDb(this.state.page);
+    this.props.searchDataFromDb(this.state.page, this.state.adsDisplayed);
     console.log("this.state.page", this.state.page);
   }
 
@@ -22,7 +22,7 @@ export default class Display extends Component {
     if (this.state.page > this.props.numberAds / this.state.adsDisplayed) {
       this.state.page = Math.floor(this.props.numberAds / this.state.adsDisplayed);
     };
-    this.props.searchDataFromDb(this.state.page);
+    this.props.searchDataFromDb(this.state.page,  this.state.adsDisplayed);
   }
 
   render () {
