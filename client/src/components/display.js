@@ -31,7 +31,7 @@ export default class Display extends Component {
       for (let i = 0; i<this.props.numberAds / this.state.adsDisplayed; i++){
         pagination.push(i)
       }
-      console.log("render",this.state);
+      console.log("render",this.props);
       if (this.props.data){
       return (
           <div className="row justify-content-center">

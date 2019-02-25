@@ -29,7 +29,7 @@ export default class Home extends Component {
 
   render () {
       return (
-        <Display searchDataFromDb={(page) => this.state.searchDataFromDb(page)} numberAds={this.state.numberAds} date={this.state.data}/>
+        <Display searchDataFromDb={(page) => this.searchDataFromDb(page)} numberAds={this.state.numberAds} data={this.state.data}/>
       )
    }
 }
