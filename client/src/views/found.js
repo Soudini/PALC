@@ -12,60 +12,25 @@ export default class Home extends Component {
   componentDidMount() {
     this.searchDataFromDb();
     this.getNumberAds();
-
   }
 
-  getNumberAds = () => {// get from the back the number of ads to compute the number of pages necessary
 
+  getNumberAds = () => {
     axios.post("/api/getNumberAds",{search : {type: "found"}})
       .then(data => data.data).then(res => {this.setState({ pageNumber: res.data }, console.log("number of ads",res.data))});
 
   }
-
-  searchDataFromDb = () => { //get ads' data
+  searchDataFromDb = (page) => {
     console.log("searchDataFromDb",this.state);
-    axios.post("/api/searchData", {search : {type: "found"}, number : this.state.number , page:this.state.page})
+    axios.post("/api/searchData", {search : {type: "found"}, number : this.state.number , page: page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 
   };
 
-  changePage = (i) => { // change to page i
-    this.state.page = i ;
-    this.searchDataFromDb();
-    console.log("this.state.page", this.state.page);
-  }
-
-  previousNext = (i) => { // goto the next or previous page
-    this.state.page = this.state.page + i ;
-    if (this.state.page < 0) {
-      this.state.page = 0;
-    };
-    if (this.state.page > this.state.pageNumber / this.state.number) {
-      this.state.page = Math.floor(this.state.pageNumber / this.state.number);
-    };
-    this.searchDataFromDb();
-  }
 
   render () {
-
-      let pagination = [];
-      for (let i = 0; i<this.state.pageNumber / this.state.number; i++){
-        pagination.push(i)
-      }
-      console.log("render",this.state);
       return (
-          <div className="row justify-content-center">
-            <div className="card-deck">
-                {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
-            </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#" onClick={() => this.previousNext(-1)}>Previous</a></li>
-                {pagination.map( i => (<li class="page-item"><a class="page-link" href="#" onClick={() => this.changePage(i)}>{i+1}</a></li>))}
-                <li class="page-item"><a class="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
-              </ul>
-            </nav>
-          </div>
+        <Display searchDataFromDb={(page) => this.searchDataFromDb(page)} numberAds={this.state.numberAds} data={this.state.data}/>
       )
    }
 }
