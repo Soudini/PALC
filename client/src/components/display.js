@@ -43,7 +43,7 @@ export default class Display extends Component {
               <nav className="row justify-content-center" aria-label="Page navigation example">
                 <ul className="pagination">
                   <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(-1)}>Previous</a></li>
-                  {pagination.map( i => (<li className="page-item" active={this.state.page === i}><a className="page-link" href="#" onClick={() => this.changePage(i)}>{i+1}</a></li>))}
+                  {pagination.map( i => (<li className={"page-item" + this.state.page === i ? " active" : " "} ><a className="page-link" href="#" onClick={() => this.changePage(i)}>{i+1}</a></li>))}
                   <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
                 </ul>
               </nav>
