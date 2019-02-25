@@ -42,6 +42,7 @@ export class Page extends Component { // full page view of the ad with the id wr
       .then(res => {this.setState({show_button:res.show_button}); this.setState({ data: res.data })}); // data : content of ads, show_button : whether to show update and delete buttons
   };
   render() {
+    console.log("infos : ", this.state)
     let buttonDelete = null;
     let buttonUpdate = null;
 
