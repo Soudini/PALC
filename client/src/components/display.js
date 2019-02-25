@@ -38,6 +38,7 @@ export default class Display extends Component {
             <div className="card-deck">
                 {this.props.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
             </div>
+            <br/>
             <nav aria-label="Page navigation example">
               <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#" onClick={() => this.previousNext(-1)}>Previous</a></li>
