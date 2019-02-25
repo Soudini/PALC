@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import Ad from "../components/ad.js";
+import Display from "../components/display.js";
 
 export default class Home extends Component {
   state = {
