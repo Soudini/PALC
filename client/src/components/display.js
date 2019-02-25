@@ -32,6 +32,7 @@ export default class Display extends Component {
         pagination.push(i)
       }
       console.log("render",this.state);
+      if (this.props.data){
       return (
           <div className="row justify-content-center">
             <div className="card-deck">
@@ -46,5 +47,9 @@ export default class Display extends Component {
             </nav>
           </div>
       )
+    }
+    else {
+      return (<div/>)
+    }
    }
 }
