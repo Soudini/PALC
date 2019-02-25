@@ -52,7 +52,6 @@ export class Page extends Component { // full page view of the ad with the id wr
     }
 
     if(this.state.data) { //if we have data
-      console.log("infos : ", this.state, (this.state.data.thumbnail != null && this.state.data.tumbnail != "") | this.state.data.image.length,  (this.state.data.thumbnail != null & this.state.data.tumbnail != "") | this.state.data.image.length, this.state.data.thumbnail != "", this.state.data.image.length,this.state.data.thumbnail != null)
 
       let carousel = null;
 
