@@ -38,9 +38,9 @@ export default class Display extends Component {
             <div className="row justify-content-center">
               <div className="card-deck">
                   {this.props.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
-              </div>              
+              </div>
             </div>
-              <nav aria-label="Page navigation example">
+              <nav className="row justify-content-center" aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="#" onClick={() => this.previousNext(-1)}>Previous</a></li>
                   {pagination.map( i => (<li class="page-item"><a class="page-link" href="#" onClick={() => this.changePage(i)}>{i+1}</a></li>))}

@@ -8,7 +8,6 @@ export default class Home extends Component {
   state = {
     data: [],
     numberAds : 0,
-    page:0
   }
 
   componentDidMount() {
