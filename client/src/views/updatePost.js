@@ -267,7 +267,6 @@ class CreatePost extends Component {
   }
 
   searchDataFromDb = () => {
-    console.log(cookies.get("auth"));
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
       .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}});
   };

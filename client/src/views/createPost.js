@@ -228,7 +228,6 @@ class CreatePost extends Component { //parent component
 
 
   putDataToDB = infos => { //post the ad to the DB
-    console.log("test",cookies.get("login"));
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
       author_id : cookies.get("id"),
@@ -242,7 +241,6 @@ class CreatePost extends Component { //parent component
       reCaptchaToken : infos.reCaptchaToken,
       auth : cookies.get("auth")
     });
-    console.log("reCaptchaToken", infos.reCaptchaToken);
   };
 
 

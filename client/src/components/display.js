@@ -11,7 +11,6 @@ export default class Display extends Component {
   changePage = (i) => {
     this.state.page = i ;
     this.props.searchDataFromDb(this.state.page, this.state.adsDisplayed);
-    console.log("this.state.page", this.state.page);
   }
 
   previousNext = (i) => {
@@ -31,7 +30,6 @@ export default class Display extends Component {
       for (let i = 0; i<this.props.numberAds / this.state.adsDisplayed; i++){
         pagination.push(i)
       }
-      console.log("render",this.props);
       if (this.props.data){
       return (
           <div>

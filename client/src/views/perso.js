@@ -17,11 +17,10 @@ export default class Home extends Component {
 
   getNumberAds = (search) => {
     axios.post("/api/getNumberAds",{search : {author_login: search}})
-      .then(data => data.data).then(res => {this.setState({ numberAds: res.data }, console.log("number of ads",res.data))});
+      .then(data => data.data).then(res => {this.setState({ numberAds: res.data })});
 
   }
   searchDataFromDb = (search,page, numberAdsToGet) => {
-    console.log("searchDataFromDb",this.state);
     axios.post("/api/searchData", {search : {author_login: search}, numberAdsToGet :numberAdsToGet, page: page})
       .then(data => data.data).then(res => {this.setState({ data: res.data })});
 

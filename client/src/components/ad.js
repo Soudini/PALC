@@ -37,10 +37,9 @@ export class Page extends Component { // full page view of the ad with the id wr
 
   searchDataFromDb = () => { // gather data from the DB
 
-    console.log(cookies.get("auth"));
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
-      .then(data => {console.log(data); return(data.data)})
-      .then(res => {console.log(res.show_button); this.setState({show_button:res.show_button}); this.setState({ data: res.data })}); // data : content of ads, show_button : whether to show update and delete buttons
+      .then(data => {return(data.data)})
+      .then(res => {this.setState({show_button:res.show_button}); this.setState({ data: res.data })}); // data : content of ads, show_button : whether to show update and delete buttons
   };
   render() {
     let buttonDelete = null;
