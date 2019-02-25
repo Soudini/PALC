@@ -16,7 +16,7 @@ export default class Home extends Component {
 
   getNumberAds = () => {
     axios.post("/api/getNumberAds",{search : {type: "search"}})
-      .then(data => data.data).then(res => {this.setState({ numberADs: res.data }, console.log("number of ads",res.data))});
+      .then(data => data.data).then(res => {this.setState({ numberAds: res.data }, console.log("number of ads",res.data))});
 
   }
   searchDataFromDb = (page, numberAdsToGet) => {
