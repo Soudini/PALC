@@ -114,10 +114,15 @@ router.post("/searchData", (req, res) => {
   if (!numberAdsToGet) {numberAdsToGet = 16};
   if (!page) {page = 0};
   console.log("search data with parameters (search,number,page)",search,numberAdsToGet,page);
-  auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
+  if (auth) {
+    auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
+  }
+  else {
+    auth_author_login = null;
+  }
   Data.find(search,{"image" : 0}).sort({"updatedAt": -1 }).limit(numberAdsToGet).skip(page*numberAdsToGet).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
-    if (login != auth_author_login) return res.json({ success: false, error: "not logged in" });
+    if (auth_author_login && login != auth_author_login) return res.json({ success: false, error: "not logged in" });
     return res.json({ success: true, data: data });
   });
 });
