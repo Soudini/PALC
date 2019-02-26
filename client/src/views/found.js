@@ -3,32 +3,10 @@ import axios from "axios";
 import Display from "../components/display.js";
 
 export default class Home extends Component {
-  state = {
-    data: [],
-    numberAds : 0,
-  }
-
-  componentDidMount() {
-    this.searchDataFromDb(0);
-    this.getNumberAds();
-  }
-
-
-  getNumberAds = () => {
-    axios.post("/api/getNumberAds",{search : {type: "found"}})
-      .then(data => data.data).then(res => {this.setState({ numberAds: res.data })});
-
-  }
-  searchDataFromDb = (page, numberAdsToGet) => {
-    axios.post("/api/searchData", {search : {type: "found"}, numberAdsToGet : numberAdsToGet , page: page})
-      .then(data => data.data).then(res => {this.setState({ data: res.data })});
-
-  };
-
 
   render () {
       return (
-        <Display searchDataFromDb={(page, numberAdsToGet) => this.searchDataFromDb(page, numberAdsToGet)} numberAds={this.state.numberAds} data={this.state.data}/>
+        <Display search = {{type: "found"}}/>
       )
    }
 }
