@@ -72,13 +72,16 @@ class Banner extends Component{
 
   render(){
     return(
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark col-lg-12">
+      <nav className="navbar fixed-top navbar-expand-xl navbar-dark bg-dark col-lg-12">
         <a className="navbar-brand" href=""  onClick={() => this.handlePageChange("")}>Palc</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav mr-auto">
+            <li className={"nav-item" + (this.props.history.location.pathname == "/all" ? " active":"")}>
+              <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("all")}>Toutes les annonces <span className="sr-only">(current)</span></a>
+            </li>
             <li className={"nav-item" + (this.props.history.location.pathname == "/search" ? " active":"")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("search")}>Recherche <span className="sr-only">(current)</span></a>
             </li>
