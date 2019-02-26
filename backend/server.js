@@ -92,7 +92,7 @@ router.post("/searchById", (req, res) => {
   auth_author_login = crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   Data.findById(id).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
-    if (data) return res.json({ success: false, error: "no data" });
+    if (!data) return res.json({ success: false, error: "no data" });
     show_button = (auth_author_login == data.author_login | admin.includes(auth_author_login));
     return res.json({ success: true, data: data, show_button : show_button });
   });
