@@ -5,6 +5,10 @@ export default class All extends Component {
 
   render () {
       return (
-        <Display search = {{}}/>)
+        <div className="container-fluid">
+          <h1>Bienvenue sur Palc ! </h1>
+          <p> Mais qu'est ce que palc peut bien vouloir dire ?  Ca veut dire "Pinte à la clé"</p>
+        </div>
+      )
    }
 }
