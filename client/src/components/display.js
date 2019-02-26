@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Ad from "./ad.js";
+import axios from "axios";
+
 
 export default class Display extends Component {
   //props : numberAds = number of Ads in total, data = Ads data , searchDataFromDb = function to get Ads from db with the page number as argument
