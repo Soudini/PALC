@@ -6,16 +6,14 @@ import Cookies from 'universal-cookie';
 let cookies = new Cookies();
 
 export default class Perso extends Component {
-  state = {
-    
-  }
+  state = {}
 
 
 
 
   render () {
       return (
-        <Display search={{ "$or":[{"type":{"$regex": search, "$options" : "i"}},{"author":{"$regex": search, "$options" : "i"}},{"reward":{"$regex": search, "$options" : "i"}},{"description":{"$regex": search, "$options" : "i"}},{"title":{"$regex": search, "$options" : "i"}} ]}}/>
+        <Display search={{ "$or":[{"type":{"$regex": this.props.params.match.search, "$options" : "i"}},{"author":{"$regex": this.props.params.match.search, "$options" : "i"}},{"reward":{"$regex": this.props.params.match.search, "$options" : "i"}},{"description":{"$regex": this.props.params.match.search, "$options" : "i"}},{"title":{"$regex": this.props.params.match.search, "$options" : "i"}} ]}}/>
       )
    }
 }
