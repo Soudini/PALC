@@ -110,12 +110,14 @@ router.post("/getNumberAds", (req, res) => {
 
 
 router.post("/searchData", (req, res) => {
-  let {search, numberAdsToGet, page} = req.body;
+  let {search, numberAdsToGet, page, auth, login} = req.body;
   if (!numberAdsToGet) {numberAdsToGet = 16};
   if (!page) {page = 0};
   console.log("search data with parameters (search,number,page)",search,numberAdsToGet,page);
+  auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
   Data.find(search,{"image" : 0}).sort({"updatedAt": -1 }).limit(numberAdsToGet).skip(page*numberAdsToGet).exec((err, data) => {
     if (err) return res.json({ success: false, error: err });
+    if (login != auth_author_login) return res.json({ success: false, error: "not logged in" });
     return res.json({ success: true, data: data });
   });
 });
