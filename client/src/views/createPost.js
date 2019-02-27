@@ -150,7 +150,10 @@ class CreatePost extends Component { //parent component
         var img = new Image();
         img.src = e.target.result;
         img.onload = () => {
-          let dataurl = document.createElement("canvas").getContext("2d").drawImage(img,0,0).toDataURL("image/jpeg", 0.5);
+          let canvas = document.createElement("canvas");
+          let ctx = canvas.getContext("2d");
+          ctx.drawImage(img,0,0);
+          let dataurl = canvas.toDataURL("image/jpeg", 0.5);
           /*var canvas = document.createElement("canvas");
           var ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0);
