@@ -172,7 +172,7 @@ class CreatePost extends Component { //parent component
           canvas.height = height;
           ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
-          let dataurl = canvas.toDataURL("image/jpeg");
+          let dataurl = canvas.toDataURL();
           this.setState({thumbnail:dataurl});
         }
     }
