@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 export default class Display extends Component {
-  //props : numberAds = number of Ads in total, data = Ads data , searchDataFromDb = function to get Ads from db with the page number as argument
+  //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
   state = {
     page:0,
     adsDisplayed : 16,
@@ -17,12 +17,12 @@ export default class Display extends Component {
     this.setState({numberAds : this.getNumberAds(this.props.search)});
   }
 
-  changePage = (i) => {
+  changePage = (i) => { //change page to page number i
     this.state.page = i ;
     this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed);
   }
 
-  previousNext = (i) => {
+  previousNext = (i) => { // change page to the next or previous
     this.state.page = this.state.page + i ;
     if (this.state.page < 0) {
       this.state.page = 0;
@@ -38,7 +38,7 @@ export default class Display extends Component {
       .then(data => data.data).then(res => {this.setState({ numberAds: res.data })});
 
   }
-  searchDataFromDb = (search, page, numberAdsToGet) => { // search in every fields without caring for case
+  searchDataFromDb = (search, page, numberAdsToGet) => { // 
       axios.post("/api/searchData", {search : search,numberAdsToGet : numberAdsToGet, page: page})
         .then(data => data.data).then(res => {this.setState({ data: res.data })});
   };

@@ -138,7 +138,7 @@ class CreatePost extends Component { //parent component
       alert("la description doit contenir moins de 1000 caractères et le titre moins de 300")
     }
     else    {
-        this.putDataToDB(this.state);
+        this.putDataToDB();
       };
   }
 
@@ -172,7 +172,7 @@ class CreatePost extends Component { //parent component
           canvas.height = height;
           ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
-          let dataurl = canvas.toDataURL();
+          let dataurl = canvas.toDataURL("image/jpeg", 0.5);
           this.setState({thumbnail:dataurl});
         }
     }
@@ -215,7 +215,7 @@ class CreatePost extends Component { //parent component
               canvas.height = height;
               ctx = canvas.getContext("2d");
               ctx.drawImage(img, 0, 0, width, height);
-              let dataurl = canvas.toDataURL(); // test with image in png instead of jpeg
+              let dataurl = canvas.toDataURL("image/jpeg", 0.5); // test with image in png instead of jpeg
               const image = this.state.image.slice();
               image.push(dataurl);
               this.setState({image: image})}
@@ -226,18 +226,18 @@ class CreatePost extends Component { //parent component
   }
 
 
-  putDataToDB = infos => { //post the ad to the DB
+  putDataToDB = () => { //post the ad to the DB
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
       author_id : cookies.get("id"),
       author_login : cookies.get("login"),
-      title: infos.title,
-      type: infos.type,
+      title: this.state.title,
+      type: this.state.type,
       reward: this.state.reward,
-      description: infos.description,
-      thumbnail: infos.thumbnail,
-      image: infos.image,
-      reCaptchaToken : infos.reCaptchaToken,
+      description: this.state.description,
+      thumbnail: this.state.thumbnail,
+      image: this.state.image,
+      reCaptchaToken : this.state.reCaptchaToken,
       auth : cookies.get("auth")
     }).then(setTimeout(() => this.props.history.push("/all"), 200));
   };
