@@ -172,7 +172,7 @@ class CreatePost extends Component { //parent component
           canvas.height = height;
           ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
-          let dataurl = canvas.toDataURL("image/jpeg", 0.3);
+          let dataurl = canvas.toDataURL("image/jpeg", 0.1);
           this.setState({thumbnail:dataurl});
         }
     }
@@ -215,7 +215,7 @@ class CreatePost extends Component { //parent component
               canvas.height = height;
               ctx = canvas.getContext("2d");
               ctx.drawImage(img, 0, 0, width, height);
-              let dataurl = canvas.toDataURL("image/jpeg", 0.3); // test with image in png instead of jpeg
+              let dataurl = canvas.toDataURL("image/jpeg", 0.1); // test with image in png instead of jpeg
               const image = this.state.image.slice();
               image.push(dataurl);
               this.setState({image: image})}
