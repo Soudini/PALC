@@ -5,6 +5,14 @@ import "./createPost.css";
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
 
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 
 class PostType extends Component { // selctor for the post type
 
@@ -143,9 +151,9 @@ class CreatePost extends Component { //parent component
   }
 
   handleThumbnail(event) { //import, convert and resize the thumbnail
-    var reader = new FileReader();
+    //var reader = new FileReader();
     let file = event.target.files[0];
-    reader.onloadend = (e) => {
+    /*reader.onloadend = (e) => {
 
         var img = new Image();
         img.src = e.target.result;
@@ -176,12 +184,13 @@ class CreatePost extends Component { //parent component
           canvas.height = height;
           ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
-          let dataurl = canvas.toDataURL("image/jpeg", 0.6);*/
+          let dataurl = canvas.toDataURL("image/jpeg", 0.6);
           this.setState({thumbnail:dataurl});
         }
     }
-    reader.readAsDataURL(file);
-
+    reader.readAsDataURL(file);*/
+    this.setState({thumbnail:getBase64(file)});
+    
   }
 
   handleImage(event) { //import, convert and resize the images
