@@ -9,7 +9,7 @@ function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
+    reader.onload = () => {console.log(reader.result);resolve(reader.result);};
     reader.onerror = error => reject(error);
   });
 }
@@ -190,7 +190,7 @@ class CreatePost extends Component { //parent component
     }
     reader.readAsDataURL(file);*/
     this.setState({thumbnail:getBase64(file)});
-    
+
   }
 
   handleImage(event) { //import, convert and resize the images
