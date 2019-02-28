@@ -189,7 +189,7 @@ class CreatePost extends Component { //parent component
         }
     }
     reader.readAsDataURL(file);*/
-    this.setState({thumbnail:getBase64(file)});
+    getBase64(file).then( data => this.setState({thumbnail:data}));
 
   }
 
