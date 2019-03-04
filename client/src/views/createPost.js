@@ -252,9 +252,20 @@ class CreatePost extends Component { //parent component
       image: this.state.image,
       reCaptchaToken : this.state.reCaptchaToken,
       auth : cookies.get("auth")
-    }).then(setTimeout(() => this.props.history.push("/all"), 200));
-  };
+    }).then(() => {setTimeout(() => this.props.history.push("/all"), 400); loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : "reCaptcha"}); this.killReCaptchaBadge()});
+  }
 
+  killReCaptchaBadge = () => { //hide the badge
+
+    let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
+    if (recaptchaBadge.length) {
+      recaptchaBadge[0].style.display = "none"; // hide the bage
+    }
+    else {
+      setTimeout(this.killReCaptchaBadge,50); // if not yet loaded retry after 50 ms
+    }
+
+  }
 
   deleteImage = (e) => { // delete images
     this.setState({image:[]});
