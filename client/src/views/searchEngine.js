@@ -13,7 +13,7 @@ export default class Perso extends Component {
 
   render () {
       return (
-        <Display search={{ "$or":[{"type":{"$regex": this.props.match.params.search, "$options" : "i"}},{"author":{"$regex": this.props.match.params.search, "$options" : "i"}},{"reward":{"$regex": this.props.match.params.search, "$options" : "i"}},{"description":{"$regex": this.props.match.params.search, "$options" : "i"}},{"title":{"$regex": this.props.match.params.search, "$options" : "i"}} ]}}/>
+        <Display search={{ "$or":[{"type":{"$regex": this.props.match.params.searchText, "$options" : "i"}},{"author":{"$regex": this.props.match.params.searchText, "$options" : "i"}},{"reward":{"$regex": this.props.match.params.searchText, "$options" : "i"}},{"description":{"$regex": this.props.match.params.searchText, "$options" : "i"}},{"title":{"$regex": this.props.match.params.searchText, "$options" : "i"}} ]}}/>
       )
    }
 }
