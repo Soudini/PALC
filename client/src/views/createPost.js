@@ -5,6 +5,14 @@ import "./createPost.css";
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
 
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {console.log(reader.result);resolve(reader.result);};
+    reader.onerror = error => reject(error);
+  });
+}
 
 class PostType extends Component { // selctor for the post type
 
@@ -138,20 +146,23 @@ class CreatePost extends Component { //parent component
       alert("la description doit contenir moins de 1000 caractères et le titre moins de 300")
     }
     else    {
-        this.putDataToDB(this.state);
-        this.props.history.push("/");
+        this.putDataToDB();
       };
   }
 
   handleThumbnail(event) { //import, convert and resize the thumbnail
-    var reader = new FileReader();
+    //var reader = new FileReader();
     let file = event.target.files[0];
-    reader.onloadend = (e) => {
+    /*reader.onloadend = (e) => {
 
         var img = new Image();
         img.src = e.target.result;
         img.onload = () => {
-          var canvas = document.createElement("canvas");
+          let canvas = document.createElement("canvas");
+          let ctx = canvas.getContext("2d");
+          ctx.drawImage(img,0,0);
+          let dataurl = canvas.toDataURL("image/jpeg", 0.5);
+          /*var canvas = document.createElement("canvas");
           var ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0);
           var MAX_WIDTH = 400;
@@ -173,11 +184,12 @@ class CreatePost extends Component { //parent component
           canvas.height = height;
           ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
-          let dataurl = canvas.toDataURL("image/jpeg");
+          let dataurl = canvas.toDataURL("image/jpeg", 0.6);
           this.setState({thumbnail:dataurl});
         }
     }
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file);*/
+    getBase64(file).then( data => this.setState({thumbnail:data}));
 
   }
 
@@ -216,7 +228,7 @@ class CreatePost extends Component { //parent component
               canvas.height = height;
               ctx = canvas.getContext("2d");
               ctx.drawImage(img, 0, 0, width, height);
-              let dataurl = canvas.toDataURL("image/jpeg");
+              let dataurl = canvas.toDataURL("image/jpeg", 0.6); // test with image in png instead of jpeg
               const image = this.state.image.slice();
               image.push(dataurl);
               this.setState({image: image})}
@@ -227,22 +239,33 @@ class CreatePost extends Component { //parent component
   }
 
 
-  putDataToDB = infos => { //post the ad to the DB
+  putDataToDB = () => { //post the ad to the DB
     axios.post("/api/putData", {
       author : cookies.get("firstName") + " " + cookies.get("lastName"),
       author_id : cookies.get("id"),
       author_login : cookies.get("login"),
-      title: infos.title,
-      type: infos.type,
+      title: this.state.title,
+      type: this.state.type,
       reward: this.state.reward,
-      description: infos.description,
-      thumbnail: infos.thumbnail,
-      image: infos.image,
-      reCaptchaToken : infos.reCaptchaToken,
+      description: this.state.description,
+      thumbnail: this.state.thumbnail,
+      image: this.state.image,
+      reCaptchaToken : this.state.reCaptchaToken,
       auth : cookies.get("auth")
-    });
-  };
+    }).then(() => {setTimeout(() => this.props.history.push("/all"), 400); loadReCaptcha({key : "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id : "reCaptcha"}); this.killReCaptchaBadge()});
+  }
 
+  killReCaptchaBadge = () => { //hide the badge
+
+    let recaptchaBadge = document.getElementsByClassName("grecaptcha-badge")
+    if (recaptchaBadge.length) {
+      recaptchaBadge[0].style.display = "none"; // hide the bage
+    }
+    else {
+      setTimeout(this.killReCaptchaBadge,50); // if not yet loaded retry after 50 ms
+    }
+
+  }
 
   deleteImage = (e) => { // delete images
     this.setState({image:[]});

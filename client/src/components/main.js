@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom'
 
-import Home from './../views/home.js';
+import All from './../views/all.js';
 import Search from './../views/search.js';
 import Found from './../views/found.js';
 import CreatePost from './../views/createPost.js';
@@ -11,6 +11,7 @@ import {Page} from './ad.js';
 import OauthEnd from './oauthend.js';
 import Cookies from 'universal-cookie';
 import UpdatePost from './../views/updatePost.js';
+import Home from './../views/home.js';
 
 function makeid() { // generate random state for the auth
   var text = "";
@@ -34,7 +35,7 @@ const Main = () => (
   <div className="col-lg-12">
       <div className="container-fluid">
         <Switch>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/all' component={All}/>
           <Route exact path='/createPost' component={CreatePost}/>
           <Route exact path='/found' component={Found}/>
           <Route exact path='/search' component={Search}/>
@@ -44,6 +45,7 @@ const Main = () => (
           <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=http://palc.viarezo.fr/oauthend&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state='+random+'&scope=default'; return null;} }/>
           <Route exact path='/oauthend' component={OauthEnd}/>
           <Route exact path='/updatePost/:id' component={UpdatePost}/>
+          <Route exact path="/" component={Home}/>
         </Switch>
       </div>
     </div>

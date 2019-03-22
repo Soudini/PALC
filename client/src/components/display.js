@@ -1,47 +1,66 @@
 import React, { Component } from 'react';
 import Ad from "./ad.js";
+import axios from "axios";
+
 
 export default class Display extends Component {
-  //props : numberAds = number of Ads in total, data = Ads data , searchDataFromDb = function to get Ads from db with the page number as argument
+  //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
   state = {
     page:0,
-    adsDisplayed : 16
+    adsDisplayed : 16,
+    numberAds :0,
+    data: []
   }
 
-  changePage = (i) => {
+  componentDidMount () {
+    this.setState({data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed)});
+    this.setState({numberAds : this.getNumberAds(this.props.search)});
+  }
+
+  changePage = (i) => { //change page to page number i
     this.state.page = i ;
-    this.props.searchDataFromDb(this.state.page, this.state.adsDisplayed);
+    this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed);
   }
 
-  previousNext = (i) => {
+  previousNext = (i) => { // change page to the next or previous
     this.state.page = this.state.page + i ;
     if (this.state.page < 0) {
       this.state.page = 0;
     };
-    if (this.state.page > this.props.numberAds / this.state.adsDisplayed) {
-      this.state.page = Math.floor(this.props.numberAds / this.state.adsDisplayed);
+    if (this.state.page > this.state.numberAds / this.state.adsDisplayed) {
+      this.state.page = Math.floor(this.state.numberAds / this.state.adsDisplayed);
     };
-    this.props.searchDataFromDb(this.state.page,  this.state.adsDisplayed);
+    this.searchDataFromDb(this.props.search, this.state.page,  this.state.adsDisplayed);
   }
 
-  render () {
+  getNumberAds = (search) => {
+    axios.post("/api/getNumberAds",{search :  search})
+      .then(data => data.data).then(res => {this.setState({ numberAds: res.data })});
 
+  }
+  searchDataFromDb = (search, page, numberAdsToGet) => { // 
+      axios.post("/api/searchData", {search : search,numberAdsToGet : numberAdsToGet, page: page})
+        .then(data => data.data).then(res => {this.setState({ data: res.data })});
+  };
+
+  render () {
+      console.log(this.props)
       let pagination = [];
-      for (let i = 0; i<this.props.numberAds / this.state.adsDisplayed; i++){
+      for (let i = 0; i<this.state.numberAds / this.state.adsDisplayed; i++){
         pagination.push(i)
       }
-      if (this.props.data){
+      if (this.state.data){
       return (
           <div>
             <div className="row justify-content-center">
               <div className="card-deck">
-                  {this.props.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
+                  {this.state.data.map(dat => (<Ad key={dat._id} data={dat}/>))}
               </div>
             </div>
               <nav className="row justify-content-center" aria-label="Page navigation example">
                 <ul className="pagination">
                   <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(-1)}>Previous</a></li>
-                  {pagination.map( i => (<li className={"page-item" + (this.state.page == i ? " active" : " ")} ><a className="page-link" href="#" onClick={() => this.changePage(i)}>{i+1}</a></li>))}
+                  {pagination.map( i => (<li className={"page-item" + (this.state.page == i ? " active" : " ")} key={i}><a key={i} className="page-link" href="#" onClick={() => this.changePage(i)}>{i+1}</a></li>))}
                   <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
                 </ul>
               </nav>

@@ -1,33 +1,14 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Display from "../components/display.js";
-
-export default class Home extends Component {
-  state = {
-    data: [],
-    numberAds : 0,
-  }
-
-  componentDidMount() {
-    this.searchDataFromDb(0);
-    this.getNumberAds();
-  }
-
-
-  getNumberAds = () => {
-    axios.post("/api/getNumberAds",{search : {}})
-      .then(data => data.data).then(res => {this.setState({ numberAds: res.data })});
-
-  }
-  searchDataFromDb = (page, numberAdsToGet) => {
-    axios.post("/api/searchData", {search : {}, numberAdsToGet : numberAdsToGet , page:page })
-      .then(data => data.data).then(res => {this.setState({ data: res.data })});
-
-  };
+export default class All extends Component {
 
   render () {
       return (
-        <Display searchDataFromDb={(page, numberAdsToGet) => this.searchDataFromDb(page, numberAdsToGet)} numberAds={this.state.numberAds} data={this.state.data}/>
+        <div className="container-fluid">
+          <h1>Bienvenue sur Palc ! </h1>
+          <p> Mais qu'est ce que palc peut bien vouloir dire ?  Ca veut dire "Pinte à la clé"</p>
+        </div>
       )
    }
 }

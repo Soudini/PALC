@@ -55,7 +55,7 @@ export class Page extends Component { // full page view of the ad with the id wr
 
       let carousel = null;
 
-      if ((this.state.data.thumbnail != null & this.state.data.tumbnail != "") | this.state.data.image.length) { //if there is a thumbnail or images to show create the carousel
+      if ((this.state.data.thumbnail != null & this.state.data.thumbnail != "") | this.state.data.image.length) { //if there is a thumbnail or images to show create the carousel
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
