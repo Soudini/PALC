@@ -18,5 +18,5 @@ pull:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - >
       ssh -tt ubuntu@palc.viarezo.fr
-      "/home/ubuntu/objets-trouves &&
+      "cd /home/ubuntu/objets-trouves &&
       git pull"
