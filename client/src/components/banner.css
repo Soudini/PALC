@@ -13,6 +13,6 @@
 
 #searchbutton:hover{
   color:white;
-  border:transparent !important;
+  border:solid 1px transparent !important;
   background-color: #facf57;
 }
