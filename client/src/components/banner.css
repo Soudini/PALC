@@ -24,6 +24,14 @@
   background-color: #facf57;
 }
 
+#searchbutton:active{
+  text-decoration:none;
+}
+
+#searchbutton:focus{
+  text-decoration:none;
+}
+
 .fa{
-  padding:2%;
+  margin:2%;
 }
