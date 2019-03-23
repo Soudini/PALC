@@ -16,3 +16,11 @@
   border:solid 1px transparent !important;
   background-color: #facf57;
 }
+
+#searchbutton:active{
+  border:0px;
+}
+
+#searchbutton:focus{
+  border:0px;
+}
