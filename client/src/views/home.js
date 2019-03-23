@@ -11,7 +11,7 @@ export default class All extends Component {
       <section>
         <div className="container-fondus ">
           <div className="row">
-            <div className="col-lg-7 mx-auto text-center">
+            <div className="col-lg-6 mx-auto text-center">
 
               <br></br>
               <h1 class="section-heading"> Bienvenue sur PALC ! </h1>
