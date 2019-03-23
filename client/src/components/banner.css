@@ -11,10 +11,10 @@
 }
 
 #searchbutton{
-  width:10%;
   border-radius:10px;
   color:#e0860b;
   border:#e0860b solid 1px;
+  background-color:transparent;
 }
 
 #searchbutton:hover{
