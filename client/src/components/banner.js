@@ -76,7 +76,7 @@ class Banner extends Component {
   render() {
     return (
       <nav className="navbar fixed-top navbar-expand-xl navbar-dark col-lg-12">
-        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}><img src={logopalccontour} id="logo_navbar" class="img-fluid" alt="Responsive image" />PALC</a>
+        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}><img src={logopalccontour} width="30" height="30" class="img-fluid" alt="Responsive image" />PALC</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
