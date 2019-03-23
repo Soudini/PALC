@@ -10,3 +10,9 @@
   color:#e0860b;
   border:#e0860b solid 1px;
 }
+
+#searchbutton:hover{
+  color:white;
+  border:0px;
+  background-color: #facf57;
+}
