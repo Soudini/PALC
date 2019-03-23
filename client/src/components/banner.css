@@ -24,13 +24,3 @@
   background-color: #facf57;
 }
 
-#searchbutton:active{
-  text-decoration:none;
-  border:none;
-}
-
-#searchbutton:focus{
-  text-decoration:none;
-  border:none;
-}
-
