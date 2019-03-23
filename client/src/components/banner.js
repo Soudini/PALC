@@ -5,6 +5,8 @@ import { Nav } from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 import "./banner.css";
 import { loadReCaptcha } from 'recaptcha-v3-react';
+import logopalc from "../files/logopalc.png";
+
 
 let date = new Date();
 const cookies = new Cookies();
@@ -73,7 +75,7 @@ class Banner extends Component {
   render() {
     return (
       <nav className="navbar fixed-top navbar-expand-xl navbar-dark col-lg-12">
-        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}>Palc</a>
+        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}><img src={logopalc} class="img-fluid" alt="Responsive image" />PALC</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
