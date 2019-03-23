@@ -1,0 +1,27 @@
+.img-fluid{
+    width: 35%;
+    padding-top:2rem;
+    padding-bottom:3rem;
+}
+
+section{
+    background-color: #f7f5f4;
+    background:#f7f5f4;
+}
+
+h1 {
+    font-family: roboto-bold;
+    color:rgb(100, 57, 0);
+    font-size:55px;
+}
+
+p{
+    font-family: roboto;
+    color:black;
+    font-size: 20px;
+}
+
+.foundus {
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
