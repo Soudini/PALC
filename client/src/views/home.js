@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Display from "../components/display.js";
-import logopalccouleur from '../../public/logopalccouleur.png'
+import logopalccouleur from "../files/logopalccouleur.png";
+
 export default class All extends Component {
 
   render() {
