@@ -6,8 +6,8 @@
   background-color: rgb(100, 57, 0);
 }
 
-#logo_navbar{
-  width:5%;
-  margin-top: -2%;
-  margin-right: 5%;
+.img_fluid{
+  width:35;
+  height:35;
+  vertical-align: center;
 }
