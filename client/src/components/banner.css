@@ -4,9 +4,4 @@
 
 .navbar{
   background-color: rgb(100, 57, 0);
-  color:white;
-}
-
-.navbar:hover{
-  color:grey;
 }
