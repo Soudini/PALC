@@ -76,7 +76,7 @@ class Banner extends Component {
   render() {
     return (
       <nav className="navbar fixed-top navbar-expand-xl navbar-dark col-lg-12">
-        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}><img src={logopalccontour} width="40" height="40" class="img-fluid d-inline-block align-top" alt="Responsive image"
+        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}><img src={logopalccontour} width="40" height="40" class="d-inline-block align-top" alt="Responsive image"
           onMouseOver={e => (e.currentTarget.src = logopalc)}
           onMouseOut={e => (e.currentTarget.src = logopalccontour)} />&nbsp; PALC</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
