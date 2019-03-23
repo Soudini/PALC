@@ -1,3 +1,5 @@
+image: node:latest
+
 pull:
   script:
     # Install ssh-agent if not already installed, it is required by Docker.
