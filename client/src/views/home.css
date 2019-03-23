@@ -11,10 +11,10 @@ section{
 
 h1 {
     font-family: roboto-bold;
-    color:cornflowerblue
+    color:rgb(100, 57, 0);
 }
 
 p{
     font-family: roboto;
-    color:plum;
+    color:black;
 }
