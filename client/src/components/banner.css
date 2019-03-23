@@ -6,7 +6,13 @@
   background-color: rgb(100, 57, 0);
 }
 
+#searchBar{
+  border-radius:10px;
+}
+
 #searchbutton{
+  width:10%;
+  border-radius:10px;
   color:#e0860b;
   border:#e0860b solid 1px;
 }
@@ -17,10 +23,3 @@
   background-color: #facf57;
 }
 
-#searchbutton:active{
-  border:0px;
-}
-
-#searchbutton:focus{
-  border:0px;
-}
