@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 import "./banner.css";
 import { loadReCaptcha } from 'recaptcha-v3-react';
 import logopalc from "../files/logopalc.png";
+import logopalccontour from "../files/logopalccontour.png";
 
 
 let date = new Date();
@@ -75,7 +76,7 @@ class Banner extends Component {
   render() {
     return (
       <nav className="navbar fixed-top navbar-expand-xl navbar-dark col-lg-12">
-        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}>PALC</a>
+        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}><img src={logopalccontour} id="logo_navbar" class="img-fluid" alt="Responsive image" />PALC</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
