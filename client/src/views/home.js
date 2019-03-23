@@ -9,7 +9,7 @@ export default class All extends Component {
   render() {
     return (
       <section>
-        <div className="container-fluid text-center">
+        <div className="container-fondus text-center">
           <br></br>
           <h1>Bienvenue sur PALC ! </h1>
           <img src={logopalccouleur} class="img-fluid" alt="Responsive image" />
