@@ -101,9 +101,8 @@ class Banner extends Component {
             </li>
           </ul>
           <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
-          <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}>
-            <button type="reset" class="search"></button>{/* <strong>Chercher une annonce</strong> */}
-          </button>
+          {/* <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}> */}
+          <button type="reset" class="search" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}></button>{/* <strong>Chercher une annonce</strong> */}
         </div>
       </nav>
     )
