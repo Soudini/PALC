@@ -1,3 +1,26 @@
 .hover-pointer:hover{
   cursor : pointer;
 }
+
+.navbar{
+  background-color: rgb(100, 57, 0);
+}
+
+#searchBar{
+  border-radius:10px;
+}
+
+#searchbutton{
+  border-radius:10px;
+  color:#e0860b;
+  border:#e0860b solid 1px;
+  background-color:transparent;
+  text-decoration:none;
+}
+
+#searchbutton:hover{
+  color:white;
+  border:solid 1px transparent !important;
+  background-color: #facf57;
+}
+

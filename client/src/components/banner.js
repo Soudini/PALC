@@ -5,6 +5,9 @@ import { Nav } from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 import "./banner.css";
 import { loadReCaptcha } from 'recaptcha-v3-react';
+import logopalc from "../files/logopalc.png";
+import logopalccontour from "../files/logopalccontour.png";
+
 
 let date = new Date();
 const cookies = new Cookies();
@@ -72,8 +75,10 @@ class Banner extends Component {
 
   render() {
     return (
-      <nav className="navbar fixed-top navbar-expand-xl navbar-dark bg-dark col-lg-12">
-        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}>Palc</a>
+      <nav className="navbar fixed-top navbar-expand-xl navbar-dark col-lg-12">
+        <a className="navbar-brand" href="" onClick={() => this.handlePageChange("")}><img src={logopalccontour} width="40" height="40" class="img-fluid" alt="Responsive image"
+          onMouseOver={e => (e.currentTarget.src = logopalc)}
+          onMouseOut={e => (e.currentTarget.src = logopalccontour)} />&nbsp; PALC</a>
         <button className="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -95,9 +100,9 @@ class Banner extends Component {
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
             </li>
           </ul>
-          <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Search" aria-label="Search" onChange={this.handleSearchText}></input>
-          <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}>
-            <strong>Chercher une annonce</strong>
+          <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
+          <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}>
+            <i class="fa fa-search"></i>{/* <strong>Chercher une annonce</strong> */}
           </button>
         </div>
       </nav>
