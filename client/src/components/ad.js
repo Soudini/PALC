@@ -143,8 +143,8 @@ export default class Ad extends Component { // card for the mutliple ads view
 
   render() {
     let className = "card h-100"//+ (this.props.data.type === "search" ? " bg-secondary" : " bg-success");
-    if (props.data.thumbnail === "") {
-      props.data.thumbnail = image
+    if (this.props.data.thumbnail === "") {
+      this.props.data.thumbnail = image
     }
     return (<a className="style-1" href="#" style={{ "marginTop": "1rem", "marginLeft": "auto", "marginRight": "auto", "marginBottom": "1rem" }}>
       <div className={className} style={{ "width": "18rem" }} >
