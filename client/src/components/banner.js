@@ -100,11 +100,11 @@ class Banner extends Component {
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
             </li>
           </ul>
-          <form id="content">
+          <div class="container">
             <input className="input" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
             {/* <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}> */}
-            <button type="reset" class="search" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}></button>{/* <strong>Chercher une annonce</strong> */}
-          </form>
+            <div class="search"></div>{/* <strong>Chercher une annonce</strong> */}
+          </div>
         </div>
       </nav>
     )
