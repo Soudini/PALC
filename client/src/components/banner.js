@@ -99,12 +99,14 @@ class Banner extends Component {
             <li className={"nav-item" + (this.props.history.location.pathname == "/perso" ? " active" : "")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
             </li>
+            <li>
+              <div class="container">
+                <input className="input" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
+                {/* <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}> */}
+                <div class="search"></div>{/* <strong>Chercher une annonce</strong> */}
+              </div>
+            </li>
           </ul>
-          <div class="container">
-            <input className="input" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
-            {/* <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}> */}
-            <div class="search"></div>{/* <strong>Chercher une annonce</strong> */}
-          </div>
         </div>
       </nav>
     )
