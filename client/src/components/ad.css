@@ -47,3 +47,17 @@
 .card-img-top{
   box-shadow:0 0px 0px 0 rgba(0, 0, 0, 0.1), 0 0px 3px 0 rgba(0, 0, 0, 0.1)
 }
+
+.card-title{
+  font-family: roboto-bold;
+  color:rgb(100, 57, 0);
+}
+
+.text-muted{
+  color:#e0860b
+}
+
+.card-text{
+  font-family:roboto-light;
+  font-size:18px;
+}
