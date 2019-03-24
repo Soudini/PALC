@@ -54,7 +54,7 @@
 }
 
 .text-muted{
-  color:#e0860b
+  color:#e0860b !important;
 }
 
 .card-text{
