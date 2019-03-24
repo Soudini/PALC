@@ -20,6 +20,18 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <script src="../src/index.js"></script>
+  <script> // script pour la searchBar
+    function expand() {
+      $(".search").toggleClass("close");
+      $(".input").toggleClass("square");
+      if ($('.search').hasClass('close')) {
+        $('input').focus();
+      } else {
+        $('input').blur();
+      }
+    }
+    $('button').on('click', expand);
+  </script>
 </body>
 
 </html>
