@@ -42,7 +42,7 @@ class Banner extends Component {
   }
   checkAuth = () => { //check if auth is still valable
     date = new Date();
-    if ((!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime() / 1000) && this.props.location !== "/oauthend") {
+    if ((!cookies.get("expires_at") | cookies.get("expires_at") < date.getTime() / 1000) && this.props.location.pathname !== "/oauthend") {
       this.props.history.push("/oauth");
     }
     setTimeout(this.checkAuth, 5000); //check every 5s
