@@ -8,6 +8,16 @@ import { loadReCaptcha } from 'recaptcha-v3-react';
 import logopalc from "../files/logopalc.png";
 import logopalccontour from "../files/logopalccontour.png";
 
+/* je sais pas où mettre le code si dessous, donc  je le mets là (PS: c'est pour la searchBar)*/
+$("#inpt_search").on('focus', function () {
+  $(this).parent('label').addClass('active');
+});
+
+$("#inpt_search").on('blur', function () {
+  if ($(this).val().length == 0)
+    $(this).parent('label').removeClass('active');
+});
+/* ---------------------------------------------------------------------------------------------*/
 
 let date = new Date();
 const cookies = new Cookies();
