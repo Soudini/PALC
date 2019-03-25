@@ -12,19 +12,6 @@ import OauthEnd from './oauthend.js';
 import Cookies from 'universal-cookie';
 import UpdatePost from './../views/updatePost.js';
 import Home from './../views/home.js';
-import $ from 'jquery';
-window.$ = $;
-
-/* je sais pas où mettre le code si dessous, donc  je le mets là (PS: c'est pour la searchBar)*/
-$("#inpt_search").on('focus', function () {
-  $(this).parent('label').addClass('active');
-});
-
-$("#inpt_search").on('blur', function () {
-  if ($(this).val().length == 0)
-    $(this).parent('label').removeClass('active');
-});
-/* ---------------------------------------------------------------------------------------------*/
 
 function makeid() { // generate random state for the auth
   var text = "";
