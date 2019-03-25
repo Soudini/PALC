@@ -99,21 +99,13 @@ class Banner extends Component {
             <li className={"nav-item" + (this.props.history.location.pathname == "/perso" ? " active" : "")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
             </li>
-            {/* <li>
-              <div class="container">
-                <input className="input" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
-              
-                <div class="search"></div>
-              </div>
-            </li>   */}
           </ul>
-          <div className="form-inline my-2 my-lg-0">
-            <form className="form-inline my-2 my-lg-0">
-              <input className="input form-control mr-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
-              <button className="search"></button>
-            </form></div>
+          <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
+          <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}>
+            <i class="fa fa-search"></i>{/* <strong>Chercher une annonce</strong> */}
+          </button>
         </div>
-      </nav>
+      </nav >
     )
   }
 
