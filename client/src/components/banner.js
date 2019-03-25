@@ -7,6 +7,8 @@ import "./banner.css";
 import { loadReCaptcha } from 'recaptcha-v3-react';
 import logopalc from "../files/logopalc.png";
 import logopalccontour from "../files/logopalccontour.png";
+import $ from 'jquery';
+window.$ = $;
 
 /* je sais pas où mettre le code si dessous, donc  je le mets là (PS: c'est pour la searchBar)*/
 $("#inpt_search").on('focus', function () {
