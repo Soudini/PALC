@@ -107,9 +107,9 @@ class Banner extends Component {
               </div>
             </li>   */}
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="input form-control mr-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
-            <button class="search"></button>
+          <form className="form-inline my-2 my-lg-0">
+            <input className="input form-control mr-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
+            <button className="search"></button>
           </form>
         </div>
       </nav>
