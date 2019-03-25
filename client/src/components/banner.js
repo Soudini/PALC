@@ -15,6 +15,10 @@ $("#inpt_search").on('focus', function () {
   $(this).parent('label').addClass('active');
 });
 
+$("#inpt_search").on('blur', function () {
+  if ($(this).val().length == 0)
+    $(this).parent('label').removeClass('active');
+});
 /* ---------------------------------------------------------------------------------------------*/
 
 let date = new Date();
@@ -112,10 +116,10 @@ class Banner extends Component {
           <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}>
             <i class="fa fa-search"></i>{/* <strong>Chercher une annonce</strong>
           </button> */}
-          <div class="cntr">
-            <div class="cntr-innr">
-              <label class="search" for="inpt_search">
-                <input id="inpt_search" type="text" />
+          <div className="cntr">
+            <div className="cntr-innr">
+              <label className="search" for="inpt_search"  >
+                <input id="inpt_search" type="text" onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText} onClick={() => this.handlePageChange("searchEngine/" + this.state.search)} />
               </label>
             </div>
           </div>
