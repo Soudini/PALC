@@ -55,7 +55,7 @@ class Banner extends Component {
         this.props.history.push("/");
       }
       else {
-        this.props.history.push("/searchEngine/" + this.state.search);
+        this.handlePageChange("searchEngine/" + this.state.search);
       }
     }
 
