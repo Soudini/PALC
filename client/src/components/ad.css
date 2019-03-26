@@ -41,6 +41,7 @@
 }
 
 .card{
+  transition: transform .2s;
   box-shadow:0 0px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -63,7 +64,7 @@
 }
 
 .card:hover{
-  width:20rem;
-  box-shadow:0 0px 8px 0 rgba(88, 53, 4, 0.5), 0 0px 20px 0 rgba(88, 53, 4, 0.1);
+  transform:scale(1.2);
+  box-shadow:0 0px 8px 0 rgba(88, 53, 4, 0.5), 0 0px 20px 0 rgba(88, 53, 4, 0.5);
 
 }
