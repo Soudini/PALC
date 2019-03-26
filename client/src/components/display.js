@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter} from 'react-router-dom';
 import Ad from "./ad.js";
 import axios from "axios";
 
 
-export default class Display extends Component {
+class Display extends Component {
   //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
   state = {
     page:0,
@@ -72,3 +73,6 @@ export default class Display extends Component {
     }
    }
 }
+
+
+export default withRouter(Display);
