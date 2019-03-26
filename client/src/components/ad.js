@@ -55,8 +55,11 @@ export class Page extends Component { // full page view of the ad with the id wr
 
       let carousel = null;
 
-      if (this.props.data.thumbnail === null) {
-        this.props.data.thumbnail = image
+      if (this.state.data.thumbnail === "") {
+        this.state.data.thumbnail = image
+      }
+      if (this.state.data.thumbnail === null) {
+        this.state.data.thumbnail = image
       }
 
 
