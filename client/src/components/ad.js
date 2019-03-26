@@ -89,26 +89,21 @@ export class Page extends Component { // full page view of the ad with the id wr
       return (
         <div className="jumbotron fluid">
           <div className="container-fondus">
-            <div className="row">
-              <div className="col-lg-8 mx-auto text-center">
-                <h1 className="display-4">{this.state.data.title}</h1>
-              </div>
-              <br />
-              <div className="row align-items-center">
-                {carousel}
-                <div className="col-sm-6">
-                  <h5>{"Cette annonce a été créée par " + this.state.data.author}</h5>
-                  <p>{this.state.data.description}</p>
-                  <div className="row">
-                    <a className="col" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary w-100 h-100"  > LinkCS </button></a>
-                    {buttonUpdate}
-                    {buttonDelete}
-                  </div>
-                </div>
+            <h1 className="display-6">{this.state.data.title}</h1>
+          </div>
+          <br />
+          <div className="row align-items-center">
+            {carousel}
+            <div className="col-sm-6">
+              <h5>{"Cette annonce a été créée par " + this.state.data.author}</h5>
+              <p>{this.state.data.description}</p>
+              <div className="row">
+                <a className="col" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary w-100 h-100"  > LinkCS </button></a>
+                {buttonUpdate}
+                {buttonDelete}
               </div>
             </div>
           </div>
-
         </div>)
     }
     else { return (<div />) }
