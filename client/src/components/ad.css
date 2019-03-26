@@ -41,6 +41,7 @@
 }
 
 .card{
+  transition: transform .2s;
   box-shadow:0 0px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -60,4 +61,10 @@
 .card-text{
   font-family:roboto-light;
   font-size:18px;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0px 8px 0 rgba(88, 53, 4, 0.5), 0 0px 20px 0 rgba(88, 53, 4, 0.5);
+
 }
