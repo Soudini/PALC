@@ -15,6 +15,7 @@ class Display extends Component {
 
   componentDidMount () {
     this.setState({data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed)});
+    this.setState({searchedfor : this.props.search})
     this.setState({numberAds : this.getNumberAds(this.props.search)});
   }
 
@@ -45,7 +46,10 @@ class Display extends Component {
   };
 
   render () {
-      console.log(this.props)
+      if (this.props.search != this.state.searchedfor){
+        this.setState({data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed)});
+        this.setState({searchedfor : this.props.search})
+      }
       let pagination = [];
       for (let i = 0; i<this.state.numberAds / this.state.adsDisplayed; i++){
         pagination.push(i)
