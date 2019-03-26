@@ -45,14 +45,6 @@ export class Page extends Component { // full page view of the ad with the id wr
     let buttonDelete = null;
     let buttonUpdate = null;
 
-    if (this.props.data.thumbnail === "") {
-      this.props.data.thumbnail = image
-    }
-    if (this.props.data.thumbnail === null) {
-      this.props.data.thumbnail = image
-    }
-
-
     if (this.state.data && this.state.show_button) { // if we have some data and have to show the button
       buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete}>Supprimer l'annonce </button>;
       buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem" }} onClick={this.handleUpdate}>Modifier l'annonce</button>;
@@ -62,6 +54,14 @@ export class Page extends Component { // full page view of the ad with the id wr
     if (this.state.data) { //if we have data
 
       let carousel = null;
+
+      if (this.props.data.thumbnail === "") {
+        this.props.data.thumbnail = image
+      }
+      if (this.props.data.thumbnail === null) {
+        this.props.data.thumbnail = image
+      }
+
 
       if ((this.state.data.thumbnail != null & this.state.data.thumbnail != "") | this.state.data.image.length) { //if there is a thumbnail or images to show create the carousel
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
