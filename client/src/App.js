@@ -3,6 +3,8 @@ import './App.css';
 import Main from './components/main.js';
 import Banner from './components/banner.js';
 import Cookies from 'universal-cookie';
+import $ from 'jquery';
+window.$ = $;
 
 const cookies = new Cookies();
 
@@ -16,11 +18,11 @@ class App extends Component {
   render() {
 
     return (
-        <div className="container-fluid">
-          <Banner/>
-          <br></br><br></br><br></br><br></br>
-          <Main />
-        </div>
+      <div className="container-fluid">
+        <Banner />
+        <br></br><br></br><br></br><br></br>
+        <Main />
+      </div>
     );
   }
 }

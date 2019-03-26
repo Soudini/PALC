@@ -24,3 +24,58 @@
   background-color: #facf57;
 }
 
+/* ne pas essayer de comprendre */
+
+/*** COLORS ***/
+
+
+
+/*** STYLES ***/
+.search {
+	display: inline-block;
+	position: relative;
+	height: 35px;
+	width: 35px;
+	box-sizing: border-box;
+	border: 3px solid #facf57;
+	border-radius: 25px;
+  transition: all 200ms ease;
+  cursor: text;
+  padding-left:10px;
+  padding-top:1.5px;
+}
+	
+	.search:after {
+		content: "";
+		position: absolute;
+		width: 3px;
+		height: 20px;
+		right: -5px;
+		top: 21px;
+		background: #facf57;
+		border-radius: 3px;
+		transform: rotate(-45deg);
+		transition: all 200ms ease;
+	}
+	
+	.search.active,
+	.search:hover {
+		width: 200px;
+		margin-right: 0px;}
+		
+		.search:hover:after {
+			height: 0px;	
+		}
+
+	
+	.search input {
+		width: 100%;
+		border: none;
+		box-sizing: border-box;
+		font-family: Helvetica;
+		font-size: 15px;
+    color: white;
+    opacity:0.7;
+		background: transparent;
+		outline-width: 0px;
+	}

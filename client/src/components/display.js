@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter} from 'react-router-dom';
 import Ad from "./ad.js";
 import axios from "axios";
 
 
-export default class Display extends Component {
+class Display extends Component {
   //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
   state = {
     page:0,
@@ -14,6 +15,7 @@ export default class Display extends Component {
 
   componentDidMount () {
     this.setState({data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed)});
+    this.setState({searchedfor : this.props.search})
     this.setState({numberAds : this.getNumberAds(this.props.search)});
   }
 
@@ -44,7 +46,11 @@ export default class Display extends Component {
   };
 
   render () {
-      console.log(this.props)
+      if (this.props.search != this.state.searchedfor){
+        this.setState({data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed)});
+        this.setState({searchedfor : this.props.search})
+        console.log("researching", search)
+      }
       let pagination = [];
       for (let i = 0; i<this.state.numberAds / this.state.adsDisplayed; i++){
         pagination.push(i)
@@ -72,3 +78,6 @@ export default class Display extends Component {
     }
    }
 }
+
+
+export default withRouter(Display);

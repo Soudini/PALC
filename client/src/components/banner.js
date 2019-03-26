@@ -7,7 +7,8 @@ import "./banner.css";
 import { loadReCaptcha } from 'recaptcha-v3-react';
 import logopalc from "../files/logopalc.png";
 import logopalccontour from "../files/logopalccontour.png";
-
+import $ from 'jquery';
+window.$ = $;
 
 let date = new Date();
 const cookies = new Cookies();
@@ -25,6 +26,15 @@ class Banner extends Component {
       console.log('ReCaptcha loaded', id);
     });
     this.killReCaptchaBadge(); // hide the reCaptcha badge (it means that we have to state that we are using it btw)
+
+    $("#inpt_search").on('focus', function () {
+      $(this).parent('label').addClass('active');
+    });
+
+    $("#inpt_search").on('blur', function () {
+      if ($(this).val().length == 0)
+        $(this).parent('label').removeClass('active');
+    });
 
   }
 
@@ -55,7 +65,7 @@ class Banner extends Component {
         this.props.history.push("/");
       }
       else {
-        this.props.history.push("/searchEngine/" + this.state.search);
+        this.handlePageChange("searchEngine/" + this.state.search)
       }
     }
 
@@ -100,12 +110,19 @@ class Banner extends Component {
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
             </li>
           </ul>
-          <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
+          {/* <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
           <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}>
-            <i class="fa fa-search"></i>{/* <strong>Chercher une annonce</strong> */}
-          </button>
+            <i class="fa fa-search"></i>{/* <strong>Chercher une annonce</strong>
+          </button> */}
+          <div className="cntr">
+            <div className="cntr-innr">
+              <label className="search" for="inpt_search"  >
+                <input id="inpt_search" type="text" onKeyPress={this.handleKeyPress} aria-label="Search" onChange={this.handleSearchText} onSubmit={() => this.handlePageChange("searchEngine/" + this.state.search)} />
+              </label>
+            </div>
+          </div>
         </div>
-      </nav>
+      </nav >
     )
   }
 
