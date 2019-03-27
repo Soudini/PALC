@@ -49,8 +49,8 @@ export class Page extends Component { // full page view of the ad with the id wr
 
 
     if (this.state.data && this.state.show_button) { // if we have some data and have to show the button
-      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete} style={{ "border-radius": "50px", "padding": "10px" }}><i class="fa fa-trash" style={{ "color": "white" }}></i>Supprimer</button>;
-      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem", "border-radius": "50px" }} onClick={this.handleUpdate}><i class='far fa-edit' style={{ "color": "white" }}></i>Modifier</button>;
+      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete} style={{ "border-radius": "50px", "padding": "10px" }}><i class="fa fa-trash" style={{ "color": "white", "padding": "2px" }}></i>Supprimer</button>;
+      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem", "border-radius": "50px" }} onClick={this.handleUpdate}><i class='fa fa-edit' style={{ "color": "white", "padding": "2px" }}></i>Modifier</button>;
 
     }
 
@@ -100,7 +100,7 @@ export class Page extends Component { // full page view of the ad with the id wr
                 <h5 className="text-center">{"Cette annonce a été créée par " + this.state.data.author}</h5>
                 <p className="card-text text-center" id="description">{this.state.data.description}</p>
                 <div className="row">
-                  <a className="col text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary col"  >LinkCS </button></a>
+                  <a className="col text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary col"  ><i class='fa fa-user' style={{ "color": "white", "padding": "2px" }}></i>LinkCS </button></a>
                   {buttonUpdate}
                   {buttonDelete}
                 </div>
