@@ -5,20 +5,21 @@ const logger = require("morgan");
 const Data = require("./data");
 const fs = require("fs");
 const axios = require("axios");
-const API_PORT = 3001;
+
 const app = express();
 const router = express.Router();
 const request = require("request");
 const crypto = require("crypto-js");
-
+var configFile = require('./secrets.json'); //import configuration file with secrets
+const API_PORT = configFile.API_PORT ;//3001;
 
 mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser({limit: '10mb'}));
 // this is our MongoDB database
 const dbRoute = "mongodb://localhost/ads";
-let keyEncrypt = "1sd'o-tevtb!";
-let reCaptchaKey =  "6LcpTZAUAAAAAHx6KlhmNV7PjWFBENNzpOVjCe3V";
+let keyEncrypt = configFile.keyEncrypt ;//"1sd'o-tevtb!";
+let reCaptchaKey =  configFile.captcha.reCaptchaKey ;//"6LcpTZAUAAAAAHx6KlhmNV7PjWFBENNzpOVjCe3V";
 let admin = ["2018louysa"];
 let ban = [];
 
@@ -60,8 +61,8 @@ router.post("/getUserInfo", (req, res) => {
       grant_type : "authorization_code",
       code : code,
       redirect_uri : "http://palc.viarezo.fr/oauthend",
-      client_id : "279c525e5961df88feb2b6053f210f7537265270",
-      client_secret : "f9e8e9c0a1a1eb060601e491286613f33f76ae73"
+      client_id : configFile.oauth.client_id, //"279c525e5961df88feb2b6053f210f7537265270",
+      client_secret : configFile.oauth.client_secret //"f9e8e9c0a1a1eb060601e491286613f33f76ae73"
     }
 
     const config = {
@@ -182,7 +183,7 @@ router.post("/deleteData", (req, res) => {
   }
 });
 
-// this is our create methid
+// this is our create method
 // this method adds new data in our database
 router.post("/putData", (req, res) => {
   let data = new Data();
