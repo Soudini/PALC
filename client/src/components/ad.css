@@ -111,7 +111,8 @@ button{
 } */
 .btn-info{
   background-color: #d56679 !important;
-  opacity:0.7 !important;
+  border-color: #d56679 !important;
+  opacity: 0.8 !important;
 }
 
 .col-lg-8{
