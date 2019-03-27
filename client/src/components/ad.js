@@ -89,7 +89,7 @@ export class Page extends Component { // full page view of the ad with the id wr
 
       return (
         <div className="text-center">
-          <div className="col-lg-8 col-md-offset-2">
+          <div className="col-lg-8">
             <div className="jumbotron fluid">
               <div className="container-fondus">
                 <h1 className="text-center">{this.state.data.title}</h1>
