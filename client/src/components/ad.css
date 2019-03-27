@@ -89,7 +89,11 @@ button{
   padding: 6px;
 }
 
-.btn-secondary{
+.btn{
+  width:35%;
+  padding:5%;
+}
+/* .btn-secondary{
   background-color: #ecc455 !important;
   border-color: #ecc455 !important;
   border-radius: 50px;
@@ -100,17 +104,11 @@ button{
   padding: 5px;
   filter: brightness(0) invert(1);
 
-}
+} */
 
 /* button:hover .grey-img{
   filter:white;
 } */
-
-button:hover{
-  background-color:#bd0f2d !important;
-  border-color: #bd0f2d !important;
-  opacity:0.8;
-}
 
 .col-lg-8{
   margin:auto;
