@@ -49,8 +49,8 @@ export class Page extends Component { // full page view of the ad with the id wr
 
 
     if (this.state.data && this.state.show_button) { // if we have some data and have to show the button
-      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete}>Supprimer l'annonce </button>;
-      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem" }} onClick={this.handleUpdate}>Modifier l'annonce</button>;
+      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete} style="border-radius:50px; padding:10px;"><i class="fa fa-trash" style="color:white"></i>Supprimer</button>;
+      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem" }} onClick={this.handleUpdate}><i class='far fa-edit' style="color:white"></i>Modifier</button>;
 
     }
 
