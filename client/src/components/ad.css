@@ -74,26 +74,31 @@
   padding-left:20%;
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 767px) {
   .container-cancer{
     padding-right:0%;
     padding-left:0%;
   }
 }
+
 .col-sm-6{
   color:#e0860b;
 }
 
 button{
   padding: 5px;
-  background-color: #fad05a;
+}
+.btn-secondary{
+  background-color: #fad05a !important;
+  border-color: #fad05a !important;
   border-radius: 50px;
 }
 
 .grey-img{
   width: 20%;
   padding: 5px;
-  background-color:white;
+  filter: brightness(0) invert(1);
+
 }
 
 /* button:hover .grey-img{
