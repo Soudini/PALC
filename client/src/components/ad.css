@@ -92,9 +92,10 @@ button{
   width: 20%;
   padding: 5px;
 }
-button:hover{
-  background-color:#bd0f2d;
-}
+
 button:hover .grey-img{
-  filter:grayscale(1);
+  filter:white;
+}
+button:hover{
+  background-color:#bd0f2d !important;
 }
