@@ -4,6 +4,7 @@ import axios from "axios";
 import "./ad.css";
 import Cookies from 'universal-cookie';
 import image from "../files/defaultphoto.png"
+import logolinkcs from "../files/Linkcs.png"
 
 let cookies = new Cookies(); //initialize cookies
 
@@ -99,7 +100,7 @@ export class Page extends Component { // full page view of the ad with the id wr
                 <h5>{"Cette annonce a été créée par " + this.state.data.author}</h5>
                 <p className="card-text">{this.state.data.description}</p>
                 <div className="row">
-                  <a className="col" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary w-100 h-100"  > LinkCS </button></a>
+                  <a className="col text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary w-50 h-100"  ><img src={logolinkcs} class="img-fluid" alt="Responsive image" /> LinkCS </button></a>
                   {buttonUpdate}
                   {buttonDelete}
                 </div>
