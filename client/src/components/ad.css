@@ -98,6 +98,7 @@ button{
 }
 
 .grey-img{
+  width:20%;
   padding: 5px;
   filter: brightness(0) invert(1);
 
