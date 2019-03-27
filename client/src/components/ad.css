@@ -89,7 +89,7 @@ button{
   padding: 6px;
 }
 
-#btn-linkcs{
+.btn-secondary{
   background-color: #ecc455 !important;
   border-color: #ecc455 !important;
   border-radius: 50px;
