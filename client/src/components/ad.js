@@ -88,23 +88,21 @@ export class Page extends Component { // full page view of the ad with the id wr
       }
 
       return (
-        <div className="text-center">
-          <div className="col-lg-8">
-            <div className="jumbotron fluid">
-              <div className="container-fondus">
-                <h1 className="text-center">{this.state.data.title}</h1>
-              </div>
-              <br />
-              <div className="row align-items-center">
-                {carousel}
-                <div className="col-sm-6 ">
-                  <h5>{"Cette annonce a été créée par " + this.state.data.author}</h5>
-                  <p className="card-text" id="description">{this.state.data.description}</p>
-                  <div className="row">
-                    <a className="col text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary w-50 h-100"  ><img src={logolinkcs} class="grey-img img-fluid" alt="Responsive image" /> LinkCS </button></a>
-                    {buttonUpdate}
-                    {buttonDelete}
-                  </div>
+        <div className="col-lg-8">
+          <div className="jumbotron fluid">
+            <div className="container-fondus">
+              <h1 className="text-center">{this.state.data.title}</h1>
+            </div>
+            <br />
+            <div className="row align-items-center">
+              {carousel}
+              <div className="col-sm-6 ">
+                <h5>{"Cette annonce a été créée par " + this.state.data.author}</h5>
+                <p className="card-text" id="description">{this.state.data.description}</p>
+                <div className="row">
+                  <a className="col text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary w-50 h-100"  ><img src={logolinkcs} class="grey-img img-fluid" alt="Responsive image" /> LinkCS </button></a>
+                  {buttonUpdate}
+                  {buttonDelete}
                 </div>
               </div>
             </div>
