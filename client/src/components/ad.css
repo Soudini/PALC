@@ -116,7 +116,7 @@ button:hover{
   margin:auto;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 767px) {
   .container-cancer{
     padding-right:0%;
     padding-left:0%;
