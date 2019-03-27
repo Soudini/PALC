@@ -266,10 +266,10 @@ class CreatePost extends Component { //parent component
                          <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
                          <div className="carousel-inner" >
                            <div className="carousel-item active">
-                           <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={image[0]} alt="Second slide"/></div></div>
+                           <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={this.state.thumbnail} alt="Second slide"/></div></div>
 
                            </div>
-                           {image.slice(1).map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
+                           {image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
                              <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={img} alt="Second slide"/></div></div>
                            </div>)}
                          </div>
