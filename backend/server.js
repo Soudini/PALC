@@ -11,15 +11,15 @@ const router = express.Router();
 const request = require("request");
 const crypto = require("crypto-js");
 var configFile = require('./secrets.json'); //import configuration file with secrets
-const API_PORT = configFile.API_PORT ;//3001;
+const API_PORT = configFile.API_PORT ;
 
 mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser({limit: '10mb'}));
 // this is our MongoDB database
 const dbRoute = "mongodb://localhost/ads";
-let keyEncrypt = configFile.keyEncrypt ;//"1sd'o-tevtb!";
-let reCaptchaKey =  configFile.captcha.reCaptchaKey ;//"6LcpTZAUAAAAAHx6KlhmNV7PjWFBENNzpOVjCe3V";
+let keyEncrypt = configFile.keyEncrypt ;
+let reCaptchaKey =  configFile.captcha.reCaptchaKey ;
 let admin = ["2018louysa"];
 let ban = [];
 
@@ -61,8 +61,8 @@ router.post("/getUserInfo", (req, res) => {
       grant_type : "authorization_code",
       code : code,
       redirect_uri : "http://palc.viarezo.fr/oauthend",
-      client_id : configFile.oauth.client_id, //"279c525e5961df88feb2b6053f210f7537265270",
-      client_secret : configFile.oauth.client_secret //"f9e8e9c0a1a1eb060601e491286613f33f76ae73"
+      client_id : configFile.oauth.client_id, 
+      client_secret : configFile.oauth.client_secret
     }
 
     const config = {
