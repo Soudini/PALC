@@ -100,7 +100,7 @@ export class Page extends Component { // full page view of the ad with the id wr
                 <h5 className="text-center">{"Cette annonce a été créée par " + this.state.data.author}</h5>
                 <p className="card-text text-center" id="description">{this.state.data.description}</p>
                 <div className="row">
-                  <a className="col text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-primary col" style={{ "background-color": "#ecc455 !important", "border-color": "#ecc455 !important", "border-radius": "50px" }}  ><i class='fa fa-user' style={{ "color": "white", "padding": "2px" }}></i>LinkCS </button></a>
+                  <a className="text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-info col" style={{ "background-color": "#ecc455 !important", "border-color": "#ecc455 !important", "border-radius": "50px" }}  ><i class='fa fa-user' style={{ "color": "white", "padding": "2px" }}></i>LinkCS </button></a>
                   {buttonUpdate}
                   {buttonDelete}
                 </div>
