@@ -89,7 +89,7 @@ export class Page extends Component { // full page view of the ad with the id wr
 
       return (
         <div className="text-center">
-          <div className="col-lg-8 text-center">
+          <div className="col-lg-8 col-md-offset-2">
             <div className="jumbotron fluid">
               <div className="container-fondus">
                 <h1 className="text-center">{this.state.data.title}</h1>
@@ -97,7 +97,7 @@ export class Page extends Component { // full page view of the ad with the id wr
               <br />
               <div className="row align-items-center">
                 {carousel}
-                <div className="col-sm-6 col-md-offset-3">
+                <div className="col-sm-6 ">
                   <h5>{"Cette annonce a été créée par " + this.state.data.author}</h5>
                   <p className="card-text" id="description">{this.state.data.description}</p>
                   <div className="row">
