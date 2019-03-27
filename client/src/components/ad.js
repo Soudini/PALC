@@ -90,10 +90,9 @@ export class Page extends Component { // full page view of the ad with the id wr
       return (
         <div className="col-lg-8">
           <div className="jumbotron fluid">
-            <div>
+            <div >
               <h1 className="text-center" id="titre_cancer">{this.state.data.title}</h1>
             </div>
-            <br />
             <div className="row align-items-center">
               {carousel}
               <div className="col-sm-6 text-center ">

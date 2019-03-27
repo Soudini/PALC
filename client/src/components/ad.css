@@ -109,6 +109,9 @@ button{
 /* button:hover .grey-img{
   filter:white;
 } */
+#titre_cancer{
+  margin-bottom:10px;
+}
 
 .col-lg-8{
   margin:auto;
@@ -127,6 +130,7 @@ button{
    
   #titre_cancer{
     font-size:2rem;
+    margin:auto;
   }
 }
 
