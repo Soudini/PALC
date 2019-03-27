@@ -92,7 +92,9 @@ export class Page extends Component { // full page view of the ad with the id wr
           <div className="jumbotron fluid">
 
             <div className="row align-items-center">
-              <h1 className="text-center" id="titre_cancer">{this.state.data.title}</h1>
+              <div>
+                <h1 className="text-center" id="titre_cancer">{this.state.data.title}</h1>
+              </div>
               <br />
               <br />
               {carousel}
