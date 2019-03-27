@@ -77,6 +77,11 @@
 
 .col-sm-6{
   color:#e0860b;
+  padding: 5px;
+}
+
+#description{
+  padding:5px;
 }
 
 button{
