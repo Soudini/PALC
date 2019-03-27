@@ -77,7 +77,8 @@
 
 .col-sm-6{
   color:#e0860b;
-  padding: 5px;
+  padding: 7px;
+  padding-top:10px;
 }
 
 #description{
@@ -85,7 +86,7 @@
 }
 
 button{
-  padding: 5px;
+  padding: 6px;
 }
 .btn-secondary{
   background-color: #ecc455 !important;
