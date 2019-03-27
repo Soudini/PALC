@@ -114,7 +114,12 @@ button{
   border-color: #d56679 !important;
   opacity: 0.8 !important;
 }
+.btn-info:hover{
+  background-color: #b94d5f !important;
+  border-color: #b94d5f !important;
+  opacity: 0.9 !important;
 
+}
 .col-lg-8{
   margin:auto;
 }
