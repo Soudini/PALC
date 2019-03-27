@@ -49,8 +49,8 @@ export class Page extends Component { // full page view of the ad with the id wr
 
 
     if (this.state.data && this.state.show_button) { // if we have some data and have to show the button
-      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete} style={{ "border-radius": "50px", "padding": "10px" }}><i class="fa fa-trash" style={{ "color": "white", "padding": "2px" }}></i>Supprimer</button>;
-      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem", "border-radius": "50px" }} onClick={this.handleUpdate}><i class='fa fa-edit' style={{ "color": "white", "padding": "2px" }}></i>Modifier</button>;
+      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete} style={{ "border-radius": "50px", "padding": "10px" }}><i class="fa fa-trash" style={{ "color": "white", "margin-right": "4px" }}></i>Supprimer</button>;
+      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem", "border-radius": "50px", "padding": "10px" }} onClick={this.handleUpdate}><i class='fa fa-edit' style={{ "color": "white", "margin-right": "4px" }}></i>Modifier</button>;
 
     }
 
@@ -99,7 +99,7 @@ export class Page extends Component { // full page view of the ad with the id wr
               <div className="col-sm-6 text-center ">
                 <h5 className="text-center">{"Cette annonce a été créée par " + this.state.data.author}</h5>
                 <p className="card-text text-center" id="description">{this.state.data.description}</p>
-                <a className="text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-info col" style={{ "background-color": "#ecc455 !important", "border-color": "#ecc455 !important", "border-radius": "50px" }}  ><i class='fa fa-user' style={{ "color": "white", "padding": "2px" }}></i>LinkCS </button></a>
+                <a className="text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-info col" style={{ "border-radius": "50px", "padding": "10px" }}  ><i class='fa fa-user' style={{ "color": "white", "margin-right": "2px" }}></i>LinkCS </button></a>
                 {buttonUpdate}
                 {buttonDelete}
               </div>
