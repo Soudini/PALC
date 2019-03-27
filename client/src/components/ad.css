@@ -124,5 +124,9 @@ button{
     width:45%;
     margin:5%;
   }
+   
+  #titre_cancer{
+    font-size:2rem;
+  }
 }
 
