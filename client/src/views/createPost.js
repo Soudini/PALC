@@ -198,43 +198,12 @@ class CreatePost extends Component { //parent component
       alert("Le nombre d'image est limité à 5")
     }
     else {
-      for (let i = 0; i<event.target.files.length; i++) {
-        var reader = new FileReader();
-        let file = event.target.files[i];
-        reader.onloadend = (e) => {
-
-            var img = new Image();
-            img.src = e.target.result;
-            img.onload = () => {
-              var canvas = document.createElement("canvas");
-              var ctx = canvas.getContext("2d");
-              ctx.drawImage(img, 0, 0);
-              var MAX_WIDTH = 400;
-              var MAX_HEIGHT = 400;
-              var width = img.width;
-              var height = img.height;
-              if (width > height) {
-                  if (width > MAX_WIDTH) {
-                      height *= MAX_WIDTH / width;
-                      width = MAX_WIDTH;
-                  }
-              } else {
-                  if (height > MAX_HEIGHT) {
-                      width *= MAX_HEIGHT / height;
-                      height = MAX_HEIGHT;
-                  }
-              }
-              canvas.width = width;
-              canvas.height = height;
-              ctx = canvas.getContext("2d");
-              ctx.drawImage(img, 0, 0, width, height);
-              let dataurl = canvas.toDataURL("image/jpeg", 0.6); // test with image in png instead of jpeg
-              const image = this.state.image.slice();
-              image.push(dataurl);
-              this.setState({image: image})}
-            }
-        reader.readAsDataURL(file);
-        }
+      getBase64(event.target.files[0]).then(data => this.setState({thumbnail:data}));
+      let list_files = [];
+      for (let i=1; i<event.target.files.length; i++){
+        list_files.push(event.target.files[i])
+      }
+     Promise.all(list_files.map( (file) => getBase64(file))).then( data => this.setState({image:data}));
     }
   }
 
@@ -279,28 +248,9 @@ class CreatePost extends Component { //parent component
 
   verifyCallbackCaptcha = (token) => { // get token from captcha
     this.setState({reCaptchaToken : token});
-  };
+  }
 
   render () {
-      let {thumbnail} = this.state;
-
-      //if no thumbnail ask for one else display it and offer to delete it
-      let $thumbnailPreview = <div className="form-group col-6">
-                                <div className="row justify-content-center">
-                                  <label>Ajoutez une image de l'objet</label>
-                                  <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleThumbnail} />
-                                </div>
-                              </div>;
-      if (thumbnail) {
-        $thumbnailPreview = <div className="col-sm container-fluid">
-                              <div className="row justify-content-center">
-                                <img className="img-fluid img-thumbnail row" src={thumbnail} style={{"height" : "200px"}} />
-                              </div>
-                              <div className="row justify-content-center">
-                                <button type="button" className="btn btn-danger" style={{"marginTop": "1rem","marginBottom": "1rem"}} onClick={this.deleteThumbnail}>Supprimer cette image</button>
-                              </div>
-                            </div>;
-      }
       let {image} = this.state;
       //if no images ask for one else display it/them and offer to delete it/them
 
@@ -316,10 +266,10 @@ class CreatePost extends Component { //parent component
                          <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
                          <div className="carousel-inner" >
                            <div className="carousel-item active">
-                           <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={image[0]} alt="Second slide"/></div></div>
+                           <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={this.state.thumbnail} alt="Second slide"/></div></div>
 
                            </div>
-                           {image.slice(1).map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
+                           {image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
                              <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={img} alt="Second slide"/></div></div>
                            </div>)}
                          </div>
@@ -355,7 +305,7 @@ class CreatePost extends Component { //parent component
                 <br/>
                 {description}
               <div className="row justify-content-center d-flex">
-                {$thumbnailPreview}
+
                 {$imagePreview}
 
               </div>
