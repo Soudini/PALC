@@ -119,8 +119,10 @@ button{
     padding-right:0%;
     padding-left:0%;
   }
-  .grey-img{
-    width:30%;
+  
+  .btn{
+    width:45%;
+    margin:5%;
   }
 }
 
