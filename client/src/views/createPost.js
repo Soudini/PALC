@@ -200,7 +200,7 @@ class CreatePost extends Component { //parent component
     else {
       getBase64(event.target.files[0]).then(data => this.setState({thumbnail:data}));
       let list_files = [];
-      for (let i=1; i<event.tartget.files.length; i++){
+      for (let i=1; i<event.target.files.length; i++){
         list_files.push(event.target.files[i])
       }
      list_files.slice(1).map( (file) => getBase64(file)).then( data => this.setState({image:data}));
