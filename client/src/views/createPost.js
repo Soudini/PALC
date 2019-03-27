@@ -203,7 +203,7 @@ class CreatePost extends Component { //parent component
       for (let i=1; i<event.target.files.length; i++){
         list_files.push(event.target.files[i])
       }
-     await Promise.all(list_files.map( (file) => getBase64(file))).then( data => this.setState({image:data}));
+     Promise.all(list_files.map( (file) => getBase64(file))).then( data => this.setState({image:data}));
     }
   }
 
