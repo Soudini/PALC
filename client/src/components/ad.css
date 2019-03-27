@@ -109,6 +109,11 @@ button{
 /* button:hover .grey-img{
   filter:white;
 } */
+.btn-info{
+  background-color: #d56679 !important;
+  opacity:0.7 !important;
+}
+
 .col-lg-8{
   margin:auto;
 }
