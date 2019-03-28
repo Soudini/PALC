@@ -139,5 +139,9 @@ button{
     font-size:2rem;
     margin:auto;
   }
+  .jumbotron{
+    margin-left:1% !important;
+    margin-right:1% !important;
+  }
 }
 
