@@ -141,7 +141,7 @@ button{
   }
   .col-lg-8{
     margin-left:-10% !important;
-    margin-right:-10% !important;
+    text-align: center;
   }
 }
 
