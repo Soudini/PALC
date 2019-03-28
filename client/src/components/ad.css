@@ -93,22 +93,7 @@ button{
   width:35%;
   margin:5%;
 }
-/* .btn-secondary{
-  background-color: #ecc455 !important;
-  border-color: #ecc455 !important;
-  border-radius: 50px;
-  opacity:0.8;
-}
 
-.grey-img{
-  padding: 5px;
-  filter: brightness(0) invert(1);
-
-} */
-
-/* button:hover .grey-img{
-  filter:white;
-} */
 .btn-info{
   background-color: #d56679 !important;
   border-color: #d56679 !important;
