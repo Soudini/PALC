@@ -4,7 +4,6 @@ import axios from "axios";
 import "./ad.css";
 import Cookies from 'universal-cookie';
 import image from "../files/defaultphoto.png"
-import logolinkcs from "../files/Linkcs.png"
 
 let cookies = new Cookies(); //initialize cookies
 
