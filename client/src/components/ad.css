@@ -144,6 +144,8 @@ button{
     margin-right:0px !important;
     margin:0px !important;
     padding:0px !important;
+    padding-left:-2%;
+    padding-right:-2%;
   }
 }
 
