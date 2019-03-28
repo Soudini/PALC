@@ -139,7 +139,7 @@ button{
     font-size:2rem;
     margin:auto;
   }
-  .jumbotron{
+  .col-lg-8{
     margin-left:1% !important;
     margin-right:1% !important;
   }
