@@ -45,15 +45,24 @@ export class Page extends Component { // full page view of the ad with the id wr
     let buttonDelete = null;
     let buttonUpdate = null;
 
+
+
     if (this.state.data && this.state.show_button) { // if we have some data and have to show the button
-      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete}>Supprimer l'annonce </button>;
-      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem" }} onClick={this.handleUpdate}>Modifier l'annonce</button>;
+      buttonDelete = <button className="btn btn-danger col" onClick={this.handleDelete} style={{ "border-radius": "50px", "padding": "10px" }}><i class="fa fa-trash" style={{ "color": "white", "margin-right": "4px" }}></i>Delete</button>;
+      buttonUpdate = <button className="btn btn-primary col" style={{ "marginRight": "1rem", "marginLeft": "1rem", "border-radius": "50px", "padding": "10px" }} onClick={this.handleUpdate}><i class='fa fa-edit' style={{ "color": "white", "margin-right": "4px" }}></i>Edit</button>;
 
     }
 
     if (this.state.data) { //if we have data
 
       let carousel = null;
+
+      if (this.state.data.thumbnail === "") {
+        this.state.data.thumbnail = image
+      }
+      if (this.state.data.thumbnail === null) {
+        this.state.data.thumbnail = image
+      }
 
       if ((this.state.data.thumbnail != null & this.state.data.thumbnail != "") | this.state.data.image.length) { //if there is a thumbnail or images to show create the carousel
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
@@ -78,24 +87,23 @@ export class Page extends Component { // full page view of the ad with the id wr
       }
 
       return (
-        <div className="jumbotron fluid">
-          <div className="container">
-            <h1 className="display-4">{this.state.data.title}</h1>
-          </div>
-          <br />
-          <div className="row align-items-center">
-            {carousel}
-            <div className="col-sm-6">
-              <h5>{"Cette annonce a été créée par " + this.state.data.author}</h5>
-              <p>{this.state.data.description}</p>
-              <div className="row">
-                <a className="col" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-secondary w-100 h-100"  > LinkCS </button></a>
+        <div className="col-lg-8">
+          <div className="jumbotron fluid">
+            <div>
+              <h1 className="text-center" id="titre_cancer">{this.state.data.title}</h1>
+            </div>
+            <br />
+            <div className="row align-items-center">
+              {carousel}
+              <div className="col-sm-6 text-center ">
+                <h5 className="text-center">{"Cette annonce a été créée par " + this.state.data.author}</h5>
+                <p className="card-text text-center" id="description">{this.state.data.description}</p>
+                <a className="text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-info col" style={{ "border-radius": "50px", "padding": "10px" }}  ><i class='fa fa-user' style={{ "color": "white", "margin-right": "2px" }}></i>LinkCS </button></a>
                 {buttonUpdate}
                 {buttonDelete}
               </div>
             </div>
           </div>
-
         </div>)
     }
     else { return (<div />) }

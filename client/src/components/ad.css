@@ -68,3 +68,65 @@
   box-shadow:0 0px 8px 0 rgba(88, 53, 4, 0.5), 0 0px 20px 0 rgba(88, 53, 4, 0.5);
 
 }
+
+.container-cancer{
+  padding-right: 20%;
+  padding-left:20%;
+}
+
+
+.col-sm-6{
+  color:#e0860b;
+  padding: 7px;
+  padding-top:10px;
+}
+
+#description{
+  padding:5px;
+}
+
+button{
+  padding: 6px;
+}
+
+.btn{
+  width:35%;
+  margin:5%;
+}
+
+.btn-info{
+  background-color: #d56679 !important;
+  border-color: #d56679 !important;
+  opacity: 0.8 !important;
+}
+.btn-info:hover{
+  background-color: #b94d5f !important;
+  border-color: #b94d5f !important;
+  opacity: 0.9 !important;
+
+}
+.col-lg-8{
+  margin:auto;
+}
+
+@media screen and (max-width: 767px) {
+  .container-cancer{
+    padding-right:0%;
+    padding-left:0%;
+  }
+  
+  .btn{
+    width:45%;
+    margin:5%;
+  }
+   
+  #titre_cancer{
+    font-size:2rem;
+    margin:auto;
+  }
+  .container-fluid{
+    margin:0px !important;
+    padding:0px !important;
+  }
+}
+
