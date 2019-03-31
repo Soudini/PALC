@@ -4,7 +4,19 @@ import Cookies from 'universal-cookie';
 import "./updatePost.css"
 const cookies = new Cookies();
 
+
+
 //--------------idem as createPost.js----------------
+
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {console.log(reader.result);resolve(reader.result);};
+    reader.onerror = error => reject(error);
+  });
+}
+
 class PostType extends Component {
   constructor(props){
     super(props)
