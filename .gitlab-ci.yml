@@ -19,6 +19,5 @@ pull:
     - >
       ssh -tt ubuntu@palc.viarezo.fr
       "cd /home/ubuntu/objets-trouves &&
-      git checkout $CI_COMMIT_REF_NAME &
-      git pull &&
-      git checkout $CI_COMMIT_REF_NAME"
+      git checkout $CI_COMMIT_REF_NAME &&
+      git pull"
