@@ -21,8 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
- 
-#Secret should not be on the git repo
 
+# config files
 backend/secrets.json
 client/config.json
