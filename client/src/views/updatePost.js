@@ -142,7 +142,6 @@ class CreatePost extends Component {
     this.handleImage = this.handleImage.bind(this);
 
     this.searchDataFromDb = this.searchDataFromDb.bind(this);
-    this.handleThumbnail = this.handleThumbnail.bind(this);
   }
 
 
