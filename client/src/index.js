@@ -10,11 +10,11 @@ import PropTypes from 'prop-types';
 import Loader from 'react-loader-bubble';
 
 const Demo = ({ loading }) => (
-  <Container>
-    <Content>PALC</Content>
+  <div>
+    <p>PALC</p>
 
     <Loader loading={loading} />
-  </Container>
+  </div>
 )
 
 ReactDOM.render(<Demo loading={true} />, document.getElementById('container'))
