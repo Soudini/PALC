@@ -82,5 +82,5 @@
 
 .navbar-brand{
 	cursor: pointer;
-	color:white;
+  color:white !important;
 }
