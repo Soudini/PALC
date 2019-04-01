@@ -79,3 +79,8 @@
 		background: transparent;
 		outline-width: 0px;
 	}
+
+.nav-brand{
+	cursor: pointer;
+	color:white;
+}
