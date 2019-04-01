@@ -6,18 +6,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import Loader from 'react-loader-bubble';
-
-const Demo = ({ loading }) => (
-  <div>
-    <p>PALC</p>
-
-    <Loader loading={loading} />
-  </div>
-)
-
-ReactDOM.render(<Demo loading={true} />, document.getElementById('container'))
 
 ReactDOM.render((
   <BrowserRouter>
