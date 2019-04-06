@@ -32,8 +32,7 @@ cookies.set("state", random)
 
 
 const Main = () => (
-  <div className="col-lg-12">
-    <div className="container-fluid">
+    <div>
       <Switch>
         <Route exact path='/all' component={All} />
         <Route exact path='/createPost' component={CreatePost} />
@@ -47,7 +46,6 @@ const Main = () => (
         <Route exact path='/updatePost/:id' component={UpdatePost} />
         <Route exact path="/" component={Home} />
       </Switch>
-    </div>
   </div>
 )
 
