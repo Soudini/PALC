@@ -27,7 +27,7 @@ button, select, label {
 }
 
 button, input, select, textarea, label {
-  color: #5A5A5A;
+  color: rgb(100, 57, 0);
   font: inherit;
   margin: 0;
 }
@@ -62,7 +62,7 @@ h2 {
 }
 
 .underline {
-  border-bottom: solid 2px #474544;
+  border-bottom: solid 2px #e0860b;
   margin: -0.512em auto;
   width: 80px;
 }
@@ -70,8 +70,8 @@ h2 {
 input[type='text'], [type='email'], [type='file'], select, textarea {
 	background: none;
   border: none;
-	border-bottom: solid 2px #474544;
-	color: #474544;
+	border-bottom: solid 2px rgb(100, 57, 0);
+	color: rgb(100, 57, 0);
 	font-size: 1.000em;
   font-weight: 400;
   letter-spacing: 1px;
@@ -122,29 +122,29 @@ textarea {
 }
 
 ::-webkit-input-placeholder {
-	color: #474544;
+	color: rgb(100, 57, 0);
 }
 
 :-moz-placeholder { 
-	color: #474544;
+	color: rgb(100, 57, 0);
 	opacity: 1;
 }
 
 ::-moz-placeholder {
-	color: #474544;
+	color: rgb(100, 57, 0);
 	opacity: 1;
 }
 
 :-ms-input-placeholder {
-	color: #474544;
+	color: rgb(100, 57, 0);
 }
 
 #form_button {
   border-radius:0.25rem;
   float:none;
   background: none;
-  border: solid 2px #474544;
-  color: #474544;
+  border: solid 2px rgb(100, 57, 0);
+  color: rgb(100, 57, 0);
   cursor: pointer;
   display: inline-block;
   font-family: 'Helvetica', Arial, sans-serif;
@@ -161,7 +161,7 @@ textarea {
 }
 
 #form_button:hover {
-  background: #474544;
+  background: rgb(100, 57, 0);
   color: #F2F3EB;
 }
 
@@ -213,8 +213,8 @@ textarea {
 
 .btn1 {
   background:inherit;
-  border: solid 2px #474544;
-  color: #474544;
+  border: solid 2px rgb(100, 57, 0);
+  color: rgb(100, 57, 0);
   cursor: pointer;
   display: inline-block;
   font-family: 'Helvetica', Arial, sans-serif;
