@@ -195,6 +195,7 @@ class CreatePost extends Component { //parent component
 
   deleteImage = (e) => { // delete images
     this.setState({image:[]});
+    this.setState({thumbnail:null});
   }
 
 
