@@ -222,8 +222,8 @@ class CreatePost extends Component { //parent component
     //if no images ask for one else display it/them and offer to delete it/them
 
     let $imagePreview = <div><div className="upload-btn-wrapper" style={{ "float": "left" }} >
-      <button className="btn1" style={{ "width": "100%" }}>Choisissez vos images</button>
-      <input type="file" name="myfile" class="inputfile" accept="image/*" onChange={this.handleImage} multiple />
+      <button className="btn1" style={{ "width": "100%" }}>Choisissez vos images
+      <input type="file" name="myfile" class="inputfile" accept="image/*" onChange={this.handleImage} multiple /></button>
       <label></label>
     </div></div>;
     if (image.length | this.state.thumbnail !== null) {
