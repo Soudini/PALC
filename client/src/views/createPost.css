@@ -70,6 +70,10 @@ h2 {
   width: 80px;
 }
 
+input {
+  cursor:pointer;
+}
+
 input[type='text'], [type='email'], [type='file'], select, textarea {
 	background: none;
   border: none;
