@@ -28,7 +28,7 @@ class PostType extends Component { // selctor for the post type
   subFields() { // if the post type is search display the possible rewards
     if (this.state.type === "search") {
       return (<div>
-        <select className="form-control" name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
+        <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
           <option disabled hidden selected>Choisissez votre récompense</option>
           <option>Palc</option>
           <option>Calin &lt;3</option>
@@ -256,7 +256,7 @@ class CreatePost extends Component { //parent component
           verifyCallback={this.verifyCallbackCaptcha}
         />
         <div id="container">
-          <h1>&bull; Créer une annonce&bull;</h1>
+          <h2>&bull; Créer une annonce&bull;</h2>
           <div className="underline">
           </div>
           <form id="contact_form" >
