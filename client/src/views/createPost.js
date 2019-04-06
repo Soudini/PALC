@@ -27,13 +27,13 @@ class PostType extends Component { // selctor for the post type
 
   subFields() { // if the post type is search display the possible rewards
     if (this.state.type === "search") {
-      return (
+      return (<div>
         <select className="form-control" name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
           <option disabled hidden selected>Choisissez votre récompense</option>
           <option>Palc</option>
           <option>Calin &lt;3</option>
           <option>Rien :( </option>
-        </select>);
+        </select></div>);
     }
     else {
       return (null);
@@ -213,11 +213,11 @@ class CreatePost extends Component { //parent component
     let { image } = this.state;
     //if no images ask for one else display it/them and offer to delete it/them
 
-    let $imagePreview = <div className="upload-btn-wrapper" style="margin-top:0%; padding:0%; text-align:center">
+    let $imagePreview = <div><div className="upload-btn-wrapper" style="margin-top:0%; padding:0%; text-align:center">
       <button className="btn">Choisissez vos images</button>
       <input type="file" name="myfile" class="inputfile" accept="image/*" onChange={this.handleImage} multiple />
       <label></label>
-    </div>;
+    </div></div>;
     if (image.length) {
       $imagePreview = <div className="col-sm">
 
