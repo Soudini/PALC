@@ -1,16 +1,12 @@
 .page-link{
-    color:rgb(100, 57, 0) !important;
-    border-radius: 50px;
+    color:white !important;
+    background-color:rgb(100, 57, 0) !important;
 }
 
 .page-item{
     color:rgb(100, 57, 0) !important;
     border-radius: 50px;
-}
-
-.page-item:active{
-    color:white !important;
-    background-color:rgb(100, 57, 0) !important;
+    padding:5px;
 }
 
 .li{
