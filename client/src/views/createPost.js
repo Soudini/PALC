@@ -121,7 +121,7 @@ class CreatePost extends Component { //parent component
       reward: "Palc",
       title: "",
       description: "",
-      thumbnail : "",
+      thumbnail : null,
       image: [],
       data: [],
       reCaptchaToken : null,
