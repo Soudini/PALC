@@ -93,7 +93,7 @@ input[type='text'], [type='email'], [type='file'], select, textarea {
 	transition: all 0.3s;
 }
 
-input[type='file']:hover{
+input[type='file']{
   cursor: pointer;
   width: 0px;
   height: 0px;
