@@ -7,6 +7,15 @@
   cursor : pointer;
 }
 
+input[type='file']{
+  opacity: 0;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  font-size: 0;
+  position: absolute;
+}
+
 
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
