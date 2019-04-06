@@ -90,14 +90,12 @@ input[type='text'], [type='email'], [type='file'], select, textarea {
 	-moz-transition: all 0.3s;
 	-ms-transition: all 0.3s;
 	-o-transition: all 0.3s;
-	transition: all 0.3s;
+  transition: all 0.3s;
+  
+  cursor: pointer;
 }
 
-input[type='file']{
-  cursor: pointer;
-  width: 0px;
-  height: 0px;
-}
+
 
 input[type='text']:focus, [type='email']:focus,[type='file']:focus, textarea:focus {
 	outline: none;
