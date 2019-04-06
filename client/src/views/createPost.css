@@ -93,11 +93,11 @@ input[type='text'], [type='email'], [type='file'], select, textarea {
   transition: all 0.3s;
 }
 
-input[type='text'], textarea {
+input[type='text']:hover, textarea:hover {
   cursor : text;
 }
 
-select {
+select:hover {
   cursor : pointer;
 }
 
