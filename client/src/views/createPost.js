@@ -274,7 +274,7 @@ class CreatePost extends Component { //parent component
 
             </div>
             <br />
-            <div className="submit" style={{ "margin-top": "-9%", "text-align": "right" }}>
+            <div className="submit" style={{"text-align": "center" }}>
               <input type="submit" value="Envoyer" onClick={(e) => this.handleSubmit(e)} id="form_button" />
             </div>
           </form>

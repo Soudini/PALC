@@ -140,6 +140,7 @@ textarea {
 }
 
 #form_button {
+  border-radius:0.25rem;
   float:none;
   background: none;
   border: solid 2px #474544;
