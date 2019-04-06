@@ -153,12 +153,14 @@ class CreatePost extends Component { //parent component
       alert("Le nombre d'image est limité à 5")
     }
     else {
-      getBase64(event.target.files[0]).then(data => this.setState({thumbnail:data}));
-      let list_files = [];
-      for (let i=1; i<event.target.files.length; i++){
-        list_files.push(event.target.files[i])
+      if (event.target.files) {
+        getBase64(event.target.files[0]).then(data => this.setState({thumbnail:data}));
+        let list_files = [];
+        for (let i=1; i<event.target.files.length; i++){
+          list_files.push(event.target.files[i])
+        }
+        Promise.all(list_files.map( (file) => getBase64(file))).then( data => this.setState({image:data}));
       }
-     Promise.all(list_files.map( (file) => getBase64(file))).then( data => this.setState({image:data}));
     }
   }
 
