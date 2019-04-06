@@ -1,8 +1,7 @@
 .page-link{
-    color:white !important;
-    background-color:rgb(100, 57, 0) !important;
-    border-radius:50px;
-    border-color:#e0860b !important;
+    color:rgb(100, 57, 0) !important;
+    border-radius: 50px;
+    padding:5px;
 }
 
 .page-item{
@@ -11,6 +10,12 @@
     padding:5px;
 }
 
+.page-item active{
+    color:white !important;
+    background-color:rgb(100, 57, 0) !important;
+    border-radius:50px;
+    border-color:#e0860b !important;
+}
 .li{
     padding:5px;
 }
