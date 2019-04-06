@@ -28,10 +28,10 @@ class PostType extends Component { // selctor for the post type
   subFields() { // if the post type is search display the possible rewards
     if (this.state.type === "search") {
       return (
-        <select className="form-control" name="subject" id="subject_input" required>
+        <select className="form-control" name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
           <option disabled hidden selected>Choisissez votre récompense</option>
-          <option>PALC</option>
-          <option>Câlin </option>
+          <option>Palc</option>
+          <option>Calin &lt;3</option>
           <option>Rien :( </option>
         </select>);
     }
@@ -56,10 +56,10 @@ class PostType extends Component { // selctor for the post type
   render() {
     return (
       <div>
-        <select className="form-control" name="subject" id="subject_input" required>
+        <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "primary")} required>
           <option disabled hidden selected>Quel type d'annonce voulez-vous faire ?</option>
-          <option>Annonce Recherche</option>
-          <option>Annonce Trouvaille</option>
+          <option>Annonce recherche</option>
+          <option>Annonce trouvaille</option>
         </select>
         {this.subFields()}
       </div>)
@@ -84,8 +84,9 @@ class Description extends Component { // text area for description
   }
 
   render() {
-    return (<div className="form-group">
-      <textarea className="form-control" placeholder="Entrez une description brève de l'objet" onChange={this.handleChange}></textarea>
+    return (<div className="message">
+      <label for="message"></label>
+      <textarea name="message" placeholder="Entrez une description brève de votre annonce" id="description_input" onChange={this.handleChange} cols="30" rows="5"></textarea>
     </div>)
   }
 }
@@ -106,9 +107,9 @@ class Title extends Component {
   }
 
   render() {
-    return (<div class="message">
-      <label for="message"></label>
-      <textarea name="message" placeholder="Entrez une description brève de votre annonce" id="description_input" cols="30" rows="5"></textarea>
+    return (<div className="title">
+      <label for="name"></label>
+      <input type="text" placeholder="Entrez le titre de votre annonce" name="title" id="title_input" onChange={this.handleChange}></input>
     </div>)
   }
 }
@@ -212,8 +213,8 @@ class CreatePost extends Component { //parent component
     let { image } = this.state;
     //if no images ask for one else display it/them and offer to delete it/them
 
-    let $imagePreview = <div class="upload-btn-wrapper" style="margin-top:0%; padding:0%; text-align:center">
-      <button class="btn">Choisissez vos images</button>
+    let $imagePreview = <div className="upload-btn-wrapper" style="margin-top:0%; padding:0%; text-align:center">
+      <button className="btn">Choisissez vos images</button>
       <input type="file" name="myfile" class="inputfile" accept="image/*" onChange={this.handleImage} multiple />
       <label></label>
     </div>;
@@ -256,7 +257,7 @@ class CreatePost extends Component { //parent component
         />
         <div id="container">
           <h1>&bull; Créer une annonce&bull;</h1>
-          <div class="underline">
+          <div className="underline">
           </div>
           <form id="contact_form" >
 
@@ -271,7 +272,7 @@ class CreatePost extends Component { //parent component
 
             </div>
             <br />
-            <div class="submit" style="margin-top:-9%; text-align:right">
+            <div className="submit" style={{ "margin-top": "-9%"; "text-align": "right" }}>
               <input type="submit" value="Envoyer" onClick={(e) => this.handleSubmit(e)} id="form_button" />
             </div>
           </form>
