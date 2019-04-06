@@ -213,7 +213,7 @@ class CreatePost extends Component { //parent component
     let { image } = this.state;
     //if no images ask for one else display it/them and offer to delete it/them
 
-    let $imagePreview = <div><div className="upload-btn-wrapper" style={{ "margin-top": "0%", "padding": "0%", "text-align": "center" }}>
+    let $imagePreview = <div><div className="upload-btn-wrapper">
       <button className="btn">Choisissez vos images</button>
       <input type="file" name="myfile" class="inputfile" accept="image/*" onChange={this.handleImage} multiple />
       <label></label>
@@ -256,6 +256,7 @@ class CreatePost extends Component { //parent component
           verifyCallback={this.verifyCallbackCaptcha}
         />
         <div id="container">
+          <br />
           <h2>&bull; Créer une annonce&bull;</h2>
           <br />
           <div className="underline">
