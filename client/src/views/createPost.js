@@ -215,7 +215,7 @@ class CreatePost extends Component { //parent component
                               <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
                             </div>
                           </div>;
-      if (image.length | this.state.thumbnail.length) {
+      if (image.length | this.state.thumbnail) {
          $imagePreview = <div className="col-sm">
 
                          <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
