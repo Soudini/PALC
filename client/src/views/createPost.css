@@ -3,18 +3,8 @@
   height:auto;
 }
 
-.hover-pointer:hover{
-  cursor : pointer;
-}
 
-input[type='file']{
-  opacity: 0;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  font-size: 0;
-  position: absolute;
-}
+
 
 
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
@@ -101,6 +91,12 @@ input[type='text'], [type='email'], [type='file'], select, textarea {
 	-ms-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+}
+
+input[type='file']:hover{
+  cursor: pointer;
+  width: 0px;
+  height: 0px;
 }
 
 input[type='text']:focus, [type='email']:focus,[type='file']:focus, textarea:focus {
