@@ -1,0 +1,32 @@
+.page-link{
+    color:rgb(100, 57, 0) !important;
+    border-radius: 50px;
+    font-weight:bold !important;
+    border-bottom-right-radius: 50px !important;
+    border-top-right-radius:50px !important;
+    border-bottom-left-radius: 50px !important;
+    border-top-left-radius:50px !important;
+}
+
+.page-item{
+    color:rgb(100, 57, 0) !important;
+    border-radius: 50px;
+    padding:5px;
+    font-weight:bold !important;
+    border-bottom-right-radius: 50px !important;
+    border-top-right-radius:50px !important;
+    border-bottom-left-radius: 50px !important;
+    border-top-left-radius:50px !important;
+}
+
+.page-item.active .page-link{
+    color:white !important;
+    background-color:rgb(100, 57, 0) !important;
+    border-radius:50px;
+    border-color:rgb(100, 57, 0) !important;
+    font-weight:bold !important;
+    border-bottom-right-radius: 50px !important;
+    border-top-right-radius:50px !important;
+    border-bottom-left-radius: 50px !important;
+    border-top-left-radius:50px !important;
+}
