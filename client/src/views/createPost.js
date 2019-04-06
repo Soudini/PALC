@@ -257,7 +257,7 @@ class CreatePost extends Component { //parent component
         />
         <div id="container">
           <br />
-          <h2>&bull; Créer une annonce&bull;</h2>
+          <h2>&bull; Créer une annonce &bull;</h2>
           <br />
           <div className="underline">
           </div>
