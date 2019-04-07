@@ -1,0 +1,4 @@
+{
+    "db_address":"mongodb://localhost/ads",
+    "redirect_uri":"https://palc.viarezo.fr/oauthend"
+  }

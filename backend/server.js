@@ -10,16 +10,17 @@ const app = express();
 const router = express.Router();
 const request = require("request");
 const crypto = require("crypto-js");
-var configFile = require('./secrets.json'); //import configuration file with secrets
-const API_PORT = configFile.API_PORT ;
+const config = require("./config_backend.json");
+const secrets = require('./secrets.json'); //import configuration file with secrets
+const API_PORT = secrets.API_PORT ;
 
 mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser({limit: '10mb'}));
 // this is our MongoDB database
-const dbRoute = "mongodb://localhost/ads";
-let keyEncrypt = configFile.keyEncrypt ;
-let reCaptchaKey =  configFile.captcha.reCaptchaKey ;
+const dbRoute = config.db_address;//"mongodb://localhost/ads"
+let keyEncrypt = secrets.keyEncrypt;
+let reCaptchaKey =  secrets.captcha.reCaptchaKey ;
 let admin = ["2018louysa"];
 let ban = [];
 
@@ -60,15 +61,9 @@ router.post("/getUserInfo", (req, res) => {
     const requestBody = {
       grant_type : "authorization_code",
       code : code,
-      redirect_uri : "http://palc.viarezo.fr/oauthend",
-      client_id : configFile.oauth.client_id, 
-      client_secret : configFile.oauth.client_secret
-    }
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      redirect_uri : config.redirect_uri,
+      client_id : secrets.oauth.client_id, 
+      client_secret : secrets.oauth.client_secret
     }
     const url = "https://auth.viarezo.fr/oauth/token"
     request.post(url, {form: requestBody}, (err, response, body)=>{
