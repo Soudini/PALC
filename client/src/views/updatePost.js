@@ -19,7 +19,7 @@ class UpdatePost extends Component {
       thumbnail: null,
       image: [],
       data: [],
-      loader : true,
+      loaded : false,
     }
     this.searchDataFromDb = this.searchDataFromDb.bind(this);
   }
@@ -38,23 +38,36 @@ class UpdatePost extends Component {
       description: data.description,
       thumbnail: data.thumbnail,
       image: data.image,
-    }, auth : cookies.get("auth") }).then(this.state.loader = true).catch(err => console.log(err));
+    }, auth : cookies.get("auth") }).catch(err => console.log(err));
     this.props.history.push("/ad/"+this.props.match.params.id);
   }
 
   searchDataFromDb = () => {
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
       .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}});
+    this.setState({loaded : true});
   };
 
   render () {
-    console.log(this.state);
+
+    if (this.state.loaded){
       return(
-      <div>
-        <Form putDataToDB={this.putDataToDB} data = {this.state}/>
-      </div>
-    )
-   }
+        <div>
+          <Form putDataToDB={this.putDataToDB} data = {this.state}/>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="app-loading">
+          <img id="icon_spinner" src="./logopalc.png"/>
+          <svg className="spinner" viewBox="25 25 50 50">
+            <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+          </svg>
+        </div>
+      )
+    }
+  }
 }
 
 

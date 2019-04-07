@@ -156,6 +156,12 @@ class Form extends Component { //parent component
     this.handleImage = this.handleImage.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.data !== {}){
+      this.setState(this.props.data, console.log(this.props.data,this.state));      
+    }
+  }
+
   updateParent(key, value) { //allow children component to setState of this component
     this.setState({ [key]: value });
   }
@@ -223,9 +229,7 @@ class Form extends Component { //parent component
 
   render() {
 
-    if (this.props.data !== {}){
-      this.setState(this.props.data, console.log(this.props.data,this.state));      
-    }
+
     let { image } = this.state;
     //if no images ask for one else display it/them and offer to delete it/them
 
