@@ -48,6 +48,7 @@ class UpdatePost extends Component {
   };
 
   render () {
+    console.log(this.state);
       return(
       <div>
         <Form putDataToDB={this.putDataToDB} data = {this.state}/>
