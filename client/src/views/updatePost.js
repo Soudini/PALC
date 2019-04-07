@@ -19,7 +19,6 @@ class UpdatePost extends Component {
       thumbnail: null,
       image: [],
       data: [],
-      loaded : false,
     }
     this.searchDataFromDb = this.searchDataFromDb.bind(this);
   }
@@ -50,7 +49,7 @@ class UpdatePost extends Component {
 
   render () {
 
-    if (this.state.loaded === true){
+    if (this.state.author !== ""){
       console.log(this.state);
       return(
         <div>
