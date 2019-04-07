@@ -76,7 +76,7 @@ class PostType extends Component {
     }
     return(
           <div>
-            <select name="subject" id="subject_input" className="form-control" onChange={(e) => this.handleChange(e,"primary")} required>
+            <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e,"primary")} required>
               {opt}
             </select>
             {this.subFields()}
