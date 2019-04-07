@@ -51,6 +51,7 @@ class UpdatePost extends Component {
   render () {
 
     if (this.state.loaded){
+      console.log(this.state);
       return(
         <div>
           <Form putDataToDB={this.putDataToDB} data = {this.state}/>
@@ -60,7 +61,7 @@ class UpdatePost extends Component {
     else {
       return (
         <div className="app-loading">
-          <img id="icon_spinner" src="./logopalc.png"/>
+          <img id="icon_spinner" src="../../public/logopalc.png"/>
           <svg className="spinner" viewBox="25 25 50 50">
             <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
           </svg>
