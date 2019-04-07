@@ -126,9 +126,10 @@ class Title extends Component {
   }
 
   render() {
-    return (<div className="title">
+    return (
+    <div className="title">
       <label for="name"></label>
-      <input type="text" placeholder="Entrez le titre de votre annonce" name="title" id="title_input" onChange={this.handleChange}>{this.props.title}</input>
+      <textarea name="name" placeholder="Entrez le titre de votre annonce" name="title" id="title_input" onChange={this.handleChange}>{this.props.title}</textarea>
     </div>)
   }
 }
