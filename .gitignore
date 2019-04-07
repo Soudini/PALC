@@ -25,3 +25,5 @@ yarn-error.log*
 # config files
 backend/secrets.json
 client/config.json
+
+.eslintrc.yml
