@@ -40,21 +40,6 @@ class UpdatePost extends Component {
       image: data.image,
     }, auth : cookies.get("auth") }).then(this.state.loader = true).catch(err => console.log(err));
     this.props.history.push("/ad/"+this.props.match.params.id);
-
-
-    axios.post("/api/putData", {
-      author: cookies.get("firstName") + " " + cookies.get("lastName"),
-      author_id: cookies.get("id"),
-      author_login: cookies.get("login"),
-      title: data.title,
-      type: data.type,
-      reward: data.reward,
-      description: data.description,
-      thumbnail: data.thumbnail,
-      image: data.image,
-      reCaptchaToken: data.reCaptchaToken,
-      auth: cookies.get("auth")
-    }).then(() => { setTimeout(() => this.props.history.push("/all"), 400); loadReCaptcha({ key: "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id: "reCaptcha" }); this.killReCaptchaBadge() });
   }
 
   searchDataFromDb = () => {
