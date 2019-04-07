@@ -58,41 +58,39 @@ export default class Page404 extends Component {
 
     render() {
         return (
-            <body id="fond">
-                <div>
-                    <main>
-                        <p id="texte_erreur">Erreur Page 404</p>
-                        <br />
-                        <br />
-                        <div class="chope">
-                            <div class="mousse">
-                                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-                            </div>
-                            <div class="biere">
-                            </div>
+            <div>
+                <main>
+                    <p id="texte_erreur">Erreur Page 404</p>
+                    <br />
+                    <br />
+                    <div class="chope">
+                        <div class="mousse">
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                         </div>
-                        <div class="anse">
+                        <div class="biere">
                         </div>
-                        <br />
+                    </div>
+                    <div class="anse">
+                    </div>
+                    <br />
 
-                    </main>
-                    <div class="col-lg-8 mx-auto">
-                        <div class="text-center">
-                            <div class="row">
-                                <div class="col">
-                                    <a class="btn1 btn-primary1 btn-xl" onClick={() => this.handlePageChange("")}>&nbsp;
-                                      Accueil&nbsp;
+                </main>
+                <div class="col-lg-8 mx-auto">
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn1 btn-primary1 btn-xl" onClick={() => this.handlePageChange("")}>&nbsp;
+                                  Accueil&nbsp;
               </a>
-                                </div>
-                                <div class="col">
-                                    <a class="btn1 btn-primary1 btn-xl"
-                                        onClick={() => this.handlePageChange("all")}>Annonces</a>
-                                </div>
+                            </div>
+                            <div class="col">
+                                <a class="btn1 btn-primary1 btn-xl"
+                                    onClick={() => this.handlePageChange("all")}>Annonces</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </body>
+            </div>
 
         )
     }

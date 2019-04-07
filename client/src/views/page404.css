@@ -7,7 +7,7 @@
     text-align: center;
   }
   .chope{
-    border: 15px solid rgba(255, 255, 255, 1);
+    border: 15px solid rgb(100, 57, 0);
     border-top: none;
     width: 150px;
     height: 180px;
@@ -41,7 +41,7 @@
     height: 10%;
   }
   .mousse > div{
-    background-color: white;
+    background-color: rgb(255,232,174);
     height: 13px;
     width: 13px;
     border-radius: 50%;
@@ -50,7 +50,7 @@
     opacity: 0;
   }
   .anse{
-    border: 15px solid rgba(255, 255, 255, 1);
+    border: 15px solid rgb(100, 57, 0);
     border-left: none;
     width: 50px;
     vertical-align: top;
@@ -115,7 +115,3 @@
         border-color:transparent;
     }
   }
-
-#fond{
-    background:rgb(100, 57, 0);
-}
