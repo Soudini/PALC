@@ -34,7 +34,7 @@ class CreatePost extends Component { //parent component
       image: data.image,
       reCaptchaToken: data.reCaptchaToken,
       auth: cookies.get("auth")
-    }).then(() => { setTimeout(() => this.props.history.push("/all"), 400); loadReCaptcha({ key: "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id: "reCaptcha" }); this.killReCaptchaBadge() });
+    });
   }
 
  
