@@ -148,7 +148,7 @@ class Form extends Component { //parent component
       image: [],
       data: [],
       reCaptchaToken: null,
-      imageLoading:false,
+      imageLoading : false,
     }
 
     this.updateParent = this.updateParent.bind(this);
@@ -173,7 +173,7 @@ class Form extends Component { //parent component
     else if (this.state.description.length > 1000 | this.state.title.length > 300) {
       alert("La description doit contenir moins de 1000 caractères et le titre moins de 300.")
     }
-    else if ( this.state.imageLoading){
+    else if (this.state.imageLoading){
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
     else {
@@ -189,13 +189,13 @@ class Form extends Component { //parent component
     }
     else {
       if (event.target.files) {
-        this.setState({imageLoading:true})
-        getBase64(event.target.files[0]).then(data => this.setState({thumbnail:data}));
+        this.setState({ imageLoading: true })
+        getBase64(event.target.files[0]).then(data => this.setState({ thumbnail: data }));
         let list_files = [];
-        for (let i=1; i<event.target.files.length; i++){
+        for (let i = 1; i < event.target.files.length; i++){
           list_files.push(event.target.files[i])
         }
-        Promise.all(list_files.map( (file) => getBase64(file))).then( data => this.setState({image:data, imageLoading:false}));
+        Promise.all(list_files.map((file) => getBase64(file))).then( data => this.setState({ image: data, imageLoading: false }));
       }
     }
   }
@@ -215,8 +215,8 @@ class Form extends Component { //parent component
   }
 
   deleteImage = (e) => { // delete images
-    this.setState({image:[]});
-    this.setState({thumbnail:null});
+    this.setState({ image: [] });
+    this.setState({ thumbnail: null });
   }
 
 
