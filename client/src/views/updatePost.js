@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import Form from "../components/form";
+import "./updatePost.css";
 const cookies = new Cookies();
 
 
