@@ -52,6 +52,10 @@ export default class Home extends Component {
         return (
             <div>
                 <main>
+                    <p>Erreur Page 404</p>
+                    <br />
+                    <hr class="light my-4" />
+                    <br />
                     <div class="chope">
                         <div class="mousse">
                             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -61,7 +65,7 @@ export default class Home extends Component {
                     </div>
                     <div class="anse">
                     </div>
-                    <p>Erreur Page 404</p>
+
                 </main>
             </div>
         )
