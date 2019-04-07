@@ -44,8 +44,8 @@ class UpdatePost extends Component {
 
   searchDataFromDb = () => {
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
-      .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}});
-    this.setState({loaded : true});
+      .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}}).then(this.setState({loaded:true}));
+    
   };
 
   render () {
