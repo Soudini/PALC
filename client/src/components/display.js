@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import "./display.css";
 import Ad from "./ad.js";
 import axios from "axios";
-
+import "./display.css";
 
 class Display extends Component {
   //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
@@ -75,7 +75,14 @@ class Display extends Component {
       )
     }
     else {
-      return (<div />)
+      return (
+      <div className="app-loading">
+        <img id="icon_spinner" src="./logopalc.png"/>
+        <svg className="spinner" viewBox="25 25 50 50">
+          <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+      </div>
+      )
     }
   }
 }
