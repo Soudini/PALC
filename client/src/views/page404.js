@@ -65,7 +65,7 @@ export default class Page404 extends Component {
                     <br />
                     <div class="chope">
                         <div class="mousse">
-                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                         </div>
                         <div class="biere">
                         </div>
