@@ -75,7 +75,7 @@ export default class Page404 extends Component {
                     <br />
 
                 </main>
-                <div class="col-lg-12 mx-auto">
+                <div class="col-lg-8 mx-auto">
                     <div class="text-center">
                         <div class="row">
                             <div class="col">
