@@ -36,11 +36,11 @@ function loading(time) {
                     $('.biere').removeClass('active');
                     setTimeout(function () {
                         loading(time);
-                    }, time);
-                }, time);
-            }, time);
-        }, time);
-    }, time);
+                    }, time * 3);
+                }, time * 3);
+            }, time * 3);
+        }, time * 3);
+    }, time / 5);
 }
 $(function () {
     loading(500);
