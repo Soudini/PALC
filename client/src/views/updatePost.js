@@ -37,8 +37,8 @@ class UpdatePost extends Component {
       description: data.description,
       thumbnail: data.thumbnail,
       image: data.image,
-    }, auth : cookies.get("auth") }).catch(err => console.log(err));
-    this.props.history.push("/ad/"+this.props.match.params.id);
+    }, auth : cookies.get("auth") }).then(this.props.history.push("/ad/"+this.props.match.params.id)).catch(err => console.log(err));
+
   }
 
   searchDataFromDb = () => {
