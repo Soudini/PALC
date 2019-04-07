@@ -107,6 +107,10 @@ input[type='text']:focus, [type='email']:focus,[type='file']:focus, textarea:foc
 	padding: 0 0 0.875em 0;
 }
 
+.inputfile{
+  cursor:pointer;
+}
+
 .message {
 	float: none;
 }
