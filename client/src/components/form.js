@@ -265,7 +265,7 @@ class Form extends Component { //parent component
         </div></div>;
     }
 
-    let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.props.reward}/>;
+    let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.state.reward}/>;
     let description = <Description updateParent={this.updateParent} description={this.state.description}/>;
     let title = <Title updateParent={this.updateParent} title={this.state.title}/>;
     return (
