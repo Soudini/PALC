@@ -13,8 +13,10 @@ import Cookies from 'universal-cookie';
 import UpdatePost from './../views/updatePost.js';
 import Home from './../views/home.js';
 
-let config = import('../../config.json');
 
+let config = require('../config_client.json');
+
+console.log(config);
 function makeid() { // generate random state for the auth
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -24,7 +26,6 @@ function makeid() { // generate random state for the auth
 
   return text;
 }
-
 
 
 const cookies = new Cookies();

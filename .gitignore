@@ -25,4 +25,7 @@ yarn-error.log*
 #Secret should not be on the git repo
 
 backend/secrets.json
-client/config.json
+
+client/src/config_client.json
+backend/config_backend.json
+.eslintrc.yml
