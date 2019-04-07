@@ -58,8 +58,8 @@ export default class Page404 extends Component {
 
     render() {
         return (
-            <div>
-                <body id="fond">
+            <body id="fond">
+                <div>
                     <main>
                         <p id="texte_erreur">Erreur Page 404</p>
                         <br />
@@ -91,8 +91,8 @@ export default class Page404 extends Component {
                             </div>
                         </div>
                     </div>
-                </body>
-            </div>
+                </div>
+            </body>
 
         )
     }
