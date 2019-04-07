@@ -4,7 +4,7 @@ body{
   }
   main{
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -45,8 +45,8 @@ body{
   }
   .mousse > div{
     background-color: white;
-    height: 17px;
-    width: 17px;
+    height: 13px;
+    width: 13px;
     border-radius: 50%;
     display: inline-block;
     transition: all .5s;
@@ -72,5 +72,48 @@ body{
     color:white;
     font-weight:bold;
     margin-left:-20px;
-    letter-spacing:5px;
+    letter-spacing:10px;
+  }
+
+
+
+  .btn1 {
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 300px;
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    color: #f7f5f4;
+  }
+
+.btn-xl {
+    padding: 1rem 2rem;
+}
+  
+.btn-primary1 {
+    background-color: #F9B804;
+    border-color: rgb(100, 57, 0);
+    border:solid;
+    border-color:transparent;
+}
+
+
+@media screen and (max-width: 767px) {
+    .btn1 {
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 300px;
+        font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: #f7f5f4;
+        margin:auto;
+    }
+    
+    .btn-primary1 {
+        background-color: #008ecc;
+        border-color: #f7f5f4;
+        border:solid;
+        border-color:transparent;
+    }
   }
