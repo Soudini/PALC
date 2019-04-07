@@ -177,9 +177,9 @@ class Form extends Component { //parent component
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
     else {
-      this.props.putDataToDB(this.state)
+      this.props.putDataToDB(this.state);
       loadReCaptcha({ key: "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id: "reCaptcha" });
-      this.killReCaptchaBadge() };
+      this.killReCaptchaBadge();
     };
   }
 
