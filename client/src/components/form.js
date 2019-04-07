@@ -40,7 +40,7 @@ class PostType extends Component {
         }
       }
       return (
-                <div><br/><p>Récompense</p>
+                <div>
                 <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
                   {opt}
                 </select></div>);
@@ -151,11 +151,6 @@ class Form extends Component { //parent component
       imageLoading:false,
     }
 
-    if (this.props.data !== {}){
-      this.setState(this.props.data, console.log(this.props.data,this.state));
-      
-    }
-
     this.updateParent = this.updateParent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImage = this.handleImage.bind(this);
@@ -227,6 +222,10 @@ class Form extends Component { //parent component
   }
 
   render() {
+
+    if (this.props.data !== {}){
+      this.setState(this.props.data, console.log(this.props.data,this.state));      
+    }
     let { image } = this.state;
     //if no images ask for one else display it/them and offer to delete it/them
 
