@@ -34,7 +34,7 @@ class CreatePost extends Component { //parent component
       image: data.image,
       reCaptchaToken: data.reCaptchaToken,
       auth: cookies.get("auth")
-    });
+    }).then(setTimeout(() => this.props.history.location.push("/all"), 200));
   }
 
  
