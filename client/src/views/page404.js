@@ -10,7 +10,7 @@ function loading(time) {
         $('.biere').addClass('active');
         setTimeout(function () {
             $('.mousse > div').each(function () {
-                var scaleValue = Math.floor((Math.random() * 5) + 3);
+                var scaleValue = Math.floor((Math.random() * 5) + 2);
                 $(this).css('opacity', 1);
                 $(this).css({
                     '-webkit-transform': 'scale(' + scaleValue + ')',
