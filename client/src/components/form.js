@@ -105,7 +105,7 @@ class Description extends Component { // text area for description
   render() {
     return (<div className="message">
       <label for="message"></label>
-      <textarea name="message" placeholder="Entrez une description brève de votre annonce" id="description_input" onChange={this.handleChange} cols="30" rows="5">{this.props.description}</textarea>
+      <textarea name="message" placeholder="Entrez une description brève de votre annonce" id="description_input" value={this.props.description} onChange={this.handleChange} cols="30" rows="5"></textarea>
     </div>)
   }
 }
