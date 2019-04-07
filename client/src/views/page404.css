@@ -42,8 +42,8 @@
   }
   .mousse > div{
     background-color: white;
-    height: 17px;
-    width: 17px;
+    height: 13px;
+    width: 13px;
     border-radius: 50%;
     display: inline-block;
     transition: all .5s;

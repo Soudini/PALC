@@ -10,7 +10,7 @@ function loading(time) {
         $('.biere').addClass('active');
         setTimeout(function () {
             $('.mousse > div').each(function () {
-                var scaleValue = Math.floor((Math.random() * 5));
+                var scaleValue = Math.floor((Math.random() * 5) + 3);
                 $(this).css('opacity', 1);
                 $(this).css({
                     '-webkit-transform': 'scale(' + scaleValue + ')',
@@ -65,7 +65,7 @@ export default class Page404 extends Component {
                     <br />
                     <div class="chope">
                         <div class="mousse">
-                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                         </div>
                         <div class="biere">
                         </div>
