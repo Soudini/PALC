@@ -152,7 +152,7 @@ class Form extends Component { //parent component
     }
 
     if (this.props.data !== {}){
-      this.setState(this.props.data, console.log(this.state));
+      this.setState(this.props.data, console.log(this.props.data,this.state));
       
     }
 
