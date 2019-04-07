@@ -60,7 +60,7 @@ export default class Page404 extends Component {
         return (
             <div>
                 <main>
-                    <p>Erreur Page 404</p>
+                    <p id="texte_erreur">Erreur Page 404</p>
                     <br />
                     <br />
                     <div class="chope">
