@@ -10,7 +10,7 @@ function loading(time) {
         $('.biere').addClass('active');
         setTimeout(function () {
             $('.mousse > div').each(function () {
-                var scaleValue = Math.floor((Math.random() * 5) + 2);
+                var scaleValue = Math.floor((Math.random() * 5));
                 $(this).css('opacity', 1);
                 $(this).css({
                     '-webkit-transform': 'scale(' + scaleValue + ')',
@@ -54,7 +54,7 @@ export default class Home extends Component {
                 <main>
                     <div class="chope">
                         <div class="mousse">
-                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                         </div>
                         <div class="biere">
                         </div>
