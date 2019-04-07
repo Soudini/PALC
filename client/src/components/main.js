@@ -12,6 +12,7 @@ import OauthEnd from './oauthend.js';
 import Cookies from 'universal-cookie';
 import UpdatePost from './../views/updatePost.js';
 import Home from './../views/home.js';
+import Page404 from './../views/page404';
 
 function makeid() { // generate random state for the auth
   var text = "";
@@ -32,20 +33,21 @@ cookies.set("state", random)
 
 
 const Main = () => (
-    <div>
-      <Switch>
-        <Route exact path='/all' component={All} />
-        <Route exact path='/createPost' component={CreatePost} />
-        <Route exact path='/found' component={Found} />
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/perso' component={Perso} />
-        <Route exact path='/searchEngine/:searchText' component={SearchEngine} />
-        <Route exact path='/ad/:id' component={Page} />
-        <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=http://palc.viarezo.fr/oauthend&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state=' + random + '&scope=default'; return null; }} />
-        <Route exact path='/oauthend' component={OauthEnd} />
-        <Route exact path='/updatePost/:id' component={UpdatePost} />
-        <Route exact path="/" component={Home} />
-      </Switch>
+  <div>
+    <Switch>
+      <Route exact path='/all' component={All} />
+      <Route exact path='/createPost' component={CreatePost} />
+      <Route exact path='/found' component={Found} />
+      <Route exact path='/search' component={Search} />
+      <Route exact path='/perso' component={Perso} />
+      <Route exact path='/searchEngine/:searchText' component={SearchEngine} />
+      <Route exact path='/ad/:id' component={Page} />
+      <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=http://palc.viarezo.fr/oauthend&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state=' + random + '&scope=default'; return null; }} />
+      <Route exact path='/oauthend' component={OauthEnd} />
+      <Route exact path='/updatePost/:id' component={UpdatePost} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="**" component={Page404} />
+    </Switch>
   </div>
 )
 
