@@ -46,7 +46,7 @@ const Main = () => (
       <Route exact path='/oauthend' component={OauthEnd} />
       <Route exact path='/updatePost/:id' component={UpdatePost} />
       <Route exact path="/" component={Home} />
-      <Route exact path="**" component={Page404} />
+      <Route component={Page404} />
     </Switch>
   </div>
 )
