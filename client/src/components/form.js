@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
-import "./createPost.css";
+import "./form.css";
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
 
