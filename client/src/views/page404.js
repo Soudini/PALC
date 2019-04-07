@@ -50,7 +50,6 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <a target="_blank" style={{ "display": "block", "position": "fixed", "z-index": "9999", "bottom": "10px", "right": "10px", "width": "60px", }} href="http://www.yoannbraie.fr/board/"><img style={{ "width": "100%" }} src="http://images.yoannbraie.fr/logoyb_white.png" alt="logo" /></a>
                 <main>
                     <div class="chope">
                         <div class="mousse">
