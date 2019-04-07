@@ -37,7 +37,7 @@ class UpdatePost extends Component {
       description: data.description,
       thumbnail: data.thumbnail,
       image: data.image,
-    }, auth : cookies.get("auth") }).then(setTimeout(this.props.history.push("/ad/"+this.props.match.params.id), 200)).catch(err => console.log(err));
+    }, auth : cookies.get("auth") }).then(setTimeout(() => this.props.history.push("/ad/"+this.props.match.params.id), 200)).catch(err => console.log(err));
 
   }
 
