@@ -151,7 +151,7 @@ class Form extends Component { //parent component
       imageLoading:false,
     }
 
-    if (this.props.data){
+    if (this.props.data !== {}){
       this.setState(this.props.data);
       console.log(this.state);
     }
