@@ -250,7 +250,7 @@ class Form extends Component { //parent component
       <input type="file" name="myfile" class="inputfile" accept="image/*" onChange={this.handleImage} multiple /></button>
       <label></label>
     </div></div>;
-    if (image.length | this.state.thumbnail !== null) {
+    if (image.length | (this.state.thumbnail !== null & this.state.thumbnail !== "")) {
       $imagePreview = <div className="col-sm">
 
         <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
