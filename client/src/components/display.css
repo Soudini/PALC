@@ -102,3 +102,10 @@ body{
     margin-top:50px;
     width:50%;
 }
+
+@media screen and (max-width: 767px) {
+    #noresults_image{
+        margin-top:50px;
+        width:65%;
+    }
+}
