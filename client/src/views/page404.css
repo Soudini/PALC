@@ -457,6 +457,15 @@
     border-color:transparent;
 }
 
+  
+.btn-primary1:active,   
+.btn-primary1:focus,   
+.btn-primary1:hover {
+    color:#F9B804;
+    background-color: transparent;
+    border:solid;
+    border-color:#F9B804;}
+
 #animation{
     width: 100px;
     height: 90px;
@@ -487,6 +496,14 @@
         border:solid;
         border-color:transparent;
     }
+
+    .btn-primary1:active,   
+    .btn-primary1:focus,   
+    .btn-primary1:hover {
+    color:#F9B804;
+    background-color: transparent;
+    border:solid;
+    border-color:#F9B804;}
 
     #animation{
         width: 100px;
