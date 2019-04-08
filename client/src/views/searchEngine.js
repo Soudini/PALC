@@ -13,7 +13,7 @@ export default class Perso extends Component {
 
 
   render() {
-    if (this.props.match.params.searchText == "") {
+    if (this.props.match.params.searchText === "") {
       return (
         <section>
           <div className="container-fondus ">
