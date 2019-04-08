@@ -35,7 +35,7 @@ function loading(time) {
                 setTimeout(function () {
                     $('.biere').removeClass('active');
                     setTimeout(function () {
-                        loading(time * 3);
+                        loading(time);
                     }, time);
                 }, time);
             }, time);
