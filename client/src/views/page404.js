@@ -58,7 +58,7 @@ export default class Page404 extends Component {
 
     render() {
         return (
-            <div id="fond">
+            <div id="fond" class="text-center">
                 <main>
                     <br />
                     <br />
