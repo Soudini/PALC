@@ -40,7 +40,7 @@ function loading(time) {
                 }, time * 3);
             }, time);
         }, time * 2);
-    }, time / 5);
+    }, time / 3);
 }
 $(function () {
     loading(500);
