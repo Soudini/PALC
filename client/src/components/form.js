@@ -311,7 +311,7 @@ class Form extends Component { //parent component
             </div>
           </form>
         </div>
-        <h6 style={{ "marginTop": "1rem" }} className="font-weight-light">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</h6>
+        <h6 style={{ "marginTop": "1rem", "color": "rgb(100, 57, 0)" }} className="font-weight-light text-center">This site is protected by reCAPTCHA and the Google <a style={{ "marginTop": "1rem", "color": "#F9B804" }} href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</h6>
       </div>
 
 
