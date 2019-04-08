@@ -461,7 +461,7 @@
     width: 100px;
     height: 90px;
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 28%;
     margin-left: -50px;
     margin-top: -45px;
@@ -508,3 +508,6 @@
 }
 
 
+#boutons{
+    margin-top:500px;
+}
