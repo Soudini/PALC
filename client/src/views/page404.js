@@ -36,10 +36,10 @@ function loading(time) {
                     $('.biere').removeClass('active');
                     setTimeout(function () {
                         loading(time * 3);
-                    }, time * 3);
+                    }, time);
                 }, time * 3);
-            }, time * 3);
-        }, time * 3);
+            }, time);
+        }, time * 2);
     }, time / 5);
 }
 $(function () {
@@ -60,6 +60,8 @@ export default class Page404 extends Component {
         return (
             <div id="fond">
                 <main>
+                    <br />
+                    <br />
                     <p id="texte_erreur">Erreur Page 404</p>
                     <br />
                     <br />
