@@ -14,6 +14,10 @@ import UpdatePost from './../views/updatePost.js';
 import Home from './../views/home.js';
 import Page404 from './../views/page404';
 
+
+let config = require('../config_client.json');
+
+console.log(config);
 function makeid() { // generate random state for the auth
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -25,7 +29,6 @@ function makeid() { // generate random state for the auth
 }
 
 
-
 const cookies = new Cookies();
 
 let random = makeid();
@@ -33,21 +36,22 @@ cookies.set("state", random)
 
 
 const Main = () => (
-  <div>
-    <Switch>
-      <Route exact path='/all' component={All} />
-      <Route exact path='/createPost' component={CreatePost} />
-      <Route exact path='/found' component={Found} />
-      <Route exact path='/search' component={Search} />
-      <Route exact path='/perso' component={Perso} />
-      <Route exact path='/searchEngine/:searchText' component={SearchEngine} />
-      <Route exact path='/ad/:id' component={Page} />
-      <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=http://palc.viarezo.fr/oauthend&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state=' + random + '&scope=default'; return null; }} />
-      <Route exact path='/oauthend' component={OauthEnd} />
-      <Route exact path='/updatePost/:id' component={UpdatePost} />
-      <Route exact path="/" component={Home} />
-      <Route component={Page404} />
-    </Switch>
+
+    <div>
+      <Switch>
+        <Route exact path='/all' component={All} />
+        <Route exact path='/createPost' component={CreatePost} />
+        <Route exact path='/found' component={Found} />
+        <Route exact path='/search' component={Search} />
+        <Route exact path='/perso' component={Perso} />
+        <Route exact path='/searchEngine/:searchText' component={SearchEngine} />
+        <Route exact path='/ad/:id' component={Page} />
+        <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=' +config.redirect_uri+ '&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state=' + random + '&scope=default'; return null; }} />
+        <Route exact path='/oauthend' component={OauthEnd} />
+        <Route exact path='/updatePost/:id' component={UpdatePost} />
+        <Route exact path="/" component={Home} />
+        <Route component={Page404} />
+      </Switch>
   </div>
 )
 

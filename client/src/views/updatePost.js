@@ -1,138 +1,12 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie';
-import "./updatePost.css"
+import Form from "../components/form";
+import "./updatePost.css";
 const cookies = new Cookies();
 
 
-
-//--------------idem as createPost.js----------------
-
-function getBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {console.log(reader.result);resolve(reader.result);};
-    reader.onerror = error => reject(error);
-  });
-}
-
-class PostType extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      type: "search",
-      reward: null,
-    }
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  subFields(){
-    if (this.props.type === "search") {
-      let optionsReward = {Palc: "Palc","Calin <3": "Calin <3", Rien : "Rien"}
-      let opt = [];
-      for (let i in optionsReward){
-
-        if (i === this.props.reward){
-          opt.push(<option selected="True" key={i}>{optionsReward[i]}</option>);
-        }
-        else{
-          opt.push(<option key={i}>{optionsReward[i]}</option>);
-        }
-      }
-      return (
-                <div><br/><p>Récompense</p><select className="form-control" onChange={(e) => this.handleChange(e,"secondary")}>
-                  {opt}
-                </select></div>);
-    }
-    else {
-      return(null);
-    }
-  }
-
-  handleChange(event,type) {
-      if (type === "primary") {
-        this.setState({type: event.target.value === "Annonce recherche"? "search":"found"});
-        if (event.target.value !== "Annonce recherche"){
-          this.props.updateParent("reward", null)
-        }
-        this.props.updateParent("type", event.target.value === "Annonce recherche"? "search":"found")
-      }
-      else if (type === "secondary") {
-        this.props.updateParent("reward", event.target.value);
-      }
-  }
-
-  render(){
-    let optionsType = {search:"Annonce recherche", found:"Annonce trouvaille"}
-    let opt = [];
-    for (let i in optionsType){
-      if (i === this.props.type){
-        opt.push(<option selected key={i}>{optionsType[i]}</option>);
-      }
-      else{
-        opt.push(<option key={i}>{optionsType[i]}</option>);
-      }
-    }
-    return(
-          <div>
-            <select className="form-control" onChange={(e) => this.handleChange(e,"primary")}>
-              {opt}
-            </select>
-            {this.subFields()}
-          </div>)
-  }
-}
-
-
-
-class Description extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: null,
-    }
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value})
-    this.props.updateParent("description", event.target.value)
-  }
-
-  render() {
-    return (<div className="form-group">
-      <textarea className="form-control" value={this.props.text} placeholder="Entrez une description brève de l'objet" onChange={this.handleChange}>{this.props.text}</textarea>
-    </div>)
-  }
-}
-
-class Title extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: null,
-    }
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value})
-    this.props.updateParent("title", event.target.value)
-  }
-
-  render() {
-    return (<div className="form-group">
-      <input className="form-control" placeholder="Entrez le titre de votre annonce" value={this.props.text} onChange={this.handleChange}></input>
-    </div>)
-  }
-}
-
-
-
-class CreatePost extends Component {
+class UpdatePost extends Component {
 
   constructor(props) {
     super(props)
@@ -146,142 +20,56 @@ class CreatePost extends Component {
       thumbnail: null,
       image: [],
       data: [],
-      loader : true,
     }
-
-    this.updateParent = this.updateParent.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleImage = this.handleImage.bind(this);
-
     this.searchDataFromDb = this.searchDataFromDb.bind(this);
   }
 
 
-  componentDidMount() {this.searchDataFromDb()}
-
-  // never let a process live forever
-  // always kill a process everytime we are done using it
-  componentWillUnmount() {
+  componentDidMount() {
+    this.searchDataFromDb()
   }
+  
+  putDataToDB = (data) => { //post the ad to the DB
 
-  updateParent(key, value) {
-    this.setState({[key]: value});
-
-  }
-
-  handleSubmit(event) {
-    this.putDataToDB(this.state)
-  }
-
-
-
-  deleteImage = (e) => {this.setState({image:[]})}
-
-
-  handleImage(event) { //import, convert and resize the images
-    if (event.target.files.length > 5){
-      alert("Le nombre d'image est limité à 5")
-    }
-    else {
-      getBase64(event.target.files[0]).then(data => this.setState({thumbnail:data}));
-      let list_files = [];
-      for (let i=1; i<event.target.files.length; i++){
-        list_files.push(event.target.files[i])
-      }
-     Promise.all(list_files.map( (file) => getBase64(file))).then( data => this.setState({image:data}));
-    }
-  }
-
-  getDataFromDb = () => {
-    fetch("/api/getData")
-      .then(data => data.json())
-      .then(res => {this.setState({ data: res.data })});
-
-  };
-
-
-  handleSubmit =()=> {
-
-
-      axios.post("/api/updateData", {id :this.props.match.params.id, update : {
-          title: this.state.title,
-          type: this.state.type,
-          reward: this.state.reward,
-          description: this.state.description,
-          thumbnail: this.state.thumbnail,
-          image: this.state.image,
-        }, auth : cookies.get("auth") }).then(this.state.loader = true).catch(err => console.log(err));
-        this.props.history.push("/ad/"+this.props.match.params.id);
+    axios.post("/api/updateData", {id :this.props.match.params.id, update : {
+      title: data.title,
+      type: data.type,
+      reward: data.reward,
+      description: data.description,
+      thumbnail: data.thumbnail,
+      image: data.image,
+    }, auth : cookies.get("auth") }).then(setTimeout(() => this.props.history.push("/ad/"+this.props.match.params.id), 200)).catch(err => console.log(err));
 
   }
 
   searchDataFromDb = () => {
     axios.post("/api/searchById", {id :this.props.match.params.id, auth : cookies.get("auth")})
-      .then(data => data.data).then(res => {for (let i in res.data) {this.setState({[i] : res.data[i]})}});
+      .then(data => data.data).then(res => this.setState(res.data));
+    
   };
 
   render () {
 
-      if (this.state){
-        let {image} = this.state;
-        let $imagePreview = <div className="form-group col-6">
-                              <div className="row justify-content-center">
-                                <label>Ajoutez des images supplémentaires si possible</label>
-                                <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={this.handleImage} multiple/>
-                              </div>
-                            </div>;
-        if (image.length) {
-           $imagePreview = <div className="col-sm">
-
-                           <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
-                           <div className="carousel-inner" >
-                             <div className="carousel-item active">
-                             <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={this.state.thumbnail} alt="Second slide"/></div></div>
-
-                             </div>
-                             {image.map((img) =><div key={img.slice(img.length-20,img.length-1)} className="carousel-item">
-                               <div><div className="row justify-content-center" style={{"height" : "200px"}}><img className="h-100 img-fluid " src={img} alt="Second slide"/></div></div>
-                             </div>)}
-                           </div>
-                             <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                               <span className="sr-only">Previous</span>
-                             </a>
-                             <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                               <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                               <span className="sr-only">Next</span>
-                             </a>
-                            </div>
-                            <div className="row justify-content-center">
-                              <button type="button" className="btn btn-danger" style={{"marginTop": "1rem","marginBottom": "1rem"}} onClick={this.deleteImage}>Supprimer ces images</button>
-                            </div></div>;
-        }
-      let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.state.reward}/>;
-      let description = <Description updateParent={this.updateParent} text={this.state.description}/>;
-      let title = <Title updateParent={this.updateParent} text={this.state.title}/>;
-      let loader = this.state.loader ? <div className="loader"/> : null;
-      return (
+    if (this.state.author !== ""){
+      console.log(this.state);
+      return(
         <div>
-          <form>
-              <div>Quel est le type d'annonce que vous voulez poster ?</div>
-                {type}
-                <br/>
-                {title}
-                <br/>
-                {description}
-              <div className="row justify-content-start d-flex">
-                {$imagePreview}
-              </div>
-              <br/>
-              <button className="btn btn-primary" onClick={() => this.handleSubmit()}>Update</button>{loader}
-
-          </form>
-        </div>)}
-        else{return (<div></div>)}
-
-
-   }
+          <Form putDataToDB={this.putDataToDB} data = {this.state}/>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="app-loading">
+          <img id="icon_spinner" src="./logopalc.png"/>
+          <svg className="spinner" viewBox="25 25 50 50">
+            <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+          </svg>
+        </div>
+      )
+    }
+  }
 }
 
 
-export default CreatePost;
+export default UpdatePost;
