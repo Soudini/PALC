@@ -476,6 +476,15 @@
         border:solid;
         border-color:transparent;
     }
+
+    #animation{
+        width: 100px;
+    height: 90px;
+    position: absolute;
+    top: 25%;
+    left: 28%;
+
+    }
   }
 
 #fond{
@@ -493,7 +502,8 @@
     height: 90px;
     position: absolute;
     top: 25%;
-    left: 25%;
+    left: 28%;
     margin-left: -50px;
     margin-top: -45px;
   }
+
