@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import Cookies from 'universal-cookie';
 import "./form.css";
+
+import { withRouter } from 'react-router-dom';
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
 
@@ -179,6 +180,15 @@ class Form extends Component { //parent component
     else {
       this.props.putDataToDB(this.state);
       loadReCaptcha({ key: "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id: "reCaptcha" });
+      this.setState({
+        type: "search",
+        reward: "Palc",
+        title: "",
+        description: "",
+        thumbnail: null,
+        image: [],
+        data: []
+      });
       this.killReCaptchaBadge();
     };
   }
@@ -296,8 +306,8 @@ class Form extends Component { //parent component
 
             </div>
             <br />
-            <div className="submit" style={{ "text-align": "center" }}>
-              <input type="submit" value="Envoyer" onClick={(e) => this.handleSubmit(e)} id="form_button" />
+            <div className="" style={{ "text-align": "center" }}>
+              <button href="#" onClick={(e) => {e.preventDefault();this.handleSubmit(e)}} id="form_button">Envoyer</button>
             </div>
           </form>
         </div>
@@ -310,4 +320,4 @@ class Form extends Component { //parent component
 }
 
 
-export default Form;
+export default withRouter(Form);
