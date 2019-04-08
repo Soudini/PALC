@@ -19,7 +19,7 @@ class Banner extends Component {
 
   componentDidMount = () => {
 
-    setTimeout(this.checkAuth, 200); // prevent spam bounce (it is executed at each opening of the website)
+    this.checkAuth(); // prevent spam bounce (it is executed at each opening of the website)
     loadReCaptcha({ key: "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id: "reCaptcha" }).then(id => { // load recaptcha with the website key
       console.log('ReCaptcha loaded', id);
     });
