@@ -49,7 +49,7 @@ class Display extends Component {
   };
 
   render() {
-    if (this.state.data = "") {
+    if (this.state.data == "") {
       return (
         <section>
           <div className="container-fondus ">
