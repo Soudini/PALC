@@ -457,6 +457,17 @@
     border-color:transparent;
 }
 
+#animation{
+    width: 100px;
+    height: 90px;
+    position: absolute;
+    top: 25%;
+    left: 28%;
+    margin-left: -50px;
+    margin-top: -45px;
+  }
+
+
 
 @media screen and (max-width: 767px) {
     .btn1 {
@@ -481,8 +492,8 @@
         width: 100px;
     height: 90px;
     position: absolute;
-    top: 15%;
-    left: 10%;
+    top: 10%;
+    left: -30%;
 
     }
   }
@@ -496,14 +507,4 @@
     background: rgb(100, 57, 0) ;
 }
 
-
-#animation{
-    width: 100px;
-    height: 90px;
-    position: absolute;
-    top: 25%;
-    left: 28%;
-    margin-left: -50px;
-    margin-top: -45px;
-  }
 
