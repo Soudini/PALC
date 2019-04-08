@@ -5,6 +5,7 @@ import Ad from "./ad.js";
 import axios from "axios";
 import logopalc from "../files/logopalc.png"
 import "./display.css";
+import AuncunResultat from "../files/AucunResultat.png";
 
 class Display extends Component {
   //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
@@ -48,6 +49,21 @@ class Display extends Component {
   };
 
   render() {
+    if (this.state.numberAds == 0) {
+      return (
+        <section>
+          <div className="container-fondus ">
+            <div className="row">
+              <div className="col-lg-6 mx-auto text-center">
+
+                <br></br>
+                <img src={AuncunResultat} id="noresults_image" class="img-fluid" alt="Responsive image" />
+              </div>
+            </div>
+          </div>
+        </section>
+      )
+    }
     if (this.props.search != this.state.searchedfor) {
       this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
       this.setState({ searchedfor: this.props.search });
