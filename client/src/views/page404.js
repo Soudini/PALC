@@ -59,10 +59,11 @@ export default class Page404 extends Component {
     render() {
         return (
             <div id="fond" class="text-center">
+                <p id="texte_erreur">Erreur <br></br> Page 404</p>
                 <main>
                     <br />
                     <br />
-                    <p id="texte_erreur">Erreur <br></br> Page 404</p>
+
                     <br />
                     <br />
                     <div class="chope">
