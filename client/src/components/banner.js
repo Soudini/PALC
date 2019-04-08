@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Nav } from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 import "./banner.css";
 import { loadReCaptcha } from 'recaptcha-v3-react';
