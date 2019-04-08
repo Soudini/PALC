@@ -7,7 +7,7 @@ export default class Home extends Component {
 
 
   render() {
-    if (this.props.match.params.searchText === "") {
+    if (search === "") {
       return (
         <section>
           <div className="container-fondus ">
