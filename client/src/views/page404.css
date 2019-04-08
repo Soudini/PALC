@@ -6,20 +6,8 @@
 	font-size: 30px;
 	position: absolute;
 	top: 195px;
-	left: 370px;
-}
-
-#dribbble {
-	color: #EC4E8B;
-}
-
-#hetic {
-	color: #6FB400;
-}
-
-
-body {
-	background: #201F1E;
+    left: 370px;
+    
 }
 
 #glass {
@@ -34,7 +22,8 @@ body {
 	left: 200px;
 	overflow: hidden;
 	transform: rotate(-20deg);
-	-webkit-animation: glass 10s infinite;
+    -webkit-animation: glass 10s infinite;
+    box-sizing:unset;
 }
 	
 #poignet {
