@@ -59,26 +59,27 @@ export default class Page404 extends Component {
     render() {
         return (
             <div id="fond" class="text-center">
+                <div id="animation">
 
-                <div id="glass">
-                    <div id="beer"></div>
-                </div>
-                <div id="poignet"></div>
-                <div id="mousse_1"></div>
-                <div id="mousse_2"></div>
-                <div id="mousse_3"></div>
-                <div id="mousse_4"></div>
-                <div id="mousse_5"></div>
-                <div id="mousse_volante"></div>
-                <div id="mousse_interieur"></div>
-                <div id="mousse_interieur_2"></div>
-                <div id="mousse_interieur_3"></div>
-                <div id="mousse_interieur_4"></div>
+                    <div id="glass">
+                        <div id="beer"></div>
+                    </div>
+                    <div id="poignet"></div>
+                    <div id="mousse_1"></div>
+                    <div id="mousse_2"></div>
+                    <div id="mousse_3"></div>
+                    <div id="mousse_4"></div>
+                    <div id="mousse_5"></div>
+                    <div id="mousse_volante"></div>
+                    <div id="mousse_interieur"></div>
+                    <div id="mousse_interieur_2"></div>
+                    <div id="mousse_interieur_3"></div>
+                    <div id="mousse_interieur_4"></div>
 
-                <p id="beer_text">Erreur<br />Page 404</p>
+                    <p id="beer_text">Erreur<br />Page 404</p>
 
-                <br />
-                <div class="col-lg-8 mx-auto" id="boutons">
+                    <br />
+                    {/* <div class="col-lg-8 mx-auto" id="boutons">
                     <div class="text-center">
                         <div class="row">
                             <div class="col">
@@ -92,8 +93,8 @@ export default class Page404 extends Component {
                             </div>
                         </div>
                     </div>
+                </div> */}
                 </div>
-
             </div >
 
         )
