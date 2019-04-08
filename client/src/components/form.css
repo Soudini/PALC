@@ -230,17 +230,17 @@ textarea {
 
 .btn1 {
   background:inherit;
-  border: solid 2px rgb(100, 57, 0);
+  border: solid 2px rgb(100, 57, 0) !important;
   border-radius:0.25rem;
   color: rgb(100, 57, 0);
   cursor: pointer;
   display: inline-block;
   font-family: 'Helvetica', Arial, sans-serif;
-  font-size: 0.875em;
+  font-size: 0.875em ;
   margin:0%;
   font-weight: bold;
   outline: none;
-  padding: 20px 35px;
+  padding: 20px 35px !important;
   text-transform: uppercase;
   -webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
