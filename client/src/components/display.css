@@ -97,3 +97,7 @@ body{
     border-bottom-left-radius: 50px !important;
     border-top-left-radius:50px !important;
 }
+
+#noresults_image{
+    width:50%;
+}
