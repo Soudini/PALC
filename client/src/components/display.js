@@ -49,22 +49,8 @@ class Display extends Component {
   };
 
   render() {
-    if (this.state.numberAds === 0) {
-      return (
-        <section>
-          <div className="container-fondus ">
-            <div className="row">
-              <div className="col-lg-6 mx-auto text-center">
 
-                <br></br>
-                <img src={AuncunResultat} id="noresults_image" class="img-fluid" alt="Responsive image" />
-              </div>
-            </div>
-          </div>
-        </section>
-      )
-    }
-    else {
+    if (this.state.numberAds != 0) {
       if (this.props.search != this.state.searchedfor) {
         this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
         this.setState({ searchedfor: this.props.search });
@@ -102,6 +88,21 @@ class Display extends Component {
           </div>
         )
       }
+    }
+    else {
+      return (
+        <section>
+          <div className="container-fondus ">
+            <div className="row">
+              <div className="col-lg-6 mx-auto text-center">
+
+                <br></br>
+                <img src={AuncunResultat} id="noresults_image" class="img-fluid" alt="Responsive image" />
+              </div>
+            </div>
+          </div>
+        </section>
+      )
     }
   }
 }
