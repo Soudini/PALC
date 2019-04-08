@@ -70,7 +70,7 @@
     font-weight:bold;
     margin-left:-20px;
     letter-spacing:10px;
-    margin-bottom: -50px;
+    margin-top: 10%;
   }
 
 
@@ -126,5 +126,5 @@
 }
 
 #boutons{
-    margin-top:20px;
+    margin-top:5%;
 }
