@@ -64,42 +64,44 @@ class Display extends Component {
         </section>
       )
     }
-    if (this.props.search != this.state.searchedfor) {
-      this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
-      this.setState({ searchedfor: this.props.search });
-      console.log("researching", this.props.search);
-    }
-    let pagination = [];
-    for (let i = 0; i < this.state.numberAds / this.state.adsDisplayed; i++) {
-      pagination.push(i)
-    }
-    if (this.state.data) {
-      return (
-        <div>
-          <div className="row justify-content-center">
-            <div className="card-deck">
-              {this.state.data.map(dat => (<Ad key={dat._id} data={dat} />))}
-            </div>
-          </div>
-          <nav className="row justify-content-center" aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(-1)}>Prev</a></li>
-              {pagination.map(i => (<li className={"page-item" + (this.state.page == i ? " active" : " ")} key={i}><a key={i} className="page-link" href="#" onClick={() => this.changePage(i)}>{i + 1}</a></li>))}
-              <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
-            </ul>
-          </nav>
-        </div>
-      )
-    }
     else {
-      return (
-        <div className="app-loading">
-          <img id="icon_spinner" src={logopalc} />
-          <svg className="spinner" viewBox="25 25 50 50">
-            <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-          </svg>
-        </div>
-      )
+      if (this.props.search != this.state.searchedfor) {
+        this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
+        this.setState({ searchedfor: this.props.search });
+        console.log("researching", this.props.search);
+      }
+      let pagination = [];
+      for (let i = 0; i < this.state.numberAds / this.state.adsDisplayed; i++) {
+        pagination.push(i)
+      }
+      if (this.state.data) {
+        return (
+          <div>
+            <div className="row justify-content-center">
+              <div className="card-deck">
+                {this.state.data.map(dat => (<Ad key={dat._id} data={dat} />))}
+              </div>
+            </div>
+            <nav className="row justify-content-center" aria-label="Page navigation example">
+              <ul className="pagination">
+                <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(-1)}>Prev</a></li>
+                {pagination.map(i => (<li className={"page-item" + (this.state.page == i ? " active" : " ")} key={i}><a key={i} className="page-link" href="#" onClick={() => this.changePage(i)}>{i + 1}</a></li>))}
+                <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        )
+      }
+      else {
+        return (
+          <div className="app-loading">
+            <img id="icon_spinner" src={logopalc} />
+            <svg className="spinner" viewBox="25 25 50 50">
+              <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+          </div>
+        )
+      }
     }
   }
 }
