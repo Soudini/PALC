@@ -37,10 +37,10 @@ function loading(time) {
                     setTimeout(function () {
                         loading(time * 3);
                     }, time);
-                }, time * 3);
+                }, time);
             }, time);
-        }, time * 2);
-    }, time / 3);
+        }, time);
+    }, time / 2);
 }
 $(function () {
     loading(500);
@@ -62,7 +62,7 @@ export default class Page404 extends Component {
                 <main>
                     <br />
                     <br />
-                    <p id="texte_erreur">Erreur Page 404</p>
+                    <p id="texte_erreur">Erreur <br></br> Page 404</p>
                     <br />
                     <br />
                     <div class="chope">
