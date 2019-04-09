@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import Display from "../components/display.js";
 import Cookies from 'universal-cookie';
 
