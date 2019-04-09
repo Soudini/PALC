@@ -160,10 +160,8 @@ export default class Ad extends Component { // card for the mutliple ads view
     return (<a className="style-1" href="#" style={{ "marginTop": "1rem", "marginLeft": "auto", "marginRight": "auto", "marginBottom": "1rem" }}>
       <div className={className} style={{ "width": "18rem" }} >
         <LinkContainer to={"/ad/" + this.props.data._id}>
-          <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} >
-            <svg viewBox="-1.5 529.754 603 71.746" preserveAspectRatio="none" />
-            <path d=" M 0 560 Q 66.018 533.115 153.816 571.235 C 241.613 609.355 293.526 571.416 310 560 C 346.774 534.516 402.903 510.645 450 560 Q 497.097 609.355 600 560 L 600 600 L 0 600 L 0 560 Z " />
-          </img> </LinkContainer>
+          <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} />
+ </LinkContainer>
         <LinkContainer to={"/ad/" + this.props.data._id}>
           <div className="card-body ">
             <h5 className="card-title">{this.printTitle()}</h5>
