@@ -1,4 +1,5 @@
 {
-    "db_address":"mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves",
-    "redirect_uri":"http://localhost:3000/oauthend"
-  }
+  "db_address":"mongodb://Server:dTvTZv4m75ucB5E@ds145193.mlab.com:45193/objets-trouves",
+  "redirect_uri":"http://localhost:3000/oauthend",  
+  "reCaptchaKey": "6LcGT5AUAAAAAJLzt3WAOLZvXYOE7-6qTR0_7PLp"
+}

@@ -6,6 +6,10 @@ import { loadReCaptcha } from 'recaptcha-v3-react';
 import logopalc from "../files/logopalc.png";
 import logopalccontour from "../files/logopalccontour.png";
 import $ from 'jquery';
+
+
+let config = require('../config_client.json');
+
 window.$ = $;
 
 let date = new Date();
@@ -20,7 +24,7 @@ class Banner extends Component {
   componentDidMount = () => {
 
     this.checkAuth(); // prevent spam bounce (it is executed at each opening of the website)
-    loadReCaptcha({ key: "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id: "reCaptcha" }).then(id => { // load recaptcha with the website key
+    loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" }).then(id => { // load recaptcha with the website key
       console.log('ReCaptcha loaded', id);
     });
     this.killReCaptchaBadge(); // hide the reCaptcha badge (it means that we have to state that we are using it btw)

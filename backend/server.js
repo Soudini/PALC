@@ -20,7 +20,8 @@ app.use(bodyParser({limit: '10mb'}));
 // this is our MongoDB database
 const dbRoute = config.db_address;//"mongodb://localhost/ads"
 let keyEncrypt = secrets.keyEncrypt;
-let reCaptchaKey =  secrets.captcha.reCaptchaKey ;
+const reCaptchaKey = config.reCaptchaKey ? config.reCaptchaKey : secrets.captcha.reCaptchaKey;
+console.log(reCaptchaKey);
 let admin = ["2018louysa"];
 let ban = [];
 
@@ -196,6 +197,7 @@ router.post("/putData", (req, res) => {
   data.thumbnail = thumbnail;
   data.image = image;
   auth_author_login =  crypto.AES.decrypt(auth, keyEncrypt).toString(crypto.enc.Utf8);
+  console.log(reCaptchaKey, reCaptchaToken);
   request.post("https://www.google.com/recaptcha/api/siteverify", {form : {secret : reCaptchaKey, response :reCaptchaToken}}, (err, response, body) => {
     json = JSON.parse(body);
     console.log(json)
