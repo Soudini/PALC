@@ -48,7 +48,12 @@ class Display extends Component {
       .then(data => data.data).then(res => { this.setState({ data: res.data }) });
   };
 
-  render() {
+  render() {    
+    if (this.props.search != this.state.searchedfor) {
+      this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
+      this.setState({ searchedfor: this.props.search });
+      console.log("researching", this.props.search);
+    }
     if (this.state.data == "") {
       return (
         <section>
@@ -65,11 +70,6 @@ class Display extends Component {
       )
     }
     else {
-      if (this.props.search != this.state.searchedfor) {
-        this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
-        this.setState({ searchedfor: this.props.search });
-        console.log("researching", this.props.search);
-      }
       let pagination = [];
       for (let i = 0; i < this.state.numberAds / this.state.adsDisplayed; i++) {
         pagination.push(i)
