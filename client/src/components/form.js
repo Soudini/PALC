@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import "./form.css";
-
+import imageCompression from 'browser-image-compression';
 import { withRouter } from 'react-router-dom';
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
@@ -194,18 +194,23 @@ class Form extends Component { //parent component
   }
 
   handleImage(event) { //import, convert and resize the images
+    var options = {
+      maxSizeMB: .4,
+      maxWidthOrHeight: 400,
+      useWebWorker: true
+    } 
     if (event.target.files.length > 5) {
       alert("Le nombre d'image est limité à 5")
     }
     else {
       if (event.target.files) {
         this.setState({ imageLoading: true })
-        getBase64(event.target.files[0]).then(data => this.setState({ thumbnail: data }));
+        imageCompression(event.target.files[0], options).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => {console.log(data); this.setState({ thumbnail: data })});
         let list_files = [];
         for (let i = 1; i < event.target.files.length; i++) {
           list_files.push(event.target.files[i])
         }
-        Promise.all(list_files.map((file) => getBase64(file))).then(data => this.setState({ image: data, imageLoading: false }));
+        Promise.all(list_files.map((file) => imageCompression(file, options))).then(data => this.setState({ image: data, imageLoading: false }));
       }
     }
   }
