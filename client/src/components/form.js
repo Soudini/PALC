@@ -20,7 +20,7 @@ function getBase64(file) {
 
 
 class PostType extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       type: "search",
@@ -29,61 +29,61 @@ class PostType extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  subFields(){
+  subFields() {
     if (this.props.type === "search") {
-      let optionsReward = {Palc: "Palc","Calin <3": "Calin <3", Rien : "Rien"}
+      let optionsReward = { Palc: "Palc", "Calin <3": "Calin <3", Rien: "Rien" }
       let opt = [<option disabled hidden selected>Choisissez votre récompense</option>];
-      for (let i in optionsReward){
+      for (let i in optionsReward) {
 
-        if (i === this.props.reward){
+        if (i === this.props.reward) {
           opt.push(<option selected="True" key={i}>{optionsReward[i]}</option>);
         }
-        else{
+        else {
           opt.push(<option key={i}>{optionsReward[i]}</option>);
         }
       }
       return (
-                <div>
-                <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
-                  {opt}
-                </select></div>);
+        <div>
+          <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
+            {opt}
+          </select></div>);
     }
     else {
-      return(null);
+      return (null);
     }
   }
 
-  handleChange(event,type) {
-      if (type === "primary") {
-        this.setState({type: event.target.value === "Annonce recherche"? "search":"found"});
-        if (event.target.value !== "Annonce recherche"){
-          this.props.updateParent("reward", null)
-        }
-        this.props.updateParent("type", event.target.value === "Annonce recherche"? "search":"found")
+  handleChange(event, type) {
+    if (type === "primary") {
+      this.setState({ type: event.target.value === "Annonce recherche" ? "search" : "found" });
+      if (event.target.value !== "Annonce recherche") {
+        this.props.updateParent("reward", null)
       }
-      else if (type === "secondary") {
-        this.props.updateParent("reward", event.target.value);
-      }
+      this.props.updateParent("type", event.target.value === "Annonce recherche" ? "search" : "found")
+    }
+    else if (type === "secondary") {
+      this.props.updateParent("reward", event.target.value);
+    }
   }
 
-  render(){
-    let optionsType = {search:"Annonce recherche", found:"Annonce trouvaille"}
+  render() {
+    let optionsType = { search: "Annonce recherche", found: "Annonce trouvaille" }
     let opt = [<option disabled hidden selected>Quel type d'annonce voulez-vous faire ?</option>];
-    for (let i in optionsType){
-      if (i === this.props.type){
+    for (let i in optionsType) {
+      if (i === this.props.type) {
         opt.push(<option selected key={i}>{optionsType[i]}</option>);
       }
-      else{
+      else {
         opt.push(<option key={i}>{optionsType[i]}</option>);
       }
     }
-    return(
-          <div>
-            <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e,"primary")} required>
-              {opt}
-            </select>
-            {this.subFields()}
-          </div>)
+    return (
+      <div>
+        <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "primary")} required>
+          {opt}
+        </select>
+        {this.subFields()}
+      </div>)
   }
 }
 
@@ -151,7 +151,7 @@ class Form extends Component { //parent component
       image: [],
       data: [],
       reCaptchaToken: null,
-      imageLoading : false,
+      imageLoading: false,
     }
 
     this.updateParent = this.updateParent.bind(this);
@@ -176,7 +176,7 @@ class Form extends Component { //parent component
     else if (this.state.description.length > 1000 | this.state.title.length > 300) {
       alert("La description doit contenir moins de 1000 caractères et le titre moins de 300.")
     }
-    else if (this.state.imageLoading){
+    else if (this.state.imageLoading) {
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
     else {      
@@ -204,10 +204,10 @@ class Form extends Component { //parent component
         this.setState({ imageLoading: true })
         getBase64(event.target.files[0]).then(data => this.setState({ thumbnail: data }));
         let list_files = [];
-        for (let i = 1; i < event.target.files.length; i++){
+        for (let i = 1; i < event.target.files.length; i++) {
           list_files.push(event.target.files[i])
         }
-        Promise.all(list_files.map((file) => getBase64(file))).then( data => this.setState({ image: data, imageLoading: false }));
+        Promise.all(list_files.map((file) => getBase64(file))).then(data => this.setState({ image: data, imageLoading: false }));
       }
     }
   }
@@ -249,7 +249,7 @@ class Form extends Component { //parent component
     //if no images ask for one else display it/them and offer to delete it/them
 
     let $imagePreview = <div><div className="upload-btn-wrapper" style={{ "float": "left" }} >
-      <button className="btn1" style={{ "width": "100%" }}>Choisissez vos images
+      <button className="btn10" style={{ "width": "100%" }}>Choisissez vos images
       <input type="file" name="myfile" class="inputfile" accept="image/*" onChange={this.handleImage} multiple /></button>
       <label></label>
     </div></div>;
@@ -280,9 +280,9 @@ class Form extends Component { //parent component
         </div></div>;
     }
 
-    let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.state.reward}/>;
-    let description = <Description updateParent={this.updateParent} description={this.state.description}/>;
-    let title = <Title updateParent={this.updateParent} title={this.state.title}/>;
+    let type = <PostType updateParent={this.updateParent} type={this.state.type} reward={this.state.reward} />;
+    let description = <Description updateParent={this.updateParent} description={this.state.description} />;
+    let title = <Title updateParent={this.updateParent} title={this.state.title} />;
     return (
       <div>
         <ReCaptcha
@@ -310,11 +310,11 @@ class Form extends Component { //parent component
             </div>
             <br />
             <div className="" style={{ "text-align": "center" }}>
-              <button href="#" onClick={(e) => {e.preventDefault();this.handleSubmit(e)}} id="form_button">Envoyer</button>
+              <button href="#" onClick={(e) => { e.preventDefault(); this.handleSubmit(e) }} id="form_button">Envoyer</button>
             </div>
           </form>
         </div>
-        <h6 style={{ "marginTop": "1rem" }} className="font-weight-light">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</h6>
+        <h6 style={{ "marginTop": "1rem", "color": "rgb(100, 57, 0)" }} className="font-weight-light text-center">This site is protected by reCAPTCHA and the Google <a style={{ "marginTop": "1rem", "color": "#F9B804" }} href="https://policies.google.com/privacy">Privacy Policy</a> and <a style={{ "marginTop": "1rem", "color": "#F9B804" }} href="https://policies.google.com/terms">Terms of Service</a> apply.</h6>
       </div>
 
 

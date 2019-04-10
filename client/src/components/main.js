@@ -12,6 +12,7 @@ import OauthEnd from './oauthend.js';
 import Cookies from 'universal-cookie';
 import UpdatePost from './../views/updatePost.js';
 import Home from './../views/home.js';
+import Page404 from './../views/page404';
 
 
 let config = require('../config_client.json');
@@ -35,6 +36,7 @@ cookies.set("state", random)
 
 
 const Main = () => (
+
     <div>
       <Switch>
         <Route exact path='/all' component={All} />
@@ -48,6 +50,7 @@ const Main = () => (
         <Route exact path='/oauthend' component={OauthEnd} />
         <Route exact path='/updatePost/:id' component={UpdatePost} />
         <Route exact path="/" component={Home} />
+        <Route component={Page404} />
       </Switch>
   </div>
 )
