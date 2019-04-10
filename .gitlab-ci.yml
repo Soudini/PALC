@@ -26,8 +26,8 @@ deploy:
       git checkout master &&
       git pull &&
       sudo cp /home/ubuntu/objets-trouves/nginx.conf /etc/nginx/sites-available/palc &&
-      cd client &&
-      npm run build &&
+      cd /home/ubuntu/objets-trouves/client &&
+      sudo npm run build &&
       sudo rm -r /var/www/build &&
       sudo cp -r build /var/www &&
       sudo rm /etc/nginx/sites-enabled/* &&
