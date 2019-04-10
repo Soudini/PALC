@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import "./form.css";
-
+import imageCompression from 'browser-image-compression';
 import { withRouter } from 'react-router-dom';
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
@@ -12,7 +12,7 @@ function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => { console.log(reader.result); resolve(reader.result); };
+    reader.onload = () => { resolve(reader.result); };
     reader.onerror = error => reject(error);
   });
 }
@@ -181,7 +181,9 @@ class Form extends Component { //parent component
     }
     else {      
       this.props.putDataToDB(this.state);
-      loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" });
+      loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" }).then(id => { // load recaptcha with the website key
+        console.log('ReCaptcha loaded', id);
+      });
       this.setState({
         type: "search",
         reward: "Palc",
@@ -196,18 +198,28 @@ class Form extends Component { //parent component
   }
 
   handleImage(event) { //import, convert and resize the images
+    var options_thumbnail = {
+      maxSizeMB: .05,
+      maxWidthOrHeight: 200,
+      useWebWorker: true
+    } 
+    var options_image = {
+      maxSizeMB: .25,
+      maxWidthOrHeight: 400,
+      useWebWorker: true
+    }
     if (event.target.files.length > 5) {
       alert("Le nombre d'image est limité à 5")
     }
     else {
       if (event.target.files) {
         this.setState({ imageLoading: true })
-        getBase64(event.target.files[0]).then(data => this.setState({ thumbnail: data }));
+        imageCompression(event.target.files[0], options_thumbnail).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => { console.log(data); this.setState({ thumbnail: data })});
         let list_files = [];
-        for (let i = 1; i < event.target.files.length; i++) {
+        for (let i = 0; i < event.target.files.length; i++) {
           list_files.push(event.target.files[i])
         }
-        Promise.all(list_files.map((file) => getBase64(file))).then(data => this.setState({ image: data, imageLoading: false }));
+        Promise.all(list_files.map((file) => imageCompression(file, options_image).then((data) => imageCompression.getDataUrlFromFile(data)))).then(data => this.setState({ image: data, imageLoading: false }));
       }
     }
   }
@@ -238,8 +250,7 @@ class Form extends Component { //parent component
 
 
   verifyCallbackCaptcha = (token) => { // get token from captcha
-    this.setState({ reCaptchaToken: token });
-    console.log(token);
+    this.setState({ reCaptchaToken: token },console.log(token));
   }
 
   render() {
@@ -259,10 +270,10 @@ class Form extends Component { //parent component
         <div id="carouselExampleControls" className="row carousel slide align-items-center" data-ride="carousel">
           <div className="carousel-inner" >
             <div className="carousel-item active">
-              <div><div className="row justify-content-center" style={{ "height": "200px" }}><img className="h-100 img-fluid " src={this.state.thumbnail} alt="Second slide" /></div></div>
+              <div><div className="row justify-content-center" style={{ "height": "200px" }}><img className="h-100 img-fluid " src={this.state.image[0]} alt="Second slide" /></div></div>
 
             </div>
-            {image.map((img) => <div key={img.slice(img.length - 20, img.length - 1)} className="carousel-item">
+            {image.slice(1).map((img) => <div key={img.slice(img.length - 20, img.length - 1)} className="carousel-item">
               <div><div className="row justify-content-center" style={{ "height": "200px" }}><img className="h-100 img-fluid " src={img} alt="Second slide" /></div></div>
             </div>)}
           </div>

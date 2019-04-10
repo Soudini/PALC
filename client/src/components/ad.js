@@ -68,10 +68,10 @@ export class Page extends Component { // full page view of the ad with the id wr
         carousel = <div id="carouselExampleControls" className="carousel slide col" data-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <div><div className="row justify-content-center" style={{ "height": "300px" }}><img className="img-fluid img-test" src={this.state.data.thumbnail} alt="thumbnail" /></div></div>
+              <div><div className="row justify-content-center" style={{ "height": "300px" }}><img className="img-fluid img-test" src={this.state.data.image[0]} alt="thumbnail" /></div></div>
 
             </div>
-            {this.state.data.image.map((img) => <div key={img.slice(img.length - 20, img.length - 1)} className="carousel-item">
+            {this.state.data.image.slice(1).map((img) => <div key={img.slice(img.length - 20, img.length - 1)} className="carousel-item">
               <div><div className="row justify-content-center" style={{ "height": "300px" }}><img className="img-fluid img-test" src={img} alt="images" /></div></div>
             </div>)}
           </div>
