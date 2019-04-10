@@ -1,6 +1,8 @@
 image: node:latest
 
-pull:
+deploy:
+  only:
+    - master
   script:
     # Install ssh-agent if not already installed, it is required by Docker.
     - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
@@ -19,6 +21,8 @@ pull:
     - >
       ssh -tt ubuntu@palc.viarezo.fr
       "cd /home/ubuntu/objets-trouves &&
+      cp /config/server/config_backend.json /backend/ &&
+      cp /config/sever/config_client.json /client/src/ &&
       git checkout master &&
       git pull &&
       sudo cp /home/ubuntu/objets-trouves/nginx.conf /etc/nginx/sites-available/palc &&
