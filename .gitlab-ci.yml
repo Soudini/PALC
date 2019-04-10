@@ -26,7 +26,10 @@ deploy:
       git checkout master &&
       git pull &&
       sudo cp /home/ubuntu/objets-trouves/nginx.conf /etc/nginx/sites-available/palc &&
+      cd /home/ubuntu/objets-trouves/backend &&
+      npm i &&     
       cd /home/ubuntu/objets-trouves/client &&
+      npm i &&
       sudo npm run build &&
       sudo rm -r /var/www/build &&
       sudo cp -r build /var/www &&
