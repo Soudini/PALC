@@ -22,7 +22,7 @@ deploy:
       ssh -tt ubuntu@palc.viarezo.fr
       "cd /home/ubuntu/objets-trouves &&
       cp /home/ubuntu/objets-trouves/config/server/config_backend.json /home/ubuntu/objets-trouves/backend/ &&
-      cp /home/ubuntu/objets-trouves/config/sever/config_client.json /home/ubuntu/objets-trouves/client/src/ &&
+      cp /home/ubuntu/objets-trouves/config/server/config_client.json /home/ubuntu/objets-trouves/client/src/ &&
       git checkout master &&
       git pull &&
       sudo cp /home/ubuntu/objets-trouves/nginx.conf /etc/nginx/sites-available/palc &&
