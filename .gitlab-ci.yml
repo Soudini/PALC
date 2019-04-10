@@ -19,5 +19,16 @@ pull:
     - >
       ssh -tt ubuntu@palc.viarezo.fr
       "cd /home/ubuntu/objets-trouves &&
-      git checkout $CI_COMMIT_REF_NAME &&
-      git pull"
+      git checkout master &&
+      git pull &&
+      sudo cp /home/ubuntu/objets-trouves/nginx.conf /etc/nginx/sites-available/palc &&
+      cd client &&
+      npm run build &&
+      sudo rm -r /var/www/build &&
+      sudo cp -r build /var/www &&
+      sudo rm /etc/nginx/sites-enabled/* &&
+      sudo ln -s /etc/nginx/sites-available/palc /etc/nginx/sites-enabled/palc &&
+      sudo service nginx restart &&
+      cd /home/ubuntu/objets-trouves/backend &&
+      sudo pm2 restart server
+      "
