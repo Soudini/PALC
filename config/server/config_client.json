@@ -1,3 +1,5 @@
 {
-    "redirect_uri" : "http://palc.viarezo.fr/oauthend"
+    "redirect_uri" : "http://palc.viarezo.fr/oauthend",
+    "ReCaptcha_sitekey":"6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR"
 }
+  

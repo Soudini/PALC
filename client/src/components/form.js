@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { loadReCaptcha, ReCaptcha } from 'recaptcha-v3-react';
 const cookies = new Cookies();
 
+let config = require('../config_client.json');
+
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -158,8 +160,8 @@ class Form extends Component { //parent component
   }
 
   componentDidMount() {
-    if (this.props.data !== {}) {
-      this.setState(this.props.data, console.log(this.props.data, this.state));
+    if (this.props.data !== {}){
+      this.setState(this.props.data);      
     }
   }
 
@@ -177,9 +179,9 @@ class Form extends Component { //parent component
     else if (this.state.imageLoading) {
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
-    else {
+    else {      
       this.props.putDataToDB(this.state);
-      loadReCaptcha({ key: "6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR", id: "reCaptcha" });
+      loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" });
       this.setState({
         type: "search",
         reward: "Palc",
@@ -242,6 +244,7 @@ class Form extends Component { //parent component
 
   verifyCallbackCaptcha = (token) => { // get token from captcha
     this.setState({ reCaptchaToken: token });
+    console.log(token);
   }
 
   render() {
@@ -289,7 +292,7 @@ class Form extends Component { //parent component
       <div>
         <ReCaptcha
           action='submitAd'
-          sitekey="6LcpTZAUAAAAAAFSVV4wHy98dnjHW8Ylf-YIC9OR"
+          sitekey= {config.ReCaptcha_sitekey}
           verifyCallback={this.verifyCallbackCaptcha}
         />
         <div id="container">
