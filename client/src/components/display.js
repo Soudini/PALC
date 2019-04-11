@@ -57,22 +57,26 @@ class Display extends Component {
       pagination.push(i)
     }
     if (this.state.data) {
-      return (
-        <div>
-          <div className="row justify-content-center">
-            <div className="card-deck">
-              {this.state.data.map(dat => (<Ad key={dat._id} data={dat} />))}
+      if (this.state.data.length === 0){
+
+      } 
+      else{
+        return (
+          <div>
+            <div className="row justify-content-center">
+              <div className="card-deck">
+                {this.state.data.map(dat => (<Ad key={dat._id} data={dat} />))}
+              </div>
             </div>
+            <nav className="row justify-content-center" aria-label="Page navigation example">
+              <ul className="pagination">
+                <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(-1)}>Prev</a></li>
+                {pagination.map(i => (<li className={"page-item" + (this.state.page == i ? " active" : " ")} key={i}><a key={i} className="page-link" href="#" onClick={() => this.changePage(i)}>{i + 1}</a></li>))}
+                <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
+              </ul>
+            </nav>
           </div>
-          <nav className="row justify-content-center" aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(-1)}>Prev</a></li>
-              {pagination.map(i => (<li className={"page-item" + (this.state.page == i ? " active" : " ")} key={i}><a key={i} className="page-link" href="#" onClick={() => this.changePage(i)}>{i + 1}</a></li>))}
-              <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
-            </ul>
-          </nav>
-        </div>
-      )
+        )
     }
     else {
       return (
