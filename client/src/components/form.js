@@ -165,8 +165,8 @@ class Form extends Component { //parent component
   }
 
   componentDidMount() {
-    if (this.props.data !== {}){
-      this.setState(this.props.data);      
+    if (this.props.data !== {}) {
+      this.setState(this.props.data);
     }
   }
 
@@ -184,7 +184,7 @@ class Form extends Component { //parent component
     else if (this.state.imageLoading) {
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
-    else {      
+    else {
       this.props.putDataToDB(this.state);
       this.props.history.push("/");
       this.setState({
@@ -205,7 +205,7 @@ class Form extends Component { //parent component
       maxSizeMB: .15,
       maxWidthOrHeight: 250,
       useWebWorker: true
-    } 
+    }
     var options_image = {
       maxSizeMB: .5,
       maxWidthOrHeight: 600,
@@ -253,7 +253,7 @@ class Form extends Component { //parent component
 
 
   verifyCallbackCaptcha = (token) => { // get token from captcha
-    this.setState({ reCaptchaToken: token },console.log(token));
+    this.setState({ reCaptchaToken: token }, console.log(token));
   }
 
   render() {
@@ -291,7 +291,7 @@ class Form extends Component { //parent component
           </a>
         </div>
         <div className="row justify-content-center">
-          <button type="button" className="btn btn-danger" style={{ "marginTop": "1rem", "marginBottom": "1rem" }} onClick={this.deleteImage}>Supprimer ces images</button>
+          <button type="button" id="form_button" style={{ "marginTop": "2rem", "marginBottom": "0.5rem" }} onClick={this.deleteImage}>Supprimer ces images</button>
         </div></div>;
     }
 

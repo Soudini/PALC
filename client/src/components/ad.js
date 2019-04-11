@@ -58,10 +58,10 @@ export class Page extends Component { // full page view of the ad with the id wr
       let carousel = null;
 
       if (this.state.data.thumbnail === "") {
-        this.state.data.thumbnail = image
+        this.state.data.image[0] = image
       }
       if (this.state.data.thumbnail === null) {
-        this.state.data.thumbnail = image
+        this.state.data.image[0] = image
       }
 
       if ((this.state.data.thumbnail != null & this.state.data.thumbnail != "") | this.state.data.image.length) { //if there is a thumbnail or images to show create the carousel

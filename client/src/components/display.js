@@ -5,6 +5,7 @@ import Ad from "./ad.js";
 import axios from "axios";
 import logopalc from "../files/logopalc.png"
 import "./display.css";
+import PersoPalc from "./../files/perso_palc.png";
 import AuncunResultat from "../files/AucunResultat.png";
 
 class Display extends Component {
@@ -54,14 +55,60 @@ class Display extends Component {
       this.setState({ searchedfor: this.props.search });
       console.log("researching", this.props.search);
     }
+<<<<<<< client/src/components/display.js
+    let pagination = [];
+    for (let i = 0; i < this.state.numberAds / this.state.adsDisplayed; i++) {
+      pagination.push(i)
+    }
+    if (this.state.data) {
+      if (this.state.data.length === 0) {
+        return (<section>
+=======
     if (this.state.data == "") {
       return (
         <section>
+>>>>>>> client/src/components/display.js
           <div className="container-fondus ">
             <div className="row">
               <div className="col-lg-6 mx-auto text-center">
 
                 <br></br>
+<<<<<<< client/src/components/display.js
+                <img src={PersoPalc} id="perso_image" class="img-fluid" alt="Responsive image" />
+              </div>
+            </div>
+          </div>
+        </section>)
+      }
+      else {
+        return (
+          <div>
+            <div className="row justify-content-center">
+              <div className="card-deck">
+                {this.state.data.map(dat => (<Ad key={dat._id} data={dat} />))}
+              </div>
+            </div>
+            <nav className="row justify-content-center" aria-label="Page navigation example">
+              <ul className="pagination">
+                <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(-1)}>Prev</a></li>
+                {pagination.map(i => (<li className={"page-item" + (this.state.page == i ? " active" : " ")} key={i}><a key={i} className="page-link" href="#" onClick={() => this.changePage(i)}>{i + 1}</a></li>))}
+                <li className="page-item"><a className="page-link" href="#" onClick={() => this.previousNext(1)}>Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        )
+      }
+    }
+    else {
+      return (
+        <div className="app-loading">
+          <img id="icon_spinner" src="./logopalc.png" />
+          <svg className="spinner" viewBox="25 25 50 50">
+            <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+          </svg>
+        </div>
+      )
+=======
                 <img src={AuncunResultat} id="noresults_image" class="img-fluid" alt="Responsive image" />
               </div>
             </div>
@@ -102,6 +149,7 @@ class Display extends Component {
           </div>
         )
       }
+>>>>>>> client/src/components/display.js
     }
   }
 }
