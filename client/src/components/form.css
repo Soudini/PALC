@@ -43,12 +43,13 @@ textarea {
   overflow: auto;
 }
 
-#container {
+#container1 {
   border: solid 3px rgb(100, 57, 0);
   border-radius:0.25rem;
   max-width: 768px;
   margin: 60px auto;
   position: relative;
+  margin-top:30px;
 }
 
 form {
@@ -183,7 +184,7 @@ textarea {
 }
 
 @media screen and (max-width: 768px) {
-  #container {
+  #container1 {
     margin: 20px auto;
     width: 95%;
   }

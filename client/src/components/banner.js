@@ -118,7 +118,7 @@ class Banner extends Component {
           </button> */}
           <div className="cntr">
             <div className="cntr-innr">
-              <label className="search" for="inpt_search"  >
+              <label className="search" for="inpt_search" id="margin_search" >
                 <input id="inpt_search" type="text" onKeyPress={this.handleKeyPress} aria-label="Search" onChange={this.handleSearchText} onSubmit={() => this.handlePageChange("searchEngine/" + this.state.search)} />
               </label>
             </div>

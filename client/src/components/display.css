@@ -97,3 +97,14 @@ body{
     border-bottom-left-radius: 50px !important;
     border-top-left-radius:50px !important;
 }
+
+#perso_image{
+    width:65%;
+}
+
+@media screen and (max-width: 774px) {
+    #perso_image{
+        margin-top:100px;
+    }
+}
+

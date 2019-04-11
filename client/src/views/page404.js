@@ -86,12 +86,12 @@ export default class Page404 extends Component {
                 <div class="col-lg-8 mx-auto" id="boutons">
                     <div class="text-center">
                         <div class="row">
-                            <div class="col">
+                            <div class="col" id="colonne">
                                 <a class="btn1 btn-primary1 btn-xl" onClick={() => this.handlePageChange("")}>&nbsp;
                                   Accueil&nbsp;
       </a>
                             </div>
-                            <div class="col">
+                            <div class="col" id="colonne">
                                 <a class="btn1 btn-primary1 btn-xl"
                                     onClick={() => this.handlePageChange("all")}>Annonces</a>
                             </div>

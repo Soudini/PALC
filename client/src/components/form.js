@@ -160,8 +160,8 @@ class Form extends Component { //parent component
   }
 
   componentDidMount() {
-    if (this.props.data !== {}){
-      this.setState(this.props.data);      
+    if (this.props.data !== {}) {
+      this.setState(this.props.data);
     }
   }
 
@@ -179,7 +179,7 @@ class Form extends Component { //parent component
     else if (this.state.imageLoading) {
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
-    else {      
+    else {
       this.props.putDataToDB(this.state);
       loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" }).then(id => { // load recaptcha with the website key
         console.log('ReCaptcha loaded', id);
@@ -202,7 +202,7 @@ class Form extends Component { //parent component
       maxSizeMB: .05,
       maxWidthOrHeight: 200,
       useWebWorker: true
-    } 
+    }
     var options_image = {
       maxSizeMB: .25,
       maxWidthOrHeight: 400,
@@ -214,7 +214,7 @@ class Form extends Component { //parent component
     else {
       if (event.target.files) {
         this.setState({ imageLoading: true })
-        imageCompression(event.target.files[0], options_thumbnail).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => { console.log(data); this.setState({ thumbnail: data })});
+        imageCompression(event.target.files[0], options_thumbnail).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => { console.log(data); this.setState({ thumbnail: data }) });
         let list_files = [];
         for (let i = 0; i < event.target.files.length; i++) {
           list_files.push(event.target.files[i])
@@ -250,7 +250,7 @@ class Form extends Component { //parent component
 
 
   verifyCallbackCaptcha = (token) => { // get token from captcha
-    this.setState({ reCaptchaToken: token },console.log(token));
+    this.setState({ reCaptchaToken: token }, console.log(token));
   }
 
   render() {
@@ -287,7 +287,7 @@ class Form extends Component { //parent component
           </a>
         </div>
         <div className="row justify-content-center">
-          <button type="button" className="btn btn-danger" style={{ "marginTop": "1rem", "marginBottom": "1rem" }} onClick={this.deleteImage}>Supprimer ces images</button>
+          <button type="button" id="form_button" style={{ "marginTop": "2rem", "marginBottom": "0.5rem" }} onClick={this.deleteImage}>Supprimer ces images</button>
         </div></div>;
     }
 
@@ -298,10 +298,10 @@ class Form extends Component { //parent component
       <div>
         <ReCaptcha
           action='submitAd'
-          sitekey= {config.ReCaptcha_sitekey}
+          sitekey={config.ReCaptcha_sitekey}
           verifyCallback={this.verifyCallbackCaptcha}
         />
-        <div id="container">
+        <div id="container1">
           <br />
           <h2>&bull; Créer une annonce &bull;</h2>
           <br />

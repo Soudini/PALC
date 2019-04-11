@@ -1,5 +1,5 @@
 #image_welcome_page{
-    width: 35%;
+    width: 38%;
     padding-top:2rem;
     padding-bottom:3rem;
 }
@@ -19,4 +19,10 @@ p{
 .foundus {
     padding-top: 5rem;
     padding-bottom: 4rem;
+  }
+
+  @media screen and (max-width: 774px) {
+      #image_welcome_page{
+      width:50%;
+      }
   }

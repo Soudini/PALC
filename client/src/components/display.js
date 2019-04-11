@@ -4,6 +4,7 @@ import "./display.css";
 import Ad from "./ad.js";
 import axios from "axios";
 import "./display.css";
+import PersoPalc from "./../files/perso_palc.png"
 
 class Display extends Component {
   //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
@@ -57,10 +58,20 @@ class Display extends Component {
       pagination.push(i)
     }
     if (this.state.data) {
-      if (this.state.data.length === 0){
+      if (this.state.data.length === 0) {
+        return (<section>
+          <div className="container-fondus ">
+            <div className="row">
+              <div className="col-lg-6 mx-auto text-center">
 
-      } 
-      else{
+                <br></br>
+                <img src={PersoPalc} id="perso_image" class="img-fluid" alt="Responsive image" />
+              </div>
+            </div>
+          </div>
+        </section>)
+      }
+      else {
         return (
           <div>
             <div className="row justify-content-center">
@@ -77,15 +88,16 @@ class Display extends Component {
             </nav>
           </div>
         )
+      }
     }
     else {
       return (
-      <div className="app-loading">
-        <img id="icon_spinner" src="./logopalc.png"/>
-        <svg className="spinner" viewBox="25 25 50 50">
-          <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-        </svg>
-      </div>
+        <div className="app-loading">
+          <img id="icon_spinner" src="./logopalc.png" />
+          <svg className="spinner" viewBox="25 25 50 50">
+            <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+          </svg>
+        </div>
       )
     }
   }
