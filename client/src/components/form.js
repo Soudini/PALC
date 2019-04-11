@@ -152,6 +152,11 @@ class Form extends Component { //parent component
       data: [],
       reCaptchaToken: null,
       imageLoading: false,
+      reCaptcha : <ReCaptcha
+                    action='submitAd'
+                    sitekey= {config.ReCaptcha_sitekey}
+                    verifyCallback={this.verifyCallbackCaptcha}
+                  />
     }
 
     this.updateParent = this.updateParent.bind(this);
@@ -181,11 +186,7 @@ class Form extends Component { //parent component
     }
     else {      
       this.props.putDataToDB(this.state);
-      document.getElementById("reCaptcha").parentNode.removeChild(document.getElementById("reCaptcha"));
-      console.log("killed recaptcha");
-      loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" }).then(id => { // load recaptcha with the website key
-        console.log('ReCaptcha loaded', id);  
-      });
+      this.props.history.push("/");
       this.setState({
         type: "search",
         reward: "Palc",
@@ -201,13 +202,13 @@ class Form extends Component { //parent component
 
   handleImage(event) { //import, convert and resize the images
     var options_thumbnail = {
-      maxSizeMB: .05,
-      maxWidthOrHeight: 200,
+      maxSizeMB: .15,
+      maxWidthOrHeight: 250,
       useWebWorker: true
     } 
     var options_image = {
-      maxSizeMB: .25,
-      maxWidthOrHeight: 400,
+      maxSizeMB: .5,
+      maxWidthOrHeight: 600,
       useWebWorker: true
     }
     if (event.target.files.length > 5) {
@@ -216,7 +217,7 @@ class Form extends Component { //parent component
     else {
       if (event.target.files) {
         this.setState({ imageLoading: true })
-        imageCompression(event.target.files[0], options_thumbnail).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => { console.log(data); this.setState({ thumbnail: data })});
+        imageCompression(event.target.files[0], options_thumbnail).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => { this.setState({ thumbnail: data })});
         let list_files = [];
         for (let i = 0; i < event.target.files.length; i++) {
           list_files.push(event.target.files[i])
@@ -256,12 +257,8 @@ class Form extends Component { //parent component
   }
 
   render() {
-    let reCaptcha = 
-      <ReCaptcha
-        action='submitAd'
-        sitekey= {config.ReCaptcha_sitekey}
-        verifyCallback={this.verifyCallbackCaptcha}
-      />
+    let {reCaptcha} = this.state
+
 
     let { image } = this.state;
     //if no images ask for one else display it/them and offer to delete it/them
