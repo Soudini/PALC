@@ -26,3 +26,13 @@ p{
       width:50%;
       }
   }
+
+ #mail_contact{
+     color:#e0860b;
+     text-decoration: none;
+     transition:0.2s;
+ } 
+
+ #mail_contact:hover{
+     color:#d39a00;
+ }
