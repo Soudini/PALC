@@ -5,47 +5,6 @@ import $ from 'jquery';
 window.$ = $;
 
 
-function loading(time) {
-    setTimeout(function () {
-        $('.biere').addClass('active');
-        setTimeout(function () {
-            $('.mousse > div').each(function () {
-                var scaleValue = Math.floor((Math.random() * 5) + 3);
-                $(this).css('opacity', 1);
-                $(this).css({
-                    '-webkit-transform': 'scale(' + scaleValue + ')',
-                    '-moz-transform': 'scale(' + scaleValue + ')',
-                    '-ms-transform': 'scale(' + scaleValue + ')',
-                    '-o-transform': 'scale(' + scaleValue + ')',
-                    'transform': 'scale(' + scaleValue + ')'
-                });
-            });
-            setTimeout(function () {
-                $('.mousse > div').each(function () {
-                    var scaleValue = 0;
-                    $(this).css('opacity', 1);
-                    $(this).css({
-                        '-webkit-transform': 'scale(' + scaleValue + ')',
-                        '-moz-transform': 'scale(' + scaleValue + ')',
-                        '-ms-transform': 'scale(' + scaleValue + ')',
-                        '-o-transform': 'scale(' + scaleValue + ')',
-                        'transform': 'scale(' + scaleValue + ')'
-                    });
-                });
-                setTimeout(function () {
-                    $('.biere').removeClass('active');
-                    setTimeout(function () {
-                        loading(time * 2);
-                    }, time);
-                }, time);
-            }, time);
-        }, time);
-    }, time / 2);
-}
-$(function () {
-    loading(500);
-})
-
 
 export default class Page404 extends Component {
     handlePageChange = (page) => { // navigate between pages

@@ -161,7 +161,7 @@ export default class Ad extends Component { // card for the mutliple ads view
       <div className={className} style={{ "width": "18rem" }} >
         <LinkContainer to={"/ad/" + this.props.data._id}>
           <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} />
-        </LinkContainer>
+ </LinkContainer>
         <LinkContainer to={"/ad/" + this.props.data._id}>
           <div className="card-body ">
             <h5 className="card-title">{this.printTitle()}</h5>
