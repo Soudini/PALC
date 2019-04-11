@@ -24,7 +24,7 @@ export class Page extends Component { // full page view of the ad with the id wr
 
     if (window.confirm("Voulez vous vraiment supprimer cette annonce ?")) {
       axios.post("/api/deleteData", { id: this.props.match.params.id, auth: cookies.get("auth") }); // auth to check whether it is the true author or not (or an admin)
-      this.props.history.push("/");
+      this.props.history.push("/perso");
     }
 
   }
