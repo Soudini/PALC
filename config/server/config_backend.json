@@ -1,4 +1,4 @@
 {
     "db_address":"mongodb://localhost/ads",
-    "redirect_uri":"https://palc.viarezo.fr/oauthend"
+    "redirect_uri":"http://palc.viarezo.fr/oauthend"
   }

@@ -17,7 +17,6 @@ import Page404 from './../views/page404';
 
 let config = require('../config_client.json');
 
-console.log(config);
 function makeid() { // generate random state for the auth
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
