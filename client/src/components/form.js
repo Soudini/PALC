@@ -181,8 +181,10 @@ class Form extends Component { //parent component
     }
     else {      
       this.props.putDataToDB(this.state);
+      document.getElementById("reCaptcha").parentNode.removeChild(document.getElementById("reCaptcha"));
+      console.log("killed recaptcha");
       loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" }).then(id => { // load recaptcha with the website key
-        console.log('ReCaptcha loaded', id);
+        console.log('ReCaptcha loaded', id);  
       });
       this.setState({
         type: "search",
@@ -254,7 +256,12 @@ class Form extends Component { //parent component
   }
 
   render() {
-
+    let reCaptcha = 
+      <ReCaptcha
+        action='submitAd'
+        sitekey= {config.ReCaptcha_sitekey}
+        verifyCallback={this.verifyCallbackCaptcha}
+      />
 
     let { image } = this.state;
     //if no images ask for one else display it/them and offer to delete it/them
@@ -296,11 +303,7 @@ class Form extends Component { //parent component
     let title = <Title updateParent={this.updateParent} title={this.state.title} />;
     return (
       <div>
-        <ReCaptcha
-          action='submitAd'
-          sitekey= {config.ReCaptcha_sitekey}
-          verifyCallback={this.verifyCallbackCaptcha}
-        />
+        {reCaptcha}
         <div id="container">
           <br />
           <h2>&bull; Créer une annonce &bull;</h2>

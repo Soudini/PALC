@@ -34,7 +34,15 @@ class CreatePost extends Component { //parent component
       image: data.image,
       reCaptchaToken: data.reCaptchaToken,
       auth: cookies.get("auth")
-    }).then(alert("Annonce postée avec succès"));
+    }).then(res => {
+      console.log(res.data);
+      if (res.data.success) {
+        alert("Annonce postée avec succès")
+      }
+      else {
+        alert("L'annonce n'a pas pu être postée, veuillez recharger la page et réessayer");
+      }
+    })
   }
 
  
