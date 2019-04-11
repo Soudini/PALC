@@ -479,6 +479,9 @@
 
 
 @media screen and (max-width: 767px) {
+	.col{
+		padding-bottom:50px;
+	}
     .btn1 {
         font-weight: 700;
         text-transform: uppercase;
@@ -510,9 +513,17 @@
     height: 90px;
     position: absolute;
     top: 13%;
-    left: -36%;
+    left: -30%;
 
-    }
+	}
+	
+	#boutons{
+		padding:0px !important;
+	}
+
+	#beer_text{
+		font-size:22px;
+	}
   }
 
 #fond{
