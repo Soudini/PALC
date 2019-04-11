@@ -480,7 +480,7 @@
 
 @media screen and (max-width: 767px) {
 	.col{
-		padding-bottom:50px;
+		padding-bottom:50px !important;
 	}
     .btn1 {
         font-weight: 700;
@@ -522,7 +522,7 @@
 	}
 
 	#beer_text{
-		font-size:22px;
+		font-size:22px !important;
 	}
   }
 
