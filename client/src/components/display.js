@@ -52,7 +52,7 @@ class Display extends Component {
 
   render() {
     if (this.props.search != this.state.searchedfor) {
-      this.setState({ data: this.searchDataFromDb(this.props.search, this.s tate.page, this.state.adsDisplayed) });
+      this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
       this.setState({ searchedfor: this.props.search });
     }
     let pagination = [];
