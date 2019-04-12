@@ -152,11 +152,11 @@ class Form extends Component { //parent component
       data: [],
       reCaptchaToken: null,
       imageLoading: false,
-      reCaptcha : <ReCaptcha
-                    action='submitAd'
-                    sitekey= {config.ReCaptcha_sitekey}
-                    verifyCallback={this.verifyCallbackCaptcha}
-                  />
+      reCaptcha: <ReCaptcha
+        action='submitAd'
+        sitekey={config.ReCaptcha_sitekey}
+        verifyCallback={this.verifyCallbackCaptcha}
+      />
     }
 
     this.updateParent = this.updateParent.bind(this);
@@ -217,7 +217,7 @@ class Form extends Component { //parent component
     else {
       if (event.target.files) {
         this.setState({ imageLoading: true })
-        imageCompression(event.target.files[0], options_thumbnail).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => { this.setState({ thumbnail: data })});
+        imageCompression(event.target.files[0], options_thumbnail).then((data) => imageCompression.getDataUrlFromFile(data)).then(data => { this.setState({ thumbnail: data }) });
         let list_files = [];
         for (let i = 0; i < event.target.files.length; i++) {
           list_files.push(event.target.files[i])
@@ -257,7 +257,7 @@ class Form extends Component { //parent component
   }
 
   render() {
-    let {reCaptcha} = this.state
+    let { reCaptcha } = this.state
 
 
     let { image } = this.state;
@@ -301,7 +301,7 @@ class Form extends Component { //parent component
     return (
       <div>
         {reCaptcha}
-        <div id="container">
+        <div id="container1">
           <br />
           <h2>&bull; Créer une annonce &bull;</h2>
           <br />

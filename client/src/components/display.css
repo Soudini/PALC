@@ -119,3 +119,14 @@ body{
         width:65%;
     }
 }
+
+#aucuneannonce_image{
+    width:55%;
+    margin-top:50px;
+}
+
+@media screen and (max-width: 774px) {
+    #aucuneannonce_image{
+        width:65%;
+    }
+}

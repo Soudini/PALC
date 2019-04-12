@@ -6,7 +6,8 @@ import axios from "axios";
 import logopalc from "../files/logopalc.png"
 import "./display.css";
 import PersoPalc from "./../files/perso_palc.png";
-import AuncunResultat from "../files/AucunResultat.png";
+import AucuneAnnonce from "./../files/AucuneAnnonce.png";
+import AucunResultat from "../files/AucunResultat.png";
 
 class Display extends Component {
   //props : search = dictionary defining the appropriate search for the db (cf different pages in views/)
@@ -49,7 +50,7 @@ class Display extends Component {
       .then(data => data.data).then(res => { this.setState({ data: res.data }) });
   };
 
-  render() {    
+  render() {
     if (this.props.search != this.state.searchedfor) {
       this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
       this.setState({ searchedfor: this.props.search });
@@ -67,7 +68,7 @@ class Display extends Component {
               <div className="col-lg-6 mx-auto text-center">
 
                 <br></br>
-                <img src={PersoPalc} id="perso_image" class="img-fluid" alt="Responsive image" />
+                <img src={AucuneAnnonce} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
               </div>
             </div>
           </div>
@@ -95,7 +96,7 @@ class Display extends Component {
     else {
       return (
         <div className="app-loading">
-          <img id="icon_spinner" src="./logopalc.png" />
+          <img id="icon_spinner" src={logopalc} />
           <svg className="spinner" viewBox="25 25 50 50">
             <circle className="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
           </svg>
