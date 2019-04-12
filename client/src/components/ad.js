@@ -86,6 +86,10 @@ export class Page extends Component { // full page view of the ad with the id wr
         </div>;
       }
 
+      let presentation = "Cette annonce a été créée par " + this.state.data.author;
+      if (this.state.data.reward !== null){
+        presentation = this.state.data.author + " offre " + this.state.data.reward.toLowerCase();
+      }
       return (
         <div className="col-lg-8">
           <div className="jumbotron fluid">
@@ -96,7 +100,7 @@ export class Page extends Component { // full page view of the ad with the id wr
             <div className="row align-items-center">
               {carousel}
               <div className="col-sm-6 text-center ">
-                <h5 className="text-center">{"Cette annonce a été créée par " + this.state.data.author}</h5>
+                <h5 className="text-center">{presentation}</h5>
                 <p className="card-text text-center" id="description">{this.state.data.description}</p>
                 <a className="text-center" href={"https://linkcs.fr/user/" + this.state.data.author_login}><button className="btn btn-info col" style={{ "border-radius": "50px", "padding": "10px" }}  ><i class='fa fa-user' style={{ "color": "white", "margin-right": "2px" }}></i>LinkCS </button></a>
                 {buttonUpdate}
@@ -165,7 +169,7 @@ export default class Ad extends Component { // card for the mutliple ads view
         <LinkContainer to={"/ad/" + this.props.data._id}>
           <div className="card-body ">
             <h5 className="card-title">{this.printTitle()}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre " + this.props.data.reward : "")}</h6>
+            <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre " + this.props.data.reward.toLowerCase() : "")}</h6>
             <p className="card-text">{this.printDescription()}</p>
           </div>
         </LinkContainer>
