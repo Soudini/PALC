@@ -189,7 +189,7 @@ class Form extends Component { //parent component
     else if (this.state.imageLoading) {
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
-    else if ( this.state.reward === null) {
+    else if ( this.state.reward === null & this.state.type === "search") {
       alert("Veuillez choisir une récompense.")
     }
     else {
