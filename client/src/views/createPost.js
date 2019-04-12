@@ -25,7 +25,8 @@ class CreatePost extends Component { //parent component
       auth: cookies.get("auth")
     }).then(res => {
       if (res.data.success) {
-        alert("Annonce postée avec succès")
+        alert("Annonce postée avec succès");
+        setTimeout( () => this.props.history.push("/all"), 200);
       }
       else {
         alert("L'annonce n'a pas pu être postée, veuillez recharger la page et réessayer");
