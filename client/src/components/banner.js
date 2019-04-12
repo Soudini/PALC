@@ -24,9 +24,7 @@ class Banner extends Component {
   componentDidMount = () => {
 
     this.checkAuth(); // prevent spam bounce (it is executed at each opening of the website)
-    loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" }).then(id => { // load recaptcha with the website key
-      console.log('ReCaptcha loaded', id);
-    });
+    loadReCaptcha({ key: config.ReCaptcha_sitekey, id: "reCaptcha" })
     this.killReCaptchaBadge(); // hide the reCaptcha badge (it means that we have to state that we are using it btw)
 
     $("#inpt_search").on('focus', function () {

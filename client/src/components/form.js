@@ -252,7 +252,7 @@ class Form extends Component { //parent component
 
 
   verifyCallbackCaptcha = (token) => { // get token from captcha
-    this.setState({ reCaptchaToken: token }, console.log(token));
+    this.setState({ reCaptchaToken: token });
   }
 
   render() {
