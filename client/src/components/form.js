@@ -8,17 +8,6 @@ const cookies = new Cookies();
 
 let config = require('../config_client.json');
 
-function getBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => { resolve(reader.result); };
-    reader.onerror = error => reject(error);
-  });
-}
-
-
-
 class PostType extends Component {
   constructor(props) {
     super(props)
@@ -31,22 +20,33 @@ class PostType extends Component {
 
   subFields() {
     if (this.props.type === "search") {
-      let optionsReward = { Palc: "Palc", "Calin <3": "Calin <3", Rien: "Rien" }
+      let optionsReward = { "une palc": "une palc", "un calin": "un calin", rien:"rien", autre: "autre" };
       let opt = [<option disabled hidden selected>Choisissez votre récompense</option>];
       for (let i in optionsReward) {
 
-        if (i === this.props.reward) {
+        if (i === this.props.reward | (!(this.props.reward in optionsReward) & optionsReward[i] === "autre" & this.props.reward !== null)) {
           opt.push(<option selected="True" key={i}>{optionsReward[i]}</option>);
         }
         else {
           opt.push(<option key={i}>{optionsReward[i]}</option>);
         }
       }
+      let custom_reward = null;
+      if (this.state.customReward) {
+        custom_reward = <div className="message">
+                              <label for="message"></label>
+                              <input type="text" name="message" placeholder="Entrez la récompense" id="description_input" value={this.props.reward} onChange={(e) => this.handleChange(e, "secondary")} cols="30" rows="5"/>
+                            </div>;
+      }
+
+      
       return (
         <div>
           <select name="subject" id="subject_input" onChange={(e) => this.handleChange(e, "secondary")} required>
             {opt}
-          </select></div>);
+          </select>
+          {custom_reward}  
+        </div>);
     }
     else {
       return (null);
@@ -62,7 +62,12 @@ class PostType extends Component {
       this.props.updateParent("type", event.target.value === "Annonce recherche" ? "search" : "found")
     }
     else if (type === "secondary") {
-      this.props.updateParent("reward", event.target.value);
+      if ( event.target.value !== "autre" ){
+        this.props.updateParent("reward", event.target.value)
+      }
+      else {
+        this.setState({customReward : true});
+      }
     }
   }
 
@@ -144,7 +149,7 @@ class Form extends Component { //parent component
     super(props)
     this.state = {
       type: "search",
-      reward: "Palc",
+      reward: null,
       title: "",
       description: "",
       thumbnail: null,
@@ -184,20 +189,12 @@ class Form extends Component { //parent component
     else if (this.state.imageLoading) {
       alert("Les images sont toujours en train d'être chargées, veuillez réessayer dans quelques instants.")
     }
+    else if ( this.state.reward === null) {
+      alert("Veuillez choisir une récompense.")
+    }
     else {
       this.props.putDataToDB(this.state);
-      this.props.history.push("/");
-      this.setState({
-        type: "search",
-        reward: "Palc",
-        title: "",
-        description: "",
-        thumbnail: null,
-        image: [],
-        data: []
-      });
-      this.killReCaptchaBadge();
-    };
+    }
   }
 
   handleImage(event) { //import, convert and resize the images
