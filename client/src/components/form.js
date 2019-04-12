@@ -20,7 +20,7 @@ class PostType extends Component {
 
   subFields() {
     if (this.props.type === "search") {
-      let optionsReward = { "Une palc": "Une palc", "Une calin": "Une calin", Rien:"Rien", Autre: "Autre" };
+      let optionsReward = { "Une palc": "Une palc", "Un calin": "Un calin", Rien:"Rien", Autre: "Autre" };
       let opt = [<option disabled hidden selected>Choisissez votre récompense</option>];
       for (let i in optionsReward) {
 
@@ -62,10 +62,12 @@ class PostType extends Component {
       this.props.updateParent("type", event.target.value === "Annonce recherche" ? "search" : "found")
     }
     else if (type === "secondary") {
-      if ( event.target.value !== "Autre" ){
+      if ( event.target.value !== "Autre" & event.target.value in { "Une palc": "Une palc", "Un calin": "Un calin", Rien:"Rien", Autre: "Autre" }){
         this.props.updateParent("reward", event.target.value)
+        this.setState({customReward : false});
       }
       else {
+        this.props.updateParent("reward", null);
         this.setState({customReward : true});
       }
     }
