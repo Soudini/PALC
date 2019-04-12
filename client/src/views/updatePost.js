@@ -54,7 +54,6 @@ class UpdatePost extends Component {
   render() {
 
     if (this.state.author !== "") {
-      console.log(this.state);
       return (
         <div>
           <Form putDataToDB={this.putDataToDB} data={this.state} />

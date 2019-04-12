@@ -52,9 +52,8 @@ class Display extends Component {
 
   render() {
     if (this.props.search != this.state.searchedfor) {
-      this.setState({ data: this.searchDataFromDb(this.props.search, this.state.page, this.state.adsDisplayed) });
+      this.setState({ data: this.searchDataFromDb(this.props.search, this.s tate.page, this.state.adsDisplayed) });
       this.setState({ searchedfor: this.props.search });
-      console.log("researching", this.props.search);
     }
     let pagination = [];
     for (let i = 0; i < this.state.numberAds / this.state.adsDisplayed; i++) {
@@ -62,17 +61,45 @@ class Display extends Component {
     }
     if (this.state.data) {
       if (this.state.data.length === 0) {
-        return (<section>
-          <div className="container-fondus ">
-            <div className="row">
-              <div className="col-lg-6 mx-auto text-center">
-
-                <br></br>
-                <img src={AucuneAnnonce} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
+        if (this.props.history.location === "/perso"){
+          return (<section>
+            <div className="container-fondus ">
+              <div className="row">
+                <div className="col-lg-6 mx-auto text-center">
+  
+                  <br></br>
+                  <img src={PersoPalc} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
+                </div>
               </div>
             </div>
-          </div>
-        </section>)
+          </section>)
+        }
+        else if (this.props.match.path === "/searchEngine/:searchText"){
+          return (<section>
+            <div className="container-fondus ">
+              <div className="row">
+                <div className="col-lg-6 mx-auto text-center">
+  
+                  <br></br>
+                  <img src={AucunResultat} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
+                </div>
+              </div>
+            </div>
+          </section>)
+        }
+        else {
+          return (<section>
+            <div className="container-fondus ">
+              <div className="row">
+                <div className="col-lg-6 mx-auto text-center">
+  
+                  <br></br>
+                  <img src={AucuneAnnonce} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
+                </div>
+              </div>
+            </div>
+          </section>)
+        }
       }
       else {
         return (
