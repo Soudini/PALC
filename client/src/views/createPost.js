@@ -8,17 +8,6 @@ class CreatePost extends Component { //parent component
 
   constructor(props) {
     super(props)
-    this.state = {
-      type: "search",
-      reward: "Palc",
-      title: "",
-      description: "",
-      thumbnail: null,
-      image: [],
-      data: [],
-      reCaptchaToken: null,
-      imageLoading:false,
-    }
   }
 
   putDataToDB = (data) => { //post the ad to the DB
@@ -35,7 +24,6 @@ class CreatePost extends Component { //parent component
       reCaptchaToken: data.reCaptchaToken,
       auth: cookies.get("auth")
     }).then(res => {
-      console.log(res.data);
       if (res.data.success) {
         alert("Annonce postée avec succès")
       }
