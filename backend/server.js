@@ -22,7 +22,7 @@ const dbRoute = config.db_address;//"mongodb://localhost/ads"
 let keyEncrypt = secrets.keyEncrypt;
 const reCaptchaKey = config.reCaptchaKey ? config.reCaptchaKey : secrets.captcha.reCaptchaKey;
 console.log(reCaptchaKey);
-let admin = ["2018louysa","2018bekaddoul","2018raikia"];
+let admin = ["2018louysa","2018bekaddoul","2018raikia", "2018herlicqb", "2018lamboleyk", "2018houedep"];
 let ban = [];
 
 
