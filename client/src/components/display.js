@@ -61,7 +61,7 @@ class Display extends Component {
     }
     if (this.state.data) {
       if (this.state.data.length === 0) {
-        if (this.props.history.location === "/perso"){
+        if (this.props.location.pathname === "/perso"){
           return (<section>
             <div className="container-fondus ">
               <div className="row">
