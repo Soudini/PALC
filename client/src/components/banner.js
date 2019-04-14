@@ -109,6 +109,9 @@ class Banner extends Component {
             <li className={"nav-item" + (this.props.history.location.pathname == "/perso" ? " active" : "")}>
               <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("perso")}>Mon compte<span className="sr-only">(current)</span></a>
             </li>
+            <li className={"nav-item" + (this.props.history.location.pathname == "/logout" ? " active" : "")}>
+              <a className="nav-link hover-pointer" onClick={() => this.handlePageChange("logout")}>Déconnexion<span className="sr-only">(current)</span></a>
+            </li>
           </ul>
           {/* <input id="searchBar" className="form-control mr-sm-2 col-sm-2" style={{ "marginBottom": "1rem", "marginTop": "1rem" }} onKeyPress={this.handleKeyPress} placeholder="Chercher" aria-label="Search" onChange={this.handleSearchText}></input>
           <button id="searchbutton" onClick={() => this.handlePageChange("searchEngine/" + this.state.search)}>
