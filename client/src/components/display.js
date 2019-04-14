@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import "./display.css";
 import Ad from "./ad.js";
 import axios from "axios";
-import logopalc from "../files/logopalc.png"
+import logopalc from "../files/logopalc.png";
 import "./display.css";
 import PersoPalc from "./../files/perso_palc.png";
 import AucuneAnnonce from "./../files/AucuneAnnonce.png";
@@ -61,12 +61,12 @@ class Display extends Component {
     }
     if (this.state.data) {
       if (this.state.data.length === 0) {
-        if (this.props.location.pathname === "/perso"){
+        if (this.props.location.pathname === "/perso") {
           return (<section>
             <div className="container-fondus ">
               <div className="row">
                 <div className="col-lg-6 mx-auto text-center">
-  
+
                   <br></br>
                   <img src={PersoPalc} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
                 </div>
@@ -74,12 +74,12 @@ class Display extends Component {
             </div>
           </section>)
         }
-        else if (this.props.match.path === "/searchEngine/:searchText"){
+        else if (this.props.match.path === "/searchEngine/:searchText") {
           return (<section>
             <div className="container-fondus ">
               <div className="row">
                 <div className="col-lg-6 mx-auto text-center">
-  
+
                   <br></br>
                   <img src={AucunResultat} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
                 </div>
@@ -92,7 +92,7 @@ class Display extends Component {
             <div className="container-fondus ">
               <div className="row">
                 <div className="col-lg-6 mx-auto text-center">
-  
+
                   <br></br>
                   <img src={AucuneAnnonce} id="aucuneannonce_image" class="img-fluid" alt="Responsive image" />
                 </div>

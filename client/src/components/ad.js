@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import axios from "axios";
 import "./ad.css";
@@ -86,9 +87,9 @@ export class Page extends Component { // full page view of the ad with the id wr
         </div>;
       }
 
-      let presentation = "Cette annonce a été créée par " + this.state.data.author;
-      if (this.state.data.reward !== null){
-        presentation = this.state.data.author + " offre " + this.state.data.reward.toLowerCase();
+      let presentation = "Trouvaille : Cette annonce a été créée par " + this.state.data.author;
+      if (this.state.data.reward !== null) {
+        presentation = "Recherche : " + this.state.data.author + " offre " + this.state.data.reward.toLowerCase();
       }
       return (
         <div className="col-lg-8">
@@ -115,12 +116,13 @@ export class Page extends Component { // full page view of the ad with the id wr
 }
 
 
-export default class Ad extends Component { // card for the mutliple ads view
+class Ad extends Component { // card for the mutliple ads view
   constructor(props) {
     super(props)
     this.state = {
       data: this.props.data,
       value: null,
+
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -161,20 +163,85 @@ export default class Ad extends Component { // card for the mutliple ads view
     if (this.props.data.thumbnail === null) {
       this.props.data.thumbnail = image
     }
-    return (<a className="style-1" href={"/ad/" + this.props.data._id} style={{ "marginTop": "1rem", "marginLeft": "auto", "marginRight": "auto", "marginBottom": "1rem" }}>
-      <div className={className} style={{ "width": "18rem" }} >
-        <LinkContainer to={"/ad/" + this.props.data._id}>
-          <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} />
- </LinkContainer>
-        <LinkContainer to={"/ad/" + this.props.data._id}>
-          <div className="card-body ">
-            <h5 className="card-title">{this.printTitle()}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre " + this.props.data.reward.toLowerCase() : "")}</h6>
-            <p className="card-text">{this.printDescription()}</p>
+    if (this.props.data.type == "search") {
+      if (this.props.location.pathname == "/search") {
+        return (<a className="style-1" href={"/ad/" + this.props.data._id} style={{ "marginTop": "1rem", "marginLeft": "auto", "marginRight": "auto", "marginBottom": "1rem" }}>
+          <div className={className} style={{ "width": "18rem" }} >
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+
+              <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} />
+            </LinkContainer>
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+              <div className="card-body ">
+                <h5 className="card-title">{this.printTitle()}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre " + this.props.data.reward.toLowerCase() : "")}</h6>
+                <p className="card-text">{this.printDescription()}</p>
+              </div>
+            </LinkContainer>
           </div>
-        </LinkContainer>
-      </div>
-    </a>
-    )
+        </a>
+        )
+      }
+      else {
+        return (<a className="style-1" href={"/ad/" + this.props.data._id} style={{ "marginTop": "1rem", "marginLeft": "auto", "marginRight": "auto", "marginBottom": "1rem" }}>
+          <div className={className} style={{ "width": "18rem" }} >
+            <h5 className="card-title" style={{ "marginTop": "10px" }}>&nbsp; &nbsp;Recherche</h5>
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+
+              <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} />
+            </LinkContainer>
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+              <div className="card-body ">
+                <h5 className="card-title">{this.printTitle()}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre " + this.props.data.reward.toLowerCase() : "")}</h6>
+                <p className="card-text">{this.printDescription()}</p>
+              </div>
+            </LinkContainer>
+          </div>
+        </a>
+        )
+      }
+    }
+    else {
+      if (this.props.location.pathname == "/found") {
+        return (<a className="style-1" href={"/ad/" + this.props.data._id} style={{ "marginTop": "1rem", "marginLeft": "auto", "marginRight": "auto", "marginBottom": "1rem" }}>
+          <div className={className} style={{ "width": "18rem" }} >
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+
+              <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} />
+            </LinkContainer>
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+              <div className="card-body ">
+                <h5 className="card-title">{this.printTitle()}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre " + this.props.data.reward.toLowerCase() : "")}</h6>
+                <p className="card-text">{this.printDescription()}</p>
+              </div>
+            </LinkContainer>
+          </div>
+        </a>
+        )
+      }
+      else {
+        return (<a className="style-1" href={"/ad/" + this.props.data._id} style={{ "marginTop": "1rem", "marginLeft": "auto", "marginRight": "auto", "marginBottom": "1rem" }}>
+          <div className={className} style={{ "width": "18rem" }} >
+            <h5 className="card-title" style={{ "marginTop": "10px" }}>&nbsp; &nbsp;Trouvaille</h5>
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+
+              <img className="card-img-top test" style={{ "maxHeight": "1px" }} src={this.props.data.thumbnail} />
+            </LinkContainer>
+            <LinkContainer to={"/ad/" + this.props.data._id}>
+              <div className="card-body ">
+                <h5 className="card-title">{this.printTitle()}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">{this.props.data.author + (this.props.data.reward ? " offre " + this.props.data.reward.toLowerCase() : "")}</h6>
+                <p className="card-text">{this.printDescription()}</p>
+              </div>
+            </LinkContainer>
+          </div>
+        </a>
+        )
+      }
+    }
   }
 }
+
+export default withRouter(Ad)
