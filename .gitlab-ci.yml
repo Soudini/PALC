@@ -21,6 +21,8 @@ deploy:
     - >
       ssh -tt ubuntu@palc.viarezo.fr
       "cd /home/ubuntu/objets-trouves &&
+      rm /home/ubuntu/objets-trouves/backend/config_backend.json &&
+      rm /home/ubuntu/objets-trouves/client/src/config_client.json &&
       cp /home/ubuntu/objets-trouves/config/server/config_backend.json /home/ubuntu/objets-trouves/backend/ &&
       cp /home/ubuntu/objets-trouves/config/server/config_client.json /home/ubuntu/objets-trouves/client/src/ &&
       git checkout master &&
