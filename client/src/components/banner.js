@@ -85,7 +85,7 @@ class Banner extends Component {
 
   render() {
     return (
-      <nav className="navbar fixed-top navbar-expand-xl navbar-dark col-lg-12">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark col-lg-12">
         <a className={"navbar-brand" + (this.props.history.location.pathname == "/" ? " active" : "")} onClick={() => this.handlePageChange("")}><img src={logopalccontour} width="40" height="40" class="img-fluid" alt="Responsive image"
           onMouseOver={e => (e.currentTarget.src = logopalc)}
           onMouseOut={e => (e.currentTarget.src = logopalccontour)} />&nbsp; PALC</a>
