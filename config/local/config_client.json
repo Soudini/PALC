@@ -1,5 +1,5 @@
 {
-    "redirect_uri" : "http://localhost:3000/oauthend",
+    "redirect_uri" : "http://localhost:3000/",
     "ReCaptcha_sitekey":"6LcGT5AUAAAAAPrRW0KlrjJ5DFL7QTAa4QT-sXPT"
 }
   

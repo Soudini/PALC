@@ -45,7 +45,8 @@ const Main = () => (
         <Route exact path='/perso' component={Perso} />
         <Route exact path='/searchEngine/:searchText' component={SearchEngine} />
         <Route exact path='/ad/:id' component={Page} />
-        <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=' +config.redirect_uri+ '&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state=' + random + '&scope=default'; return null; }} />
+        <Route exact path='/oauth' component={() => { window.location = 'https://auth.viarezo.fr/oauth/authorize/?redirect_uri=' +config.redirect_uri+ 'oauthend&client_id=279c525e5961df88feb2b6053f210f7537265270&response_type=code&state=' + random + '&scope=default'; return null; }} />
+        <Route exact path='/logout' component={() => { cookies.remove("auth");cookies.remove("expires_at");cookies.remove("code");cookies.remove("updatedAt");window.location = 'https://auth.viarezo.fr/logout?redirect_logout=' +config.redirect_uri; return null; }} />
         <Route exact path='/oauthend' component={OauthEnd} />
         <Route exact path='/updatePost/:id' component={UpdatePost} />
         <Route exact path="/" component={Home} />
